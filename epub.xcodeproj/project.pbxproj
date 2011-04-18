@@ -12,9 +12,22 @@
 		D78388531354890700E7937B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388521354890700E7937B /* CoreServices.framework */; };
 		D78388551354890700E7937B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388541354890700E7937B /* CoreFoundation.framework */; };
 		D783885B1354890700E7937B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D78388591354890700E7937B /* InfoPlist.strings */; };
-		D783885E1354890700E7937B /* GenerateThumbnailForURL.c in Sources */ = {isa = PBXBuildFile; fileRef = D783885D1354890700E7937B /* GenerateThumbnailForURL.c */; };
+		D783885E1354890700E7937B /* GenerateThumbnailForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = D783885D1354890700E7937B /* GenerateThumbnailForURL.m */; };
 		D78388601354890700E7937B /* GeneratePreviewForURL.c in Sources */ = {isa = PBXBuildFile; fileRef = D783885F1354890700E7937B /* GeneratePreviewForURL.c */; };
 		D78388621354890700E7937B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388611354890700E7937B /* main.c */; };
+		D783887E1354891800E7937B /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388731354891800E7937B /* ZipArchive.h */; };
+		D783887F1354891800E7937B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
+		D78388811354896300E7937B /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388801354896300E7937B /* libz.1.2.3.dylib */; };
+		D783888313548ADA00E7937B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783888213548ADA00E7937B /* AppKit.framework */; };
+		D783889B1354AA7600E7937B /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388921354AA7600E7937B /* crypt.h */; };
+		D783889C1354AA7600E7937B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
+		D783889D1354AA7600E7937B /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388941354AA7600E7937B /* ioapi.h */; };
+		D783889E1354AA7600E7937B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
+		D783889F1354AA7600E7937B /* mztools.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388961354AA7600E7937B /* mztools.h */; };
+		D78388A01354AA7600E7937B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
+		D78388A11354AA7600E7937B /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388981354AA7600E7937B /* unzip.h */; };
+		D78388A21354AA7600E7937B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		D78388A31354AA7600E7937B /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = D783889A1354AA7600E7937B /* zip.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,12 +36,26 @@
 		D78388501354890700E7937B /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		D78388521354890700E7937B /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		D78388541354890700E7937B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		D78388581354890700E7937B /* epub-Info.plist */ = {isa = PBXFileReference; path = "epub-Info.plist"; sourceTree = "<group>"; };
+		D78388581354890700E7937B /* epub-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "epub-Info.plist"; sourceTree = "<group>"; };
 		D783885A1354890700E7937B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D783885C1354890700E7937B /* epub-Prefix.pch */ = {isa = PBXFileReference; path = "epub-Prefix.pch"; sourceTree = "<group>"; };
-		D783885D1354890700E7937B /* GenerateThumbnailForURL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GenerateThumbnailForURL.c; sourceTree = "<group>"; };
+		D783885C1354890700E7937B /* epub-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "epub-Prefix.pch"; sourceTree = "<group>"; };
+		D783885D1354890700E7937B /* GenerateThumbnailForURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenerateThumbnailForURL.m; sourceTree = "<group>"; };
 		D783885F1354890700E7937B /* GeneratePreviewForURL.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = GeneratePreviewForURL.c; sourceTree = "<group>"; };
 		D78388611354890700E7937B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		D78388731354891800E7937B /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		D78388741354891800E7937B /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		D78388801354896300E7937B /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		D783888213548ADA00E7937B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D7838884135499ED00E7937B /* Untitled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Untitled.epub; sourceTree = "<group>"; };
+		D78388921354AA7600E7937B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		D78388931354AA7600E7937B /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		D78388941354AA7600E7937B /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		D78388951354AA7600E7937B /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		D78388961354AA7600E7937B /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		D78388971354AA7600E7937B /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		D78388981354AA7600E7937B /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		D78388991354AA7600E7937B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		D783889A1354AA7600E7937B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +67,8 @@
 				D78388511354890700E7937B /* ApplicationServices.framework in Frameworks */,
 				D78388531354890700E7937B /* CoreServices.framework in Frameworks */,
 				D78388551354890700E7937B /* CoreFoundation.framework in Frameworks */,
+				D78388811354896300E7937B /* libz.1.2.3.dylib in Frameworks */,
+				D783888313548ADA00E7937B /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +95,8 @@
 		D783884D1354890700E7937B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D783888213548ADA00E7937B /* AppKit.framework */,
+				D78388801354896300E7937B /* libz.1.2.3.dylib */,
 				D783884E1354890700E7937B /* QuickLook.framework */,
 				D78388501354890700E7937B /* ApplicationServices.framework */,
 				D78388521354890700E7937B /* CoreServices.framework */,
@@ -77,9 +108,10 @@
 		D78388561354890700E7937B /* epub */ = {
 			isa = PBXGroup;
 			children = (
-				D783885D1354890700E7937B /* GenerateThumbnailForURL.c */,
+				D783885D1354890700E7937B /* GenerateThumbnailForURL.m */,
 				D783885F1354890700E7937B /* GeneratePreviewForURL.c */,
 				D78388611354890700E7937B /* main.c */,
+				D78388681354891800E7937B /* ZipArchive */,
 				D78388571354890700E7937B /* Supporting Files */,
 			);
 			path = epub;
@@ -88,11 +120,38 @@
 		D78388571354890700E7937B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D7838884135499ED00E7937B /* Untitled.epub */,
 				D78388581354890700E7937B /* epub-Info.plist */,
 				D78388591354890700E7937B /* InfoPlist.strings */,
 				D783885C1354890700E7937B /* epub-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D78388681354891800E7937B /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				D78388691354891800E7937B /* minizip */,
+				D78388731354891800E7937B /* ZipArchive.h */,
+				D78388741354891800E7937B /* ZipArchive.mm */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		D78388691354891800E7937B /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				D78388921354AA7600E7937B /* crypt.h */,
+				D78388931354AA7600E7937B /* ioapi.c */,
+				D78388941354AA7600E7937B /* ioapi.h */,
+				D78388951354AA7600E7937B /* mztools.c */,
+				D78388961354AA7600E7937B /* mztools.h */,
+				D78388971354AA7600E7937B /* unzip.c */,
+				D78388981354AA7600E7937B /* unzip.h */,
+				D78388991354AA7600E7937B /* zip.c */,
+				D783889A1354AA7600E7937B /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,6 +161,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D783887E1354891800E7937B /* ZipArchive.h in Headers */,
+				D783889B1354AA7600E7937B /* crypt.h in Headers */,
+				D783889D1354AA7600E7937B /* ioapi.h in Headers */,
+				D783889F1354AA7600E7937B /* mztools.h in Headers */,
+				D78388A11354AA7600E7937B /* unzip.h in Headers */,
+				D78388A31354AA7600E7937B /* zip.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,9 +243,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D783885E1354890700E7937B /* GenerateThumbnailForURL.c in Sources */,
+				D783885E1354890700E7937B /* GenerateThumbnailForURL.m in Sources */,
 				D78388601354890700E7937B /* GeneratePreviewForURL.c in Sources */,
 				D78388621354890700E7937B /* main.c in Sources */,
+				D783887F1354891800E7937B /* ZipArchive.mm in Sources */,
+				D783889C1354AA7600E7937B /* ioapi.c in Sources */,
+				D783889E1354AA7600E7937B /* mztools.c in Sources */,
+				D78388A01354AA7600E7937B /* unzip.c in Sources */,
+				D78388A21354AA7600E7937B /* zip.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +271,7 @@
 		D78388631354890700E7937B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -219,7 +289,7 @@
 		D78388641354890700E7937B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
