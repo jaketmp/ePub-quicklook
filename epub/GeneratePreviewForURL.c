@@ -11,6 +11,12 @@
 OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options)
 {
     #warning To complete your generator please implement the function GeneratePreviewForURL in GeneratePreviewForURL.c
+    /* We shall need:
+        - The cover.
+        - The title.
+        - The author.
+        - Any synopsis information.
+    */ 
     return noErr;
 }
 

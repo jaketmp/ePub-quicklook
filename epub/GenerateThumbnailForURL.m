@@ -13,6 +13,10 @@
    This function's job is to create thumbnail for designated file as fast as possible
    ----------------------------------------------------------------------------- */
 
+/*
+ TODO: Add a nicer image resizing routine.
+ */
+
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize)
 {
     ZipArchive *epubFile;
@@ -20,7 +24,7 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
     NSXMLDocument *contentXML;
     NSError *xmlError;
     NSString *rootFilePath;
-    NSString *coverPath = NULL;
+    NSString *coverPath = nil;
     NSString *coverMIME;
     NSData *coverData;
 
@@ -36,7 +40,9 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
     NSXMLDocument *containerXML = [[NSXMLDocument alloc] initWithData:container options:0 error:&xmlError];
     NSArray *rootFile = [containerXML nodesForXPath:@".//rootfile" error:&xmlError];
     NSString *rootFileType = [[[rootFile objectAtIndex:0] attributeForName:@"media-type"] stringValue];
+
     
+    // This code is all designed arround oebps+xml epubs, DTBook is unsuported.
     if([rootFileType caseInsensitiveCompare:@"application/oebps-package+xml"] == NSOrderedSame) {
         rootFilePath = [[[rootFile objectAtIndex:0] attributeForName:@"full-path"] stringValue];
     }else{
@@ -45,10 +51,10 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
         [epubFile release];
 		CFRelease(fullPath);
 		[pool release];
-		return -1;
+		return noErr;
     }
     // Tidy
-//    [container release];
+    [container release];
     [containerXML release];
     
     
@@ -57,11 +63,13 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
     [content retain];
     contentXML = [[NSXMLDocument alloc] initWithData:content options:0 error:&xmlError];
     
+    
+    
     // scan for a <meta> element with name="cover"
     NSArray *metaElements = [contentXML nodesForXPath:@".//meta" error:&xmlError];
-    
+
     // Fast enumerate over meta elements
-    NSString *coverID = NULL;
+    NSString *coverID = nil;
     for(id item in metaElements)
     {
         NSString *metaName = [[item attributeForName:@"name"] stringValue];
@@ -71,13 +79,15 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
             break;
         }
     }
-    if(coverID == NULL) {
+    if(coverID == nil) {
         CFRelease(fullPath);
         [contentXML release];
-//        [content release];
+        [content release];
         [epubFile release];
-        return -1;
+        return noErr; // No cover in this epub.
     }
+    
+    
     // Now iterate over the manifest to find the path.
     NSArray *itemElements = [contentXML nodesForXPath:@".//item" error:&xmlError];
     
@@ -92,13 +102,15 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
             break;
         }
     }
-//    [content release];
+    [content release];
     [contentXML release];
-    if(coverPath == NULL) {
+    if(coverPath == nil) {
         CFRelease(fullPath);
         [epubFile release];
-        return -1;
+        return -1; // An error - cover listed but not present in the manifest.
     }
+    
+    
     // If previewing is canceled, don't bother loading data.
 	if(QLThumbnailRequestIsCancelled(thumbnail)) {
         [epubFile release];
@@ -106,6 +118,8 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 		[pool release];
 		return noErr;
 	}
+    
+    
     // The cover path is relative to the rootfile...
     NSString *contentRoot = [rootFilePath stringByDeletingLastPathComponent];
     NSArray *coverPathArray = [NSArray arrayWithObjects:contentRoot, coverPath, nil];
@@ -127,18 +141,20 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
         thumbnailImage = CGImageCreateWithPNGDataProvider(imageData, NULL, TRUE, kCGRenderingIntentDefault);
 
     }else {
+        // Unsuported cover-image.
         CGDataProviderRelease(imageData);
         [epubFile release];
         CFRelease(fullPath);
         [pool release];
-        return -1;
+        return noErr;
     }
+    // Get quicklook to do the magic.
     QLThumbnailRequestSetImage(thumbnail, thumbnailImage, NULL);
 
     // Tidy
     [epubFile release];
     CFRelease(fullPath);
-//    CGImageRelease(thumbnailImage);
+    CGImageRelease(thumbnailImage);
     CGDataProviderRelease(imageData);
 
     [pool release];

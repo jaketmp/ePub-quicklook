@@ -25,9 +25,10 @@
 
 -(id) init
 {
-	if( (self=[super init]) )
+    self = [super init];
+	if(self)
 	{
-		_zipFile = NULL ;
+		_zipFile = nil ;
 	}
 	return self;
 }
@@ -35,12 +36,17 @@
     [self init];
     
     _zipFile = unzOpen([fileName   UTF8String]);
+    if(_zipFile) {
+        return self;
+    }else{
+        [self dealloc];
+        return nil;
+    }
     
-    return self;
 }
 -(void) dealloc
 {
-    if( _zipFile != NULL) {        
+    if( _zipFile != nil) {        
         [self closeZipFile];
     }
 	[super dealloc];
@@ -58,27 +64,28 @@
 	if ( result != UNZ_OK ) {
         // raise an error here
         NSLog(@"FAIL");
+        return nil;
 	}
     
 	result = unzGetCurrentFileInfo( _zipFile, &info, NULL, 0, NULL, 0, NULL, 0 );
 	if ( result != UNZ_OK ) {
         NSLog(@"FAIL2");
-
+        return nil;
 	}
     
 	result = unzOpenCurrentFile( _zipFile );
 	if ( result != UNZ_OK ) {
         // more error checking here
         NSLog(@"FAIL3");
-
+        return nil;
 	}
     
 	buffer = (UInt8*)malloc(info.uncompressed_size);
-	result = unzReadCurrentFile( _zipFile, buffer, info.uncompressed_size );
+	result = unzReadCurrentFile( _zipFile, buffer, (uint)info.uncompressed_size );
 	if ( result != info.uncompressed_size ) {
 		// Error checking	
         NSLog(@"FAIL5");
-
+        return nil;
     }
     
     // Use the malloc'd buffer rather than copy the data.
@@ -87,17 +94,19 @@
 	/* Clean up after ourselves */
 	unzCloseCurrentFile(_zipFile);
     
-    [data autorelease];
     return data;
 }
 
 -(BOOL) openZipFile:(NSString *)fileName {
     
-    // should check if we have a file open already.
+    // check if we have a file open already.
+    if (_zipFile != nil) {
+        return FALSE;
+    }
     
     _zipFile = unzOpen([fileName   UTF8String]);
 
-    if(_zipFile != NULL) {
+    if(_zipFile != nil) {
         return TRUE;
     }else{
         return FALSE;
@@ -112,7 +121,7 @@
     if (ret == TRUE) {
         _zipFile = NULL;
     }
-        
+    
     return ret;
 }
 

@@ -1,15 +1,14 @@
 //
 //  ZipArchive.h
 //  
+//  This was originaly ZipArchive:
 //
 //  Created by aish on 08-9-11.
 //  acsolu@gmail.com
 //  Copyright 2008  Inc. All rights reserved.
 //
-// History: 
-//    09-11-2008 version 1.0    release
-//    10-18-2009 version 1.1    support password protected zip files
-//    10-21-2009 version 1.2    fix date bug
+// - I've pretty much hacked it apart to make it suitble for use here - It was a great help with getting the hang of the minizip code in a cocoa context though.
+
 
 #import <AppKit/AppKit.h>
 
