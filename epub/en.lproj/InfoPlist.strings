@@ -1,2 +1,6 @@
 /* Localized versions of Info.plist keys */
 
+"%author%" = "Author";
+"%title%" = "Title";
+"%synopsis%" = "Synopsis";
+"%pubDate%" = "Publication Date";

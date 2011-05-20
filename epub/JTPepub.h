@@ -16,6 +16,7 @@
     ZipArchive *epubFile;
     NSString *title;
     NSString *author;
+    NSString *synopsis;
     NSString *rootFilePath;
     NSXMLDocument *opfXML;
     NSImage *cover;
@@ -27,5 +28,6 @@
 - (NSString *)title;
 - (NSString *)author;
 - (NSImage *)cover;
+- (NSString *)synopsis;
 
 @end

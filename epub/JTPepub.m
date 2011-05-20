@@ -27,9 +27,6 @@
         [self openEPUBFile:fileName];        
 
     }
-    
-    
-    
     return self;
 }
 
@@ -100,9 +97,7 @@
     }
     // There should only be one <dc:title>, so take the last.
     title = [[metaElements lastObject] stringValue];
-    
-    NSString * str = [[metaElements lastObject] XPath];
-    
+        
     [title retain];
     
     return title;        
@@ -133,6 +128,9 @@
     UInt16 count = 0;
     for(id item in metaElements)
     {
+        if (count > 1) {
+            [mutableAuthors appendString:@" "];
+        }
         NSString *itemID = [[item attributeForName:@"role"] stringValue];
         
         if([itemID caseInsensitiveCompare:@"aut"] == NSOrderedSame) {
@@ -144,9 +142,6 @@
             
             [mutableAuthors appendString:[[item stringValue] stringByAppendingString:@" (Editor)"]];
             count++;
-        }
-        if (count >= 1) {
-            [mutableAuthors appendString:@" "];
         }
     }
     
@@ -187,7 +182,7 @@
     // Now iterate over the manifest to find the path.
     NSArray *itemElements = [opfXML nodesForXPath:@".//item" error:&xmlError];
     NSString *coverPath = nil;
-    NSStream *coverMIME;
+    NSString *coverMIME;
     // Fast enumerate over meta elements
     for(id item in itemElements)
     {
@@ -219,7 +214,33 @@
     
     return cover;
 }
-
+- (NSString *)synopsis
+{
+    // If the synopsis has been set, return it.
+    if (synopsis) {
+        return synopsis;
+    }
+    
+    
+    // Otherwise load it.
+    NSError *xmlError = nil;
+    
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='description']" 
+                                            error:&xmlError];
+    
+    // Check the array isn't empty.
+    if ([metaElements count] == 0) {
+        // No title found
+        synopsis = @"";
+        return synopsis;
+    }
+    // There should only be one <dc:title>, so take the last.
+    synopsis = [[metaElements lastObject] stringValue];
+    
+    [synopsis retain];
+    
+    return synopsis;    
+}
 - (void)dealloc
 {
     if (epubFile) {
@@ -236,6 +257,9 @@
     }
     if (cover) {
         [cover release];
+    }
+    if (synopsis) {
+        [synopsis release];
     }
     if (rootFilePath) {
         [rootFilePath release];

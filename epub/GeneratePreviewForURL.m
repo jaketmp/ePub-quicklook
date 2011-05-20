@@ -19,14 +19,41 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         - The author.  <dc:creator opf:role="aut">
         - Any synopsis information. <dc:description>
     */
-    CFStringRef *filePath = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
+    NSMutableString *html;
+    
+    
+    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    
+    // Determine desired localisations and load strings
+	NSBundle *pluginBundle = [NSBundle bundleWithIdentifier:@"org.idpf.epub.qlgenerator"];
+	[pluginBundle retain];
+    
+    /*
+	   Load the HTML template
+	 */
+	//Get the template path
+	NSString *htmlPath = [[[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/index.html"] autorelease];
+	NSError *htmlError;
+    html = [[[NSMutableString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:&htmlError] autorelease];
+    
+
+    // Load the epub:
+    CFStringRef filePath = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
     JTPepub *epubFile = [[JTPepub alloc] initWithFile:(NSString *)filePath];
     
-    NSString *title = [epubFile author];
+    NSString *title = [epubFile title];
+    NSString *author = [epubFile author];
+    NSImage *cover = [epubFile cover];
+    NSString *synopsis = [epubFile synopsis];
     
-    // Load the epub:
     
+
+    
+    
+    [epubFile release];
     CFRelease(filePath);
+    [pluginBundle release];
+    [pool release];
     return noErr;
 }
 
