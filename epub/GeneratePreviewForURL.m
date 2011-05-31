@@ -32,28 +32,72 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
 	   Load the HTML template
 	 */
 	//Get the template path
-	NSString *htmlPath = [[[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/index.html"] autorelease];
+	NSString *htmlPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/index.html"];
+    
+    // Load data.
 	NSError *htmlError;
     html = [[[NSMutableString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:&htmlError] autorelease];
-    
+    [htmlPath release];
 
     // Load the epub:
     CFStringRef filePath = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
     JTPepub *epubFile = [[JTPepub alloc] initWithFile:(NSString *)filePath];
     
-    NSString *title = [epubFile title];
-    NSString *author = [epubFile author];
-    NSImage *cover = [epubFile cover];
-    NSString *synopsis = [epubFile synopsis];
+    
+    /*
+     * Set properties for the preview data
+     */
+	NSMutableDictionary *props = [[[NSMutableDictionary alloc] init] autorelease];
+	
+    // Title string
+    [props setObject:@"UTF-8" forKey:(NSString *)kQLPreviewPropertyTextEncodingNameKey];
+    [props setObject:@"text/html" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
+	[props setObject:(NSString *)[epubFile title] forKey:(NSString *)kQLPreviewPropertyDisplayNameKey];
+    
+    // Cover image
+    NSData *iconData = [[[epubFile cover] TIFFRepresentation] retain];
+	NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
+	[iconProps setObject:@"image/tiff" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
+	[iconProps setObject:iconData forKey:(NSString *)kQLPreviewPropertyAttachmentDataKey];
+	[props setObject:[NSDictionary dictionaryWithObject:iconProps forKey:@"icon.tiff"] forKey:(NSString *)kQLPreviewPropertyAttachmentsKey];
+    
+    [iconData release];
+    
+    /*
+     * Localise and subsitute derived values into the template html
+     */
+    [html replaceOccurrencesOfString:@"%title%" withString:[epubFile title] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [html replaceOccurrencesOfString:@"%author%" withString:[epubFile author] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [html replaceOccurrencesOfString:@"%synopsis%" withString:[epubFile synopsis] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [html replaceOccurrencesOfString:@"%publication%" 
+                          withString:[[epubFile publicationDate] descriptionWithCalendarFormat:@"%Y" 
+                                                                                      timeZone:nil 
+                                                                                        locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]
+                             options:NSLiteralSearch 
+                               range:NSMakeRange(0, [html length])];
     
     
-
+    /*
+     * Return the HTML to be rendered.
+     */
+    // Check for cancel
+	if(QLPreviewRequestIsCancelled(preview)) {
+        [epubFile release];
+        [pluginBundle release];
+        [pool release];
+        CFRelease(filePath);
+        
+		return noErr;
+	}
+	QLPreviewRequestSetDataRepresentation(preview,(CFDataRef)[html dataUsingEncoding:NSUTF8StringEncoding],kUTTypeHTML,(CFDictionaryRef)props);
     
-    
+    /*
+     * And done! Tidy up and return.
+     */
     [epubFile release];
-    CFRelease(filePath);
     [pluginBundle release];
     [pool release];
+    CFRelease(filePath);
     return noErr;
 }
 

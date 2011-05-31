@@ -16,10 +16,12 @@
     ZipArchive *epubFile;
     NSString *title;
     NSString *author;
+    NSArray * creators;
     NSString *synopsis;
     NSString *rootFilePath;
     NSXMLDocument *opfXML;
     NSImage *cover;
+    NSDate *publicationDate;
 
 }
 - (id) initWithFile:(NSString *)fileName;
@@ -27,7 +29,9 @@
 
 - (NSString *)title;
 - (NSString *)author;
+- (NSArray *)creators;
 - (NSImage *)cover;
 - (NSString *)synopsis;
+- (NSDate *)publicationDate;
 
 @end

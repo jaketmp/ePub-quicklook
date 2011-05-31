@@ -52,7 +52,7 @@
     
     // This code is all designed arround oebps+xml epubs, DTBook is unsuported.
     if([rootFileType caseInsensitiveCompare:@"application/oebps-package+xml"] == NSOrderedSame) {
-        rootFilePath = [[[rootFile objectAtIndex:0] attributeForName:@"full-path"] stringValue];
+        rootFilePath = [[[[rootFile objectAtIndex:0] attributeForName:@"full-path"] stringValue] retain];
     }else{
         [container release];
         [containerXML release];
@@ -152,6 +152,52 @@
     return author;
 
 }
+- (NSArray *)creators
+{
+    // If the author has been set, return it.
+    if (creators) {
+        return creators;
+    }
+    
+    // Otherwise load it.
+    NSMutableArray *creatorsMutable = [[NSMutableArray alloc] init];
+    NSError *xmlError = nil;
+    
+    // scan for a <dc:creator> element
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='creator']" 
+                                            error:&xmlError];
+    
+    // Check the array isn't empty.
+    if ([metaElements count] == 0) {
+        
+        // No title found return an empty array
+        
+        creators = [[NSArray alloc] initWithObjects:@"", nil];
+        [creators retain];
+        [creatorsMutable release];
+        
+        return creators;
+    }
+    
+    // Fast enumerate over meta elements
+    for(id item in metaElements)
+    {
+        NSString *itemID = [[item attributeForName:@"role"] stringValue];
+                    
+        [creatorsMutable addObject:[item stringValue]];
+        [creatorsMutable addObject:itemID];
+
+    }
+    
+    creators = [[NSArray alloc] initWithArray:creatorsMutable];
+    [creators retain];
+         
+    [creatorsMutable release];
+    
+    return creators;
+    
+}
+
 - (NSImage *)cover
 {
     // If cover exists, return it.
@@ -241,6 +287,38 @@
     
     return synopsis;    
 }
+- (NSDate *)publicationDate
+{
+    if(publicationDate) {
+        return publicationDate;
+    }
+    
+    // Otherwise load it.
+    NSError *xmlError = nil;
+    
+    // scan for a <dc:title> element
+    // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title']
+    
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='date']" 
+                                            error:&xmlError];
+    
+    // Check the array isn't empty.
+    if ([metaElements count] == 0) {
+        // No date found
+        return nil;
+    }
+    // Find the date of publication.
+    // Fast enumerate over meta elements
+    for(id item in metaElements)
+    {
+        if([[[item attributeForName:@"event"] stringValue] caseInsensitiveCompare:@"publication"] == NSOrderedSame) {
+            publicationDate = [NSDate dateWithNaturalLanguageString:[item stringValue]];
+            [publicationDate retain];
+        }        
+    }
+    
+    return publicationDate;
+}
 - (void)dealloc
 {
     if (epubFile) {
@@ -251,6 +329,9 @@
     }
     if (author) {
         [author release];
+    }
+    if(creators) {
+        [creators release];
     }
     if (opfXML) {
         [opfXML release];
@@ -263,6 +344,9 @@
     }
     if (rootFilePath) {
         [rootFilePath release];
+    }
+    if (publicationDate) {
+        [publicationDate release];
     }
     
     [super dealloc];

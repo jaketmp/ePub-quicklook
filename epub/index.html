@@ -1,18 +1,29 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html>
 <head>
   <meta charset="utf-8">
 
-  <title>%filename%</title>
+  <title>EPUB</title>
   <meta name="author" content="">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style type="text/css">
- /* <![CDATA[ */
-	html {
-	}
- /* ]]> */
+      /* <![CDATA[ */
+      body {background: black; color: white;}
+      p {font-family: "Georgia", serif; text-indent: 0;}
+      /*div.clearBelow {height: 70em; float: left; width:23%}
+      div.image {float: left; background-color:#888; padding: 0px; margin-left: 0.7em; margin-right: 1.7em; margin-top:0; text-align: center; width: 100%; border-radius: 2px}*/
+      div.clearBelow {margin-bottom: 200%; float: left; width:23%; margin-left: 0.7em; margin-right: 1.7em; min-width: 7em}
+      div.image {float: left; background-color:#888; padding: 0px; margin-left: 0; margin-right: 0; margin-top:0; text-align: center; width: 99%; border-radius: 2px}
+      div.image img {margin: 3px 2% 3px 2%; vertical-align: middle; width: 96%}
+      div.title {margin-left: 10px; margin-top: 0; margin-right: 7px; margin-bottom: 0; font-family: "Gill Sans"; font-size: 1em;}
+      h1 {font-weight: normal; letter-spacing: 0.1em;}
+      p.authors {margin-left: 10px; margin-top: -1em; text-indent: 0.1em; bold; color: #aaa;}
+      div.metadata {}
+      .publishDate {font-weight: bold; color: #aaa}
+      div.synopsis {margin: 0; margin-left: 0; margin-right:0.7em; font-size: 0.9em; text-align: justify; -webkit-hyphens: auto; width: auto;}
+      /* ]]> */
  </style>
 
 </head>
@@ -20,15 +31,25 @@
 <body>
 
   <div id="container">
-    <header>
 
-    </header>
-    <div id="main" role="main">
-
+    <div class="clearBelow">
+    <div class="image">
+        <img src="cid:icon.tiff" alt="cover image" />
     </div>
-    <footer>
+    </div>
+      
+    <div class="title">
+        <h1>%title%</h1>
+        <p class="authors">%author%</p>
+    </div>
+      
+    <div class="metadata">
+        <p class="publishDate">%publication%</p>
+    </div>
+    <div class="synopsis">
+        <p style="width: 100%">%synopsis%</p>
+    </div>
 
-    </footer>
   </div>
 
 </body>
