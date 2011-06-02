@@ -30,44 +30,43 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
     
     // and cover image
     NSImage *cover = [epubFile cover];
-    [cover retain];
     
-    /*
-     * Resize the cover image - then convert to a CGimageref
-     */
-    // Setup the context
-    NSSize imageSize = [cover size];
+    if(cover){ // Bail out if we have no cover data.
+        /*
+         * Resize the cover image - then convert to a CGimageref
+         */
+        // Setup the context
+        NSSize imageSize = [cover size];
 
-    if(imageSize.width > imageSize.height) { // Landscape
-        double scale = imageSize.width / maxSize.width;
-        [cover setSize:NSMakeSize(imageSize.width / scale, imageSize.height / scale)];
-    }else if(imageSize.width < imageSize.height) { // Portrait
-        double scale = imageSize.height / maxSize.height;
-        [cover setSize:NSMakeSize(imageSize.width / scale, imageSize.height / scale)];
-    }else { // Square image
-        [cover setSize:maxSize];
+        if(imageSize.width > imageSize.height) { // Landscape
+            double scale = imageSize.width / maxSize.width;
+            [cover setSize:NSMakeSize(imageSize.width / scale, imageSize.height / scale)];
+        }else if(imageSize.width < imageSize.height) { // Portrait
+            double scale = imageSize.height / maxSize.height;
+            [cover setSize:NSMakeSize(imageSize.width / scale, imageSize.height / scale)];
+        }else { // Square image
+            [cover setSize:maxSize];
+        }
+        
+        
+        CGContextRef context = QLThumbnailRequestCreateContext(thumbnail, [cover size], TRUE, nil);   
+        NSGraphicsContext *nsGraphicsContext = [NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:NO];
+        
+        [NSGraphicsContext saveGraphicsState];
+        [NSGraphicsContext setCurrentContext:nsGraphicsContext];
+        
+        [cover drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
+        
+        [NSGraphicsContext setCurrentContext:nsGraphicsContext];
+        
+        QLThumbnailRequestFlushContext(thumbnail, context);
+        CFRelease(context);
     }
-    
-    
-    CGContextRef context = QLThumbnailRequestCreateContext(thumbnail, [cover size], TRUE, nil);   
-    NSGraphicsContext *nsGraphicsContext = [NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:NO];
-    
-    [NSGraphicsContext saveGraphicsState];
-    [NSGraphicsContext setCurrentContext:nsGraphicsContext];
-    
-    [cover drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
-    
-    [NSGraphicsContext setCurrentContext:nsGraphicsContext];
-    
-    QLThumbnailRequestFlushContext(thumbnail, context);    
-
 
     /*
      * Tidy
      */
     CFRelease(filePath);
-    CFRelease(context);
-    [cover release];
     [epubFile release];
     [pool release];
     

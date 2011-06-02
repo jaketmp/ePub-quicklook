@@ -54,14 +54,19 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     [props setObject:@"text/html" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
 	[props setObject:(NSString *)[epubFile title] forKey:(NSString *)kQLPreviewPropertyDisplayNameKey];
     
-    // Cover image
-    NSData *iconData = [[[epubFile cover] TIFFRepresentation] retain];
-	NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
-	[iconProps setObject:@"image/tiff" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
-	[iconProps setObject:iconData forKey:(NSString *)kQLPreviewPropertyAttachmentDataKey];
-	[props setObject:[NSDictionary dictionaryWithObject:iconProps forKey:@"icon.tiff"] forKey:(NSString *)kQLPreviewPropertyAttachmentsKey];
     
-    [iconData release];
+    // Cover image
+    if([epubFile cover]){
+        NSData *iconData = [[[epubFile cover] TIFFRepresentation] retain];
+        NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
+        [iconProps setObject:@"image/tiff" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
+        [iconProps setObject:iconData forKey:(NSString *)kQLPreviewPropertyAttachmentDataKey];
+        [props setObject:[NSDictionary dictionaryWithObject:iconProps forKey:@"icon.tiff"] forKey:(NSString *)kQLPreviewPropertyAttachmentsKey];
+        
+        [iconData release];
+    }else{ // Delete image if we find no cover.
+        [html replaceOccurrencesOfString:@"<img src=\"cid:icon.tiff\" alt=\"cover image\" />" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    }
     
     /*
      * Localise and subsitute derived values into the template html
@@ -69,13 +74,19 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     [html replaceOccurrencesOfString:@"%title%" withString:[epubFile title] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     [html replaceOccurrencesOfString:@"%author%" withString:[epubFile author] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     [html replaceOccurrencesOfString:@"%synopsis%" withString:[epubFile synopsis] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    if([epubFile publicationDate]) { // Catch an empty publication date.
     [html replaceOccurrencesOfString:@"%publication%" 
                           withString:[[epubFile publicationDate] descriptionWithCalendarFormat:@"%Y" 
                                                                                       timeZone:nil 
                                                                                         locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]
                              options:NSLiteralSearch 
                                range:NSMakeRange(0, [html length])];
-    
+    }else {
+        [html replaceOccurrencesOfString:@"%publication%" 
+                              withString:@"&nbsp;"
+                                 options:NSLiteralSearch 
+                                   range:NSMakeRange(0, [html length])];
+    }
     
     /*
      * Return the HTML to be rendered.

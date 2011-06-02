@@ -19,6 +19,7 @@
     NSArray * creators;
     NSString *synopsis;
     NSString *rootFilePath;
+    NSString *ISBN;
     NSXMLDocument *opfXML;
     NSImage *cover;
     NSDate *publicationDate;
@@ -33,5 +34,6 @@
 - (NSImage *)cover;
 - (NSString *)synopsis;
 - (NSDate *)publicationDate;
+- (NSString *)isbn;
 
 @end

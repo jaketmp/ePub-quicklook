@@ -8,6 +8,8 @@
 
 #import "JTPepub.h"
 
+@interface ZipArchive (Private)
+@end
 
 @implementation JTPepub
 
@@ -100,7 +102,7 @@
         
     [title retain];
     
-    return title;        
+    return title;
 }
 - (NSString *)author
 {
@@ -316,8 +318,46 @@
             [publicationDate retain];
         }        
     }
-    
+        
     return publicationDate;
+}
+- (NSString *)isbn
+{
+    // If the ISBN has been set, return it.
+    if (ISBN) {
+        return ISBN;
+    }
+    
+    
+    // Otherwise load it.
+    NSError *xmlError = nil;
+    
+    // scan for a <dc:title> element
+    // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title']
+    
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='identifier']" 
+                                            error:&xmlError];
+    
+    // Fast enumerate over meta elements
+    NSString *coverID = nil;
+    for(id item in metaElements)
+    {
+        NSString *metaName = [[item attributeForName:@"scheme"] stringValue];
+        
+        if([metaName caseInsensitiveCompare:@"ISBN"] == NSOrderedSame) {
+            coverID = [item stringValue];
+            break;
+        }
+    }
+    if(coverID == nil) {
+        // No ISBN found
+        ISBN = @"";
+        return ISBN;
+    }
+
+    
+    
+    return ISBN;    
 }
 - (void)dealloc
 {
@@ -341,6 +381,9 @@
     }
     if (synopsis) {
         [synopsis release];
+    }
+    if (ISBN) {
+        [ISBN release];
     }
     if (rootFilePath) {
         [rootFilePath release];
