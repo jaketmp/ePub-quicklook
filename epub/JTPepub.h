@@ -14,6 +14,7 @@
 @interface JTPepub : NSObject {
 @private
     ZipArchive *epubFile;
+    NSInteger epubVersion;
     NSString *title;
     NSString *author;
     NSArray * creators;

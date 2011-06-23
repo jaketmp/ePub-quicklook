@@ -42,6 +42,19 @@
     }
     epubFile = [[ZipArchive alloc] initWithZipFile:(NSString*)fileName];
     
+    
+    // Check the mimetype to be sure it's an epub
+    NSString *mimetype = [NSString stringWithUTF8String:[[epubFile dataForNamedFile:@"mimetype"] bytes]];
+    NSRange mimeRange = [mimetype rangeOfString:@"application/epub+zip"];
+    
+    if(mimeRange.location != 0 && mimeRange.length != 20) {
+        [mimetype release];
+        [epubFile release];
+        return FALSE;
+    }
+    [mimetype release];
+
+    
     // Read the container.xml to find the root file.    
     NSData *container = [epubFile dataForNamedFile:@"META-INF/container.xml"];
     [container retain];
@@ -65,11 +78,22 @@
     [containerXML release];
 
     
-    // Get the OEBPS/content.opf from the .epub
+    /* 
+     * Get the OEBPS/content.opf from the .epub
+     * and identify the epub version.
+     */
     NSData *content = [epubFile dataForNamedFile:rootFilePath];
     [content retain];
     opfXML = [[NSXMLDocument alloc] initWithData:content options:0 error:&xmlError];
     [content release];
+    
+    //
+    NSArray *metaElements = [opfXML nodesForXPath:@".//package" 
+                                            error:&xmlError];
+    
+    NSString *versionText = [[[metaElements lastObject] attributeForName:@"version"] stringValue];
+    
+    epubVersion = [versionText integerValue];
     
     return TRUE;
 }
