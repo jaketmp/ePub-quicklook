@@ -6,4 +6,4 @@ This generator reads the various parameters directly from the ePub contents - so
 
 ## Installation
 
-Place the ePub.quicklook generator file into `/Libraries/QuickLook` (for all users) or `~/Library/QuickLook` (for the current user only).
+Place the ePub.quicklook generator file into `/Library/QuickLook` (for all users) or `~/Library/QuickLook` (for the current user only).
