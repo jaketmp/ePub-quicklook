@@ -48,11 +48,11 @@
     NSRange mimeRange = [mimetype rangeOfString:@"application/epub+zip"];
     
     if(mimeRange.location != 0 && mimeRange.length != 20) {
-        [mimetype release];
+        //[mimetype release];
         [epubFile release];
         return FALSE;
     }
-    [mimetype release];
+   // [mimetype release];
 
     
     // Read the container.xml to find the root file.    

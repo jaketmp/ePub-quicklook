@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
 		D783884F1354890700E7937B /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783884E1354890700E7937B /* QuickLook.framework */; };
 		D78388511354890700E7937B /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388501354890700E7937B /* ApplicationServices.framework */; };
 		D78388531354890700E7937B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388521354890700E7937B /* CoreServices.framework */; };
@@ -17,7 +18,6 @@
 		D78388621354890700E7937B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388611354890700E7937B /* main.c */; };
 		D783887E1354891800E7937B /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388731354891800E7937B /* ZipArchive.h */; };
 		D783887F1354891800E7937B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
-		D78388811354896300E7937B /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388801354896300E7937B /* libz.1.2.3.dylib */; };
 		D783888313548ADA00E7937B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783888213548ADA00E7937B /* AppKit.framework */; };
 		D783889B1354AA7600E7937B /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388921354AA7600E7937B /* crypt.h */; };
 		D783889C1354AA7600E7937B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
@@ -30,10 +30,13 @@
 		D78388A31354AA7600E7937B /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = D783889A1354AA7600E7937B /* zip.h */; };
 		D78BA76E1360A90A000EB558 /* JTPepub.h in Headers */ = {isa = PBXBuildFile; fileRef = D78BA76C1360A90A000EB558 /* JTPepub.h */; };
 		D78BA76F1360A90A000EB558 /* JTPepub.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BA76D1360A90A000EB558 /* JTPepub.m */; };
+		D7DA65C313D77C97006BED29 /* lion.css in Resources */ = {isa = PBXBuildFile; fileRef = D7DA65C213D77C97006BED29 /* lion.css */; };
+		D7DA65C513D77CCD006BED29 /* leopard.css in Resources */ = {isa = PBXBuildFile; fileRef = D7DA65C413D77CCD006BED29 /* leopard.css */; };
 		D7E5A5C81386A9F7007EB5E9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = D7E5A5C71386A9F7007EB5E9 /* index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D727FC8313D771B200CB5355 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D783884B1354890700E7937B /* epub.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		D783884E1354890700E7937B /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		D78388501354890700E7937B /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
@@ -47,7 +50,6 @@
 		D78388611354890700E7937B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		D78388731354891800E7937B /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		D78388741354891800E7937B /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
-		D78388801354896300E7937B /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		D783888213548ADA00E7937B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D7838884135499ED00E7937B /* Untitled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Untitled.epub; sourceTree = "<group>"; };
 		D78388921354AA7600E7937B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
@@ -61,6 +63,8 @@
 		D783889A1354AA7600E7937B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		D78BA76C1360A90A000EB558 /* JTPepub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTPepub.h; sourceTree = "<group>"; };
 		D78BA76D1360A90A000EB558 /* JTPepub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTPepub.m; sourceTree = "<group>"; };
+		D7DA65C213D77C97006BED29 /* lion.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = lion.css; sourceTree = "<group>"; };
+		D7DA65C413D77CCD006BED29 /* leopard.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = leopard.css; sourceTree = "<group>"; };
 		D7E5A5C71386A9F7007EB5E9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,11 +73,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */,
 				D783884F1354890700E7937B /* QuickLook.framework in Frameworks */,
 				D78388511354890700E7937B /* ApplicationServices.framework in Frameworks */,
 				D78388531354890700E7937B /* CoreServices.framework in Frameworks */,
 				D78388551354890700E7937B /* CoreFoundation.framework in Frameworks */,
-				D78388811354896300E7937B /* libz.1.2.3.dylib in Frameworks */,
 				D783888313548ADA00E7937B /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,8 +105,8 @@
 		D783884D1354890700E7937B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D727FC8313D771B200CB5355 /* libz.dylib */,
 				D783888213548ADA00E7937B /* AppKit.framework */,
-				D78388801354896300E7937B /* libz.1.2.3.dylib */,
 				D783884E1354890700E7937B /* QuickLook.framework */,
 				D78388501354890700E7937B /* ApplicationServices.framework */,
 				D78388521354890700E7937B /* CoreServices.framework */,
@@ -128,6 +132,8 @@
 		D78388571354890700E7937B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D7DA65C213D77C97006BED29 /* lion.css */,
+				D7DA65C413D77CCD006BED29 /* leopard.css */,
 				D7E5A5C71386A9F7007EB5E9 /* index.html */,
 				D7838884135499ED00E7937B /* Untitled.epub */,
 				D78388581354890700E7937B /* epub-Info.plist */,
@@ -234,6 +240,8 @@
 			files = (
 				D783885B1354890700E7937B /* InfoPlist.strings in Resources */,
 				D7E5A5C81386A9F7007EB5E9 /* index.html in Resources */,
+				D7DA65C313D77C97006BED29 /* lion.css in Resources */,
+				D7DA65C513D77CCD006BED29 /* leopard.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +303,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -309,6 +318,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -324,6 +334,7 @@
 				INFOPLIST_FILE = "epub/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Debug;
@@ -340,6 +351,7 @@
 				INFOPLIST_FILE = "epub/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Release;
