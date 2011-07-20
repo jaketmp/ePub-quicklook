@@ -53,9 +53,11 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     [props setObject:@"UTF-8" forKey:(NSString *)kQLPreviewPropertyTextEncodingNameKey];
     [props setObject:@"text/html" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
 	[props setObject:(NSString *)[epubFile title] forKey:(NSString *)kQLPreviewPropertyDisplayNameKey];
+
     
-    
-    // Cover image
+    /*
+     Cover image
+     */
     if([epubFile cover]){
         NSData *iconData = [[[epubFile cover] TIFFRepresentation] retain];
         NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
@@ -67,6 +69,22 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     }else{ // Delete image if we find no cover.
         [html replaceOccurrencesOfString:@"<img src=\"cid:icon.tiff\" alt=\"cover image\" />" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     }
+    
+    
+    /*
+     Determine OS version and add the approprate CSS to the html.
+     */
+    NSString *cssPath, *css;
+    // if then here
+    cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/lion.css"];
+    // done here
+    
+    css = [[NSString alloc] initWithContentsOfFile:cssPath];
+    [cssPath release];
+    
+    [html replaceOccurrencesOfString:@"%styledata%" withString:css options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [css release];
+    
     
     /*
      * Localise and subsitute derived values into the template html
