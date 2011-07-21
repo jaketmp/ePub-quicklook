@@ -29,7 +29,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
 	[pluginBundle retain];
     
     /*
-	   Load the HTML template
+     * Load the HTML template
 	 */
 	//Get the template path
 	NSString *htmlPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/index.html"];
@@ -39,7 +39,9 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     html = [[[NSMutableString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:&htmlError] autorelease];
     [htmlPath release];
 
-    // Load the epub:
+    /*
+     * Load the epub:
+     */
     CFStringRef filePath = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
     JTPepub *epubFile = [[JTPepub alloc] initWithFile:(NSString *)filePath];
     
@@ -56,7 +58,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
 
     
     /*
-     Cover image
+     * Cover image
      */
     if([epubFile cover]){
         NSData *iconData = [[[epubFile cover] TIFFRepresentation] retain];
@@ -72,12 +74,16 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     
     
     /*
-     Determine OS version and add the approprate CSS to the html.
+     * Determine OS version and add the approprate CSS to the html.
      */
     NSString *cssPath, *css;
-    // if then here
-    cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/lion.css"];
-    // done here
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_6) {
+        // 10.7
+        cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/lion.css"];
+    } else {
+        cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/leopard.css"];
+
+    }
     
     css = [[NSString alloc] initWithContentsOfFile:cssPath];
     [cssPath release];
