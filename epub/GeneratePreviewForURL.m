@@ -74,7 +74,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     
     
     /*
-     * Determine OS version and add the approprate CSS to the html.
+     * Determine OS version and add the appropriate CSS to the html.
      */
     NSString *cssPath, *css;
     if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_6) {
@@ -85,7 +85,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
 
     }
     
-    css = [[NSString alloc] initWithContentsOfFile:cssPath];
+    css = [[NSString alloc] initWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:NULL];
     [cssPath release];
     
     [html replaceOccurrencesOfString:@"%styledata%" withString:css options:NSLiteralSearch range:NSMakeRange(0, [html length])];
@@ -99,12 +99,12 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     [html replaceOccurrencesOfString:@"%author%" withString:[epubFile author] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     [html replaceOccurrencesOfString:@"%synopsis%" withString:[epubFile synopsis] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     if([epubFile publicationDate]) { // Catch an empty publication date.
-    [html replaceOccurrencesOfString:@"%publication%" 
-                          withString:[[epubFile publicationDate] descriptionWithCalendarFormat:@"%Y" 
-                                                                                      timeZone:nil 
-                                                                                        locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]
-                             options:NSLiteralSearch 
-                               range:NSMakeRange(0, [html length])];
+        [html replaceOccurrencesOfString:@"%publication%" 
+                              withString:[[epubFile publicationDate] descriptionWithCalendarFormat:@"%Y" 
+                                                                                          timeZone:nil 
+                                                                                            locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]
+                                 options:NSLiteralSearch 
+                                   range:NSMakeRange(0, [html length])];
     }else {
         [html replaceOccurrencesOfString:@"%publication%" 
                               withString:@"&nbsp;"

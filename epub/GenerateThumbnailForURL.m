@@ -13,10 +13,6 @@
    This function's job is to create thumbnail for designated file as fast as possible
    ----------------------------------------------------------------------------- */
 
-/*
- TODO: Add a nicer image resizing routine.
- */
-
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize)
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
