@@ -33,7 +33,7 @@
 	return self;
 }
 -(id) initWithZipFile:(NSString *)fileName {
-    [self init];
+    self = [self init];
     
     _zipFile = unzOpen([fileName   UTF8String]);
     if(_zipFile) {
