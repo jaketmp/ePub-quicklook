@@ -231,7 +231,16 @@
         NSString *itemID = [[item attributeForName:@"role"] stringValue];
         
         if([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
-            [results addObject:[item stringValue]];
+            // The name should be in the item contents.
+            // If the element contents is empty, look in the file-as attribute
+            // instead. If that's not there either, skip this item.
+            if ([[item stringValue] isEqualToString:@""]) {
+                NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
+                if (![fileAs isEqualToString:@""])
+                    [results addObject:fileAs];
+            } else {
+                [results addObject:[item stringValue]];
+            }
         }
     }
     return results;
@@ -453,9 +462,15 @@
         NSString *metaName = [[item attributeForName:@"scheme"] stringValue];
         
         if([metaName caseInsensitiveCompare:@"ISBN"] == NSOrderedSame) {
-            ISBN = [item stringValue];
-            [ISBN retain];
-            return ISBN;
+            // Remove any leading urn:isbn: and whitespace.
+            NSMutableString *val = [[item stringValue] mutableCopy];
+            [val replaceOccurrencesOfString:@"urn:isbn:" withString:@"" options:NSCaseInsensitiveSearch
+                                      range:NSMakeRange(0, [val length])];
+            [val replaceOccurrencesOfString:@" " withString:@"" options:0 range:NSMakeRange(0, [val length])];
+            if (![val isEqualToString:@""]) {
+                ISBN = [val retain];
+                return ISBN;
+            }
         }
     }
     ISBN = @"";
