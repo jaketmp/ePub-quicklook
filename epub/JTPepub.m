@@ -186,8 +186,8 @@
     UInt16 count = 0;
     for(id item in metaElements)
     {
-        if (count > 1) {
-            [mutableAuthors appendString:@" "];
+        if (count > 0) {
+            [mutableAuthors appendString:@", "];
         }
         NSString *itemID = [[item attributeForName:@"role"] stringValue];
         
