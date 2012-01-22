@@ -210,6 +210,59 @@
     return author;
 
 }
+
+- (NSArray *)contributorsWithOPFRole:(NSString *)role
+{
+    NSError *xmlError = nil;
+    
+    // scan for a <dc:contributor> element
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='contributor']" 
+                                            error:&xmlError];
+    
+    // Check the array isn't empty.
+    if ([metaElements count] == 0) {
+        // No dc:contributor found
+        return [NSArray array];
+    }
+    NSMutableArray *results = [NSMutableArray array];
+    // Fast enumerate over meta elements
+    for(id item in metaElements)
+    {
+        NSString *itemID = [[item attributeForName:@"role"] stringValue];
+        
+        if([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
+            [results addObject:[item stringValue]];
+        }
+    }
+    return results;
+}
+- (NSArray *)editors
+{
+    // If editors has been set, return it.
+    if (editors) {
+        return editors;
+    }
+    editors = [[self contributorsWithOPFRole:@"edt"] retain];
+    return editors;
+}
+- (NSArray *)illustrators
+{
+    // If illustrators has been set, return it.
+    if (illustrators) {
+        return illustrators;
+    }
+    illustrators = [[self contributorsWithOPFRole:@"ill"] retain];
+    return illustrators;
+}
+- (NSArray *)translators
+{
+    // If translators has been set, return it.
+    if (translators) {
+        return translators;
+    }
+    translators = [[self contributorsWithOPFRole:@"trl"] retain];
+    return translators;
+}
 - (NSArray *)creators
 {
     // If creators has been set, return it.
@@ -395,24 +448,17 @@
                                             error:&xmlError];
     
     // Fast enumerate over meta elements
-    NSString *coverID = nil;
     for(id item in metaElements)
     {
         NSString *metaName = [[item attributeForName:@"scheme"] stringValue];
         
         if([metaName caseInsensitiveCompare:@"ISBN"] == NSOrderedSame) {
-            coverID = [item stringValue];
-            break;
+            ISBN = [item stringValue];
+            [ISBN retain];
+            return ISBN;
         }
     }
-    if(coverID == nil) {
-        // No ISBN found
-        ISBN = @"";
-        return ISBN;
-    }
-
-    
-    
+    ISBN = @"";
     return ISBN;    
 }
 - (void)dealloc
@@ -432,6 +478,9 @@
     if (creators) {
         [creators release];
     }
+    [editors release];
+    [illustrators release];
+    [translators release];
     if (opfXML) {
         [opfXML release];
     }

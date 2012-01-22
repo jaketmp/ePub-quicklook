@@ -99,21 +99,52 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      */
     [html replaceOccurrencesOfString:@"%title%" withString:[epubFile title] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     [html replaceOccurrencesOfString:@"%author%" withString:[epubFile author] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
-    [html replaceOccurrencesOfString:@"%publisher%" withString:[epubFile publisher] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
-    [html replaceOccurrencesOfString:@"%synopsis%" withString:[epubFile synopsis] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
-    if([epubFile publicationDate]) { // Catch an empty publication date.
-        [html replaceOccurrencesOfString:@"%publication%" 
-                              withString:[[epubFile publicationDate] descriptionWithCalendarFormat:@"%Y" 
-                                                                                          timeZone:nil 
-                                                                                            locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]
-                                 options:NSLiteralSearch 
-                                   range:NSMakeRange(0, [html length])];
-    }else {
-        [html replaceOccurrencesOfString:@"%publication%" 
-                              withString:@"&nbsp;"
-                                 options:NSLiteralSearch 
-                                   range:NSMakeRange(0, [html length])];
+
+    /*
+     * Other metadata goes into a table
+     * TODO: localise labels
+     * TODO: avoid such intimate knowledge of the HTML
+     */
+    NSMutableString *metadata = [NSMutableString string];
+    if ([[epubFile editors] count] > 0) {
+        [metadata appendFormat:@"<tr><th>editor%@:</th><td>%@</td></tr>\n",
+         [[epubFile editors] count] > 1 ? @"s" : @"",
+         [[epubFile editors] componentsJoinedByString:@"<br>\n"]];
     }
+    if ([[epubFile illustrators] count] > 0) {
+        [metadata appendFormat:@"<tr><th>illustrator%@:</th><td>%@</td></tr>\n",
+         [[epubFile illustrators] count] > 1 ? @"s" : @"",
+         [[epubFile illustrators] componentsJoinedByString:@"<br>\n"]];
+    }
+    if ([[epubFile translators] count] > 0) {
+        [metadata appendFormat:@"<tr><th>translator%@:</th><td>%@</td></tr>\n",
+         [[epubFile translators] count] > 1 ? @"s" : @"",
+         [[epubFile translators] componentsJoinedByString:@"<br>\n"]];
+    }
+    if (![[epubFile isbn] isEqualToString:@""]) {
+        [metadata appendFormat:@"<tr><th>isbn:</th><td>%@</td></tr>\n",
+         [epubFile isbn]];
+    }
+    if (![[epubFile publisher] isEqualToString:@""]) {
+        [metadata appendFormat:@"<tr><th>publisher:</th><td>%@</td></tr>\n",
+         [epubFile publisher]];
+    }
+    if ([epubFile publicationDate]) {
+        [metadata appendFormat:@"<tr><th>date:</th><td>%@</td></tr>\n",
+         [[epubFile publicationDate] descriptionWithCalendarFormat:@"%Y" 
+                                                          timeZone:nil 
+                                                            locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
+    }
+    if (![metadata isEqualToString:@""]) {
+        [metadata insertString:@"<table>\n" atIndex:0];
+        [metadata appendString:@"</table>\n"];
+    }
+    [html replaceOccurrencesOfString:@"%metadata%"
+                          withString:metadata
+                             options:NSLiteralSearch
+                               range:NSMakeRange(0, [html length])];
+
+    [html replaceOccurrencesOfString:@"%synopsis%" withString:[epubFile synopsis] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     
     /*
      * Return the HTML to be rendered.

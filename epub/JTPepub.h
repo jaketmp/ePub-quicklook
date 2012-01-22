@@ -19,6 +19,9 @@
     NSString *author;
     NSString *publisher;
     NSArray * creators;
+    NSArray *editors;
+    NSArray *illustrators;
+    NSArray *translators;
     NSString *synopsis;
     NSString *rootFilePath;
     NSString *ISBN;
@@ -34,6 +37,9 @@
 - (NSString *)author;
 - (NSString *)publisher;
 - (NSArray *)creators;
+- (NSArray *)editors;
+- (NSArray *)illustrators;
+- (NSArray *)translators;
 - (NSImage *)cover;
 - (NSString *)synopsis;
 - (NSDate *)publicationDate;
