@@ -135,6 +135,10 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
                                                           timeZone:nil 
                                                             locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
     }
+    if (![[epubFile drm] isEqualToString:@""]) {
+        [metadata appendFormat:@"<tr><th>drm:</th><td>%@</td></tr>\n",
+         [epubFile drm]];
+    }
     if (![metadata isEqualToString:@""]) {
         [metadata insertString:@"<table>\n" atIndex:0];
         [metadata appendString:@"</table>\n"];

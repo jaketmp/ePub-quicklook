@@ -28,6 +28,7 @@
     NSXMLDocument *opfXML;
     NSImage *cover;
     NSDate *publicationDate;
+    NSString *drm;
 
 }
 - (id) initWithFile:(NSString *)fileName;
@@ -44,5 +45,6 @@
 - (NSString *)synopsis;
 - (NSDate *)publicationDate;
 - (NSString *)isbn;
+- (NSString *)drm;
 
 @end

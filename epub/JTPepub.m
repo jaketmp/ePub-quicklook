@@ -461,6 +461,52 @@
     ISBN = @"";
     return ISBN;    
 }
+- (NSString *)drm
+{
+    // If the DRM scheme has been set, return it.
+    if (drm) {
+        return drm;
+    }
+    // Adobe Adept DRM has "META-INF/rights.xml", containing <licenseURL> with an adobe.com URL.
+    NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
+    if (adept) {
+        NSError *xmlError;
+        NSXMLDocument *adeptXML = [[NSXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
+        NSArray *urls = [adeptXML nodesForXPath:@"//*[local-name()='licenseURL']" error:&xmlError];
+        [adeptXML release];
+        if ([urls count] > 0) {
+            // should probably check for adobe.com here...
+            drm = @"Adobe";
+            return drm;
+        }
+    }
+    // Apple Fairplay DRM has "META-INF/sinf.xml" containing <policy>.
+    NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
+    if (fairplay) {
+        NSError *xmlError;
+        NSXMLDocument *fairplayXML = [[NSXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
+        NSArray *policy = [fairplayXML nodesForXPath:@"//*[local-name()='policy']" error:&xmlError];
+        [fairplayXML release];
+        if ([policy count] == 1) {
+            drm = @"Apple";
+            return drm;
+        }
+    }
+    // Kobo DRM has "rights.xml" containing <kdrm>.
+    NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
+    if (kobo) {
+        NSError *xmlError;
+        NSXMLDocument *koboXML = [[NSXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
+        NSArray *kdrm = [koboXML nodesForXPath:@"//*[local-name()='kdrm']" error:&xmlError];
+        [koboXML release];
+        if ([kdrm count] > 0) {
+            drm = @"Kobo";
+            return drm;
+        }
+    }
+    drm = @"";
+    return drm;
+}
 - (void)dealloc
 {
     if (epubFile) {
@@ -493,6 +539,7 @@
     if (ISBN) {
         [ISBN release];
     }
+    [drm release];
     if (rootFilePath) {
         [rootFilePath release];
     }
