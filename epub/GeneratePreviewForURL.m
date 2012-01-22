@@ -17,6 +17,8 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         - The cover. 
         - The title. <dc:title>
         - The author.  <dc:creator opf:role="aut">
+        - The publication date. <dc:date>
+        - The publisher. <dc:publisher>
         - Any synopsis information. <dc:description>
     */
     NSMutableString *html;
@@ -97,6 +99,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      */
     [html replaceOccurrencesOfString:@"%title%" withString:[epubFile title] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     [html replaceOccurrencesOfString:@"%author%" withString:[epubFile author] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [html replaceOccurrencesOfString:@"%publisher%" withString:[epubFile publisher] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     [html replaceOccurrencesOfString:@"%synopsis%" withString:[epubFile synopsis] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     if([epubFile publicationDate]) { // Catch an empty publication date.
         [html replaceOccurrencesOfString:@"%publication%" 

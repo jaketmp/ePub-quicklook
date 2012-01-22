@@ -128,6 +128,38 @@
     
     return title;
 }
+
+- (NSString *)publisher
+{
+    // If the publisher has been set, return it.
+    if (publisher) {
+        return publisher;
+    }
+    
+    
+    // Otherwise load it.
+    NSError *xmlError = nil;
+    
+    // scan for a <dc:publisher> element
+    // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='publisher']
+    
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='publisher']" 
+                                            error:&xmlError];
+    
+    // Check the array isn't empty.
+    if ([metaElements count] == 0) {
+        // No publisher found
+        publisher = @"";
+        return publisher;
+    }
+    // There should only be one <dc:publisher>, so take the last.
+    publisher = [[metaElements lastObject] stringValue];
+    
+    [publisher retain];
+    
+    return publisher;
+}
+
 - (NSString *)author
 {
     // If the author has been set, return it.
@@ -145,7 +177,7 @@
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No title found
+        // No dc:creator found
         author = @"";
         return author;
     }
@@ -180,7 +212,7 @@
 }
 - (NSArray *)creators
 {
-    // If the author has been set, return it.
+    // If creators has been set, return it.
     if (creators) {
         return creators;
     }
@@ -306,7 +338,7 @@
         synopsis = @"";
         return synopsis;
     }
-    // There should only be one <dc:title>, so take the last.
+    // There should only be one <dc:description>, so take the last.
     synopsis = [[metaElements lastObject] stringValue];
     
     [synopsis retain];
@@ -315,15 +347,15 @@
 }
 - (NSDate *)publicationDate
 {
-    if(publicationDate) {
+    if (publicationDate) {
         return publicationDate;
     }
     
     // Otherwise load it.
     NSError *xmlError = nil;
     
-    // scan for a <dc:title> element
-    // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title']
+    // scan for a <dc:date> element
+    // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='date']
     
     NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='date']" 
                                             error:&xmlError];
@@ -391,10 +423,13 @@
     if (title) {
         [title release];
     }
+    if (publisher) {
+        [publisher release];
+    }
     if (author) {
         [author release];
     }
-    if(creators) {
+    if (creators) {
         [creators release];
     }
     if (opfXML) {

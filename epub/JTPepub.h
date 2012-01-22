@@ -17,6 +17,7 @@
     NSInteger epubVersion;
     NSString *title;
     NSString *author;
+    NSString *publisher;
     NSArray * creators;
     NSString *synopsis;
     NSString *rootFilePath;
@@ -31,6 +32,7 @@
 
 - (NSString *)title;
 - (NSString *)author;
+- (NSString *)publisher;
 - (NSArray *)creators;
 - (NSImage *)cover;
 - (NSString *)synopsis;

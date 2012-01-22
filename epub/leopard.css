@@ -13,4 +13,5 @@ h1 {font-weight: normal; letter-spacing: 0.1em;}
 p.authors {margin-left: 10px; margin-top: -1em; text-indent: 0.1em; bold; color: #aaa;}
 div.metadata {}
 .publishDate {font-weight: bold; color: #aaa}
+.publisher {font-weight: bold; color: #aaa}
 div.synopsis {margin: 0; margin-left: 0; margin-right:0.7em; font-size: 0.9em; text-align: justify; -webkit-hyphens: auto; width: auto;}
