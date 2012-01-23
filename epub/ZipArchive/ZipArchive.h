@@ -27,6 +27,7 @@
 @interface ZipArchive : NSObject {
 @private
 	zipFile		_zipFile;
+    NSString    *archiveName;
 }
 
 

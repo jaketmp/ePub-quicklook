@@ -29,11 +29,16 @@
 	if(self)
 	{
 		_zipFile = nil ;
+        archiveName = nil;
 	}
 	return self;
 }
 -(id) initWithZipFile:(NSString *)fileName {
     self = [self init];
+    
+    archiveName = fileName;
+    
+    [fileName retain];
     
     _zipFile = unzOpen([fileName   UTF8String]);
     if(_zipFile) {
@@ -49,6 +54,9 @@
     if( _zipFile != nil) {        
         [self closeZipFile];
     }
+    if (archiveName != nil) {
+        [archiveName release];
+    }
 	[super dealloc];
 }
 -(NSData *) dataForNamedFile:(NSString *)fileName {
@@ -63,20 +71,20 @@
 	result = unzLocateFile( _zipFile, [fileName UTF8String], 0 );
 	if ( result != UNZ_OK ) {
         // raise an error here
-        NSLog(@"FAIL");
+        NSLog(@"Unable to locate %@ in %@", fileName, archiveName);
         return nil;
 	}
     
 	result = unzGetCurrentFileInfo( _zipFile, &info, NULL, 0, NULL, 0, NULL, 0 );
 	if ( result != UNZ_OK ) {
-        NSLog(@"FAIL2");
+        NSLog(@"Unable to extract file info for: %@", fileName);
         return nil;
 	}
     
 	result = unzOpenCurrentFile( _zipFile );
 	if ( result != UNZ_OK ) {
         // more error checking here
-        NSLog(@"FAIL3");
+        NSLog(@"Unable to open file %@ for extration from archive", fileName);
         return nil;
 	}
     
@@ -84,7 +92,7 @@
 	result = unzReadCurrentFile( _zipFile, buffer, (uint)info.uncompressed_size );
 	if ( result != info.uncompressed_size ) {
 		// Error checking	
-        NSLog(@"FAIL5");
+        NSLog(@"Failed to read %@ from archive", fileName);
         return nil;
     }
     
