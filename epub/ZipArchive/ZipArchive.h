@@ -36,6 +36,8 @@
 -(BOOL) openZipFile:(NSString *)fileName;
 -(BOOL) closeZipFile;
 
+-(BOOL) testForNamedFile:(NSString *)fileName;
+
 -(NSData *) dataForNamedFile:(NSString *)fileName;
 
 @end

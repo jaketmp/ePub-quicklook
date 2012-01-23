@@ -59,6 +59,18 @@
     }
 	[super dealloc];
 }
+/*
+ * Test for the existance of fileName in the archive.
+ * Returns true if found.
+ */
+-(BOOL) testForNamedFile:(NSString *)fileName
+{
+    int             result;
+    
+    result = unzLocateFile( _zipFile, [fileName UTF8String], 0 );
+    
+    return result == UNZ_OK;
+}
 -(NSData *) dataForNamedFile:(NSString *)fileName {
     NSData *data;
     

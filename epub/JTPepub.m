@@ -483,8 +483,8 @@
         return drm;
     }
     // Adobe Adept DRM has "META-INF/rights.xml", containing <licenseURL> with an adobe.com URL.
-    NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
-    if (adept) {
+    if ([epubFile testForNamedFile:@"META-INF/rights.xml"]) {
+        NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
         NSError *xmlError;
         NSXMLDocument *adeptXML = [[NSXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
         NSArray *urls = [adeptXML nodesForXPath:@"//*[local-name()='licenseURL']" error:&xmlError];
@@ -496,8 +496,8 @@
         }
     }
     // Apple Fairplay DRM has "META-INF/sinf.xml" containing <policy>.
-    NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
-    if (fairplay) {
+        if ([epubFile testForNamedFile:@"META-INF/rights.xml"]) {
+        NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
         NSError *xmlError;
         NSXMLDocument *fairplayXML = [[NSXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
         NSArray *policy = [fairplayXML nodesForXPath:@"//*[local-name()='policy']" error:&xmlError];
@@ -508,8 +508,8 @@
         }
     }
     // Kobo DRM has "rights.xml" containing <kdrm>.
-    NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
-    if (kobo) {
+        if ([epubFile testForNamedFile:@"rights.xml"]) {
+        NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
         NSError *xmlError;
         NSXMLDocument *koboXML = [[NSXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
         NSArray *kdrm = [koboXML nodesForXPath:@"//*[local-name()='kdrm']" error:&xmlError];
