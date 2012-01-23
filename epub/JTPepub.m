@@ -15,19 +15,14 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        // nowt to do.
-    }
-    
-    return self;
+    return [self initWithFile:nil];
 }
+
 - (id)initWithFile:(NSString *)fileName
 {
-    [self init];
-    if(self) {
-        [self openEPUBFile:fileName];        
-
+    self = [super init];
+    if (self) {
+        [self openEPUBFile:fileName];
     }
     return self;
 }
