@@ -128,6 +128,38 @@
     
     return title;
 }
+
+- (NSString *)publisher
+{
+    // If the publisher has been set, return it.
+    if (publisher) {
+        return publisher;
+    }
+    
+    
+    // Otherwise load it.
+    NSError *xmlError = nil;
+    
+    // scan for a <dc:publisher> element
+    // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='publisher']
+    
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='publisher']" 
+                                            error:&xmlError];
+    
+    // Check the array isn't empty.
+    if ([metaElements count] == 0) {
+        // No publisher found
+        publisher = @"";
+        return publisher;
+    }
+    // There should only be one <dc:publisher>, so take the last.
+    publisher = [[metaElements lastObject] stringValue];
+    
+    [publisher retain];
+    
+    return publisher;
+}
+
 - (NSString *)author
 {
     // If the author has been set, return it.
@@ -145,7 +177,7 @@
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No title found
+        // No dc:creator found
         author = @"";
         return author;
     }
@@ -154,8 +186,8 @@
     UInt16 count = 0;
     for(id item in metaElements)
     {
-        if (count > 1) {
-            [mutableAuthors appendString:@" "];
+        if (count > 0) {
+            [mutableAuthors appendString:@", "];
         }
         NSString *itemID = [[item attributeForName:@"role"] stringValue];
         
@@ -178,9 +210,71 @@
     return author;
 
 }
+
+- (NSArray *)contributorsWithOPFRole:(NSString *)role
+{
+    NSError *xmlError = nil;
+    
+    // scan for a <dc:contributor> element
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='contributor']" 
+                                            error:&xmlError];
+    
+    // Check the array isn't empty.
+    if ([metaElements count] == 0) {
+        // No dc:contributor found
+        return [NSArray array];
+    }
+    NSMutableArray *results = [NSMutableArray array];
+    // Fast enumerate over meta elements
+    for(id item in metaElements)
+    {
+        NSString *itemID = [[item attributeForName:@"role"] stringValue];
+        
+        if([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
+            // The name should be in the item contents.
+            // If the element contents is empty, look in the file-as attribute
+            // instead. If that's not there either, skip this item.
+            if ([[item stringValue] isEqualToString:@""]) {
+                NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
+                if (![fileAs isEqualToString:@""])
+                    [results addObject:fileAs];
+            } else {
+                [results addObject:[item stringValue]];
+            }
+        }
+    }
+    return results;
+}
+- (NSArray *)editors
+{
+    // If editors has been set, return it.
+    if (editors) {
+        return editors;
+    }
+    editors = [[self contributorsWithOPFRole:@"edt"] retain];
+    return editors;
+}
+- (NSArray *)illustrators
+{
+    // If illustrators has been set, return it.
+    if (illustrators) {
+        return illustrators;
+    }
+    illustrators = [[self contributorsWithOPFRole:@"ill"] retain];
+    return illustrators;
+}
+- (NSArray *)translators
+{
+    // If translators has been set, return it.
+    if (translators) {
+        return translators;
+    }
+    translators = [[self contributorsWithOPFRole:@"trl"] retain];
+    return translators;
+}
 - (NSArray *)creators
 {
-    // If the author has been set, return it.
+    // If creators has been set, return it.
     if (creators) {
         return creators;
     }
@@ -306,7 +400,7 @@
         synopsis = @"";
         return synopsis;
     }
-    // There should only be one <dc:title>, so take the last.
+    // There should only be one <dc:description>, so take the last.
     synopsis = [[metaElements lastObject] stringValue];
     
     [synopsis retain];
@@ -315,15 +409,15 @@
 }
 - (NSDate *)publicationDate
 {
-    if(publicationDate) {
+    if (publicationDate) {
         return publicationDate;
     }
     
     // Otherwise load it.
     NSError *xmlError = nil;
     
-    // scan for a <dc:title> element
-    // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title']
+    // scan for a <dc:date> element
+    // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='date']
     
     NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='date']" 
                                             error:&xmlError];
@@ -363,25 +457,70 @@
                                             error:&xmlError];
     
     // Fast enumerate over meta elements
-    NSString *coverID = nil;
     for(id item in metaElements)
     {
         NSString *metaName = [[item attributeForName:@"scheme"] stringValue];
         
         if([metaName caseInsensitiveCompare:@"ISBN"] == NSOrderedSame) {
-            coverID = [item stringValue];
-            break;
+            // Remove any leading urn:isbn: and whitespace.
+            NSMutableString *val = [[item stringValue] mutableCopy];
+            [val replaceOccurrencesOfString:@"urn:isbn:" withString:@"" options:NSCaseInsensitiveSearch
+                                      range:NSMakeRange(0, [val length])];
+            [val replaceOccurrencesOfString:@" " withString:@"" options:0 range:NSMakeRange(0, [val length])];
+            if (![val isEqualToString:@""]) {
+                ISBN = [val retain];
+                return ISBN;
+            }
         }
     }
-    if(coverID == nil) {
-        // No ISBN found
-        ISBN = @"";
-        return ISBN;
-    }
-
-    
-    
+    ISBN = @"";
     return ISBN;    
+}
+- (NSString *)drm
+{
+    // If the DRM scheme has been set, return it.
+    if (drm) {
+        return drm;
+    }
+    // Adobe Adept DRM has "META-INF/rights.xml", containing <licenseURL> with an adobe.com URL.
+    NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
+    if (adept) {
+        NSError *xmlError;
+        NSXMLDocument *adeptXML = [[NSXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
+        NSArray *urls = [adeptXML nodesForXPath:@"//*[local-name()='licenseURL']" error:&xmlError];
+        [adeptXML release];
+        if ([urls count] > 0) {
+            // should probably check for adobe.com here...
+            drm = @"Adobe";
+            return drm;
+        }
+    }
+    // Apple Fairplay DRM has "META-INF/sinf.xml" containing <policy>.
+    NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
+    if (fairplay) {
+        NSError *xmlError;
+        NSXMLDocument *fairplayXML = [[NSXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
+        NSArray *policy = [fairplayXML nodesForXPath:@"//*[local-name()='policy']" error:&xmlError];
+        [fairplayXML release];
+        if ([policy count] == 1) {
+            drm = @"Apple";
+            return drm;
+        }
+    }
+    // Kobo DRM has "rights.xml" containing <kdrm>.
+    NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
+    if (kobo) {
+        NSError *xmlError;
+        NSXMLDocument *koboXML = [[NSXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
+        NSArray *kdrm = [koboXML nodesForXPath:@"//*[local-name()='kdrm']" error:&xmlError];
+        [koboXML release];
+        if ([kdrm count] > 0) {
+            drm = @"Kobo";
+            return drm;
+        }
+    }
+    drm = @"";
+    return drm;
 }
 - (void)dealloc
 {
@@ -391,12 +530,18 @@
     if (title) {
         [title release];
     }
+    if (publisher) {
+        [publisher release];
+    }
     if (author) {
         [author release];
     }
-    if(creators) {
+    if (creators) {
         [creators release];
     }
+    [editors release];
+    [illustrators release];
+    [translators release];
     if (opfXML) {
         [opfXML release];
     }
@@ -409,6 +554,7 @@
     if (ISBN) {
         [ISBN release];
     }
+    [drm release];
     if (rootFilePath) {
         [rootFilePath release];
     }

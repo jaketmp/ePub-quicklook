@@ -17,13 +17,18 @@
     NSInteger epubVersion;
     NSString *title;
     NSString *author;
+    NSString *publisher;
     NSArray * creators;
+    NSArray *editors;
+    NSArray *illustrators;
+    NSArray *translators;
     NSString *synopsis;
     NSString *rootFilePath;
     NSString *ISBN;
     NSXMLDocument *opfXML;
     NSImage *cover;
     NSDate *publicationDate;
+    NSString *drm;
 
 }
 - (id) initWithFile:(NSString *)fileName;
@@ -31,10 +36,15 @@
 
 - (NSString *)title;
 - (NSString *)author;
+- (NSString *)publisher;
 - (NSArray *)creators;
+- (NSArray *)editors;
+- (NSArray *)illustrators;
+- (NSArray *)translators;
 - (NSImage *)cover;
 - (NSString *)synopsis;
 - (NSDate *)publicationDate;
 - (NSString *)isbn;
+- (NSString *)drm;
 
 @end
