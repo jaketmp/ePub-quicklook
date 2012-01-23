@@ -8,7 +8,7 @@
 
 #import "JTPepub.h"
 
-@interface ZipArchive (Private)
+@interface JTPepub (Private)
 @end
 
 @implementation JTPepub
