@@ -28,7 +28,7 @@
 }
 
 /*
- Open the named file and read the opf file into an NSXMLDocument.
+ Open the named file and read the opf file into an GDataXMLDocument.
  */
 - (BOOL)openEPUBFile:(NSString*)fileName {
     // We're not reusable, so if we've already opened an epub, return.
@@ -55,8 +55,8 @@
     [container retain];
     
     NSError *xmlError;
-    NSXMLDocument *containerXML = [[NSXMLDocument alloc] initWithData:container options:0 error:&xmlError];
-    NSArray *rootFile = [containerXML nodesForXPath:@".//rootfile" error:&xmlError];
+    GDataXMLDocument *containerXML = [[GDataXMLDocument alloc] initWithData:container options:0 error:&xmlError];
+    NSArray *rootFile = [containerXML nodesForXPath:@"//*[namespace-uri()='urn:oasis:names:tc:opendocument:xmlns:container' and local-name()='rootfile']" error:&xmlError];
     NSString *rootFileType = [[[rootFile objectAtIndex:0] attributeForName:@"media-type"] stringValue];
     
     
@@ -79,7 +79,7 @@
      */
     NSData *content = [epubFile dataForNamedFile:rootFilePath];
     [content retain];
-    opfXML = [[NSXMLDocument alloc] initWithData:content options:0 error:&xmlError];
+    opfXML = [[GDataXMLDocument alloc] initWithData:content options:0 error:&xmlError];
     [content release];
     
     //
@@ -107,7 +107,7 @@
     // scan for a <dc:title> element
     // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title']
 
-    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='title']" 
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title']" 
                                             error:&xmlError];
     
     // Check the array isn't empty.
@@ -138,7 +138,7 @@
     // scan for a <dc:publisher> element
     // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='publisher']
     
-    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='publisher']" 
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='publisher']" 
                                             error:&xmlError];
     
     // Check the array isn't empty.
@@ -167,7 +167,7 @@
     NSError *xmlError = nil;
     
     // scan for a <dc:creator> element
-    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='creator']" 
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='creator']" 
                                             error:&xmlError];
     
     // Check the array isn't empty.
@@ -211,7 +211,7 @@
     NSError *xmlError = nil;
     
     // scan for a <dc:contributor> element
-    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='contributor']" 
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='contributor']" 
                                             error:&xmlError];
     
     // Check the array isn't empty.
@@ -279,7 +279,7 @@
     NSError *xmlError = nil;
     
     // scan for a <dc:creator> element
-    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='creator']" 
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='creator']" 
                                             error:&xmlError];
     
     // Check the array isn't empty.
@@ -321,7 +321,7 @@
     }
     // scan for a <meta> element with name="cover"
     NSError *xmlError = nil;
-    NSArray *metaElements = [opfXML nodesForXPath:@".//meta" error:&xmlError];
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://www.idpf.org/2007/opf' and local-name()='meta']" error:&xmlError];
     
     // Fast enumerate over meta elements
     NSString *coverID = nil;
@@ -341,7 +341,7 @@
     
     
     // Now iterate over the manifest to find the path.
-    NSArray *itemElements = [opfXML nodesForXPath:@".//item" error:&xmlError];
+    NSArray *itemElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://www.idpf.org/2007/opf' and local-name()='item']" error:&xmlError];
     NSString *coverPath = nil;
     NSString *coverMIME;
     // Fast enumerate over meta elements
@@ -386,7 +386,7 @@
     // Otherwise load it.
     NSError *xmlError = nil;
     
-    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='description']" 
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='description']" 
                                             error:&xmlError];
     
     // Check the array isn't empty.
@@ -414,7 +414,7 @@
     // scan for a <dc:date> element
     // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='date']
     
-    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='date']" 
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='date']" 
                                             error:&xmlError];
     
     // Check the array isn't empty.
@@ -448,7 +448,7 @@
     // scan for a <dc:title> element
     // //*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='title']
     
-    NSArray *metaElements = [opfXML nodesForXPath:@"//*[local-name()='identifier']" 
+    NSArray *metaElements = [opfXML nodesForXPath:@"//*[namespace-uri()='http://purl.org/dc/elements/1.1/' and local-name()='identifier']" 
                                             error:&xmlError];
     
     // Fast enumerate over meta elements
@@ -478,10 +478,10 @@
         return drm;
     }
     // Adobe Adept DRM has "META-INF/rights.xml", containing <licenseURL> with an adobe.com URL.
-    NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
-    if (adept) {
+    if ([epubFile testForNamedFile:@"META-INF/rights.xml"]) {
+        NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
         NSError *xmlError;
-        NSXMLDocument *adeptXML = [[NSXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
+        GDataXMLDocument *adeptXML = [[GDataXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
         NSArray *urls = [adeptXML nodesForXPath:@"//*[local-name()='licenseURL']" error:&xmlError];
         [adeptXML release];
         if ([urls count] > 0) {
@@ -491,10 +491,10 @@
         }
     }
     // Apple Fairplay DRM has "META-INF/sinf.xml" containing <policy>.
-    NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
-    if (fairplay) {
+        if ([epubFile testForNamedFile:@"META-INF/rights.xml"]) {
+        NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
         NSError *xmlError;
-        NSXMLDocument *fairplayXML = [[NSXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
+        GDataXMLDocument *fairplayXML = [[GDataXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
         NSArray *policy = [fairplayXML nodesForXPath:@"//*[local-name()='policy']" error:&xmlError];
         [fairplayXML release];
         if ([policy count] == 1) {
@@ -503,10 +503,10 @@
         }
     }
     // Kobo DRM has "rights.xml" containing <kdrm>.
-    NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
-    if (kobo) {
+        if ([epubFile testForNamedFile:@"rights.xml"]) {
+        NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
         NSError *xmlError;
-        NSXMLDocument *koboXML = [[NSXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
+        GDataXMLDocument *koboXML = [[GDataXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
         NSArray *kdrm = [koboXML nodesForXPath:@"//*[local-name()='kdrm']" error:&xmlError];
         [koboXML release];
         if ([kdrm count] > 0) {
