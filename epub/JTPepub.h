@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GDataXMLNode.h"
 #include <AppKit/AppKit.h>
 #include "ZipArchive/ZipArchive.h"
 
@@ -25,7 +26,7 @@
     NSString *synopsis;
     NSString *rootFilePath;
     NSString *ISBN;
-    NSXMLDocument *opfXML;
+    GDataXMLDocument *opfXML;
     NSImage *cover;
     NSDate *publicationDate;
     NSString *drm;

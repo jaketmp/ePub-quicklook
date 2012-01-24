@@ -9,3 +9,7 @@ This generator reads the various parameters directly from the ePub contents - so
 ## Installation
 
 Place the ePub.quicklook generator file into `/Library/QuickLook` (for all users) or `~/Library/QuickLook` (for the current user only).
+
+## Building the plugin
+
+The plugin requires the **GDataXMLDocument** class from the [Google Data APIs Objective-C Client Library](http://code.google.com/p/gdata-objectivec-client/). Download `GDataXMLNode.h` and `GDataXMLNode.m` and place them in the `epub` folder.
