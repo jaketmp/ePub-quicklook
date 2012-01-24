@@ -2,8 +2,10 @@
 #include <CoreServices/CoreServices.h>
 #include <QuickLook/QuickLook.h>
 
-#include <AppKit/AppKit.h>
-#include "JTPepub.h"
+#import <AppKit/AppKit.h>
+#import "JTPepub.h"
+#import "NSArray+HTML.h"
+#import "NSString+HTML.h"
 
 /* -----------------------------------------------------------------------------
    Generate a preview for file
@@ -97,8 +99,8 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     /*
      * Localise and subsitute derived values into the template html
      */
-    [html replaceOccurrencesOfString:@"%title%" withString:[epubFile title] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
-    [html replaceOccurrencesOfString:@"%author%" withString:[epubFile author] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [html replaceOccurrencesOfString:@"%title%" withString:[[epubFile title] escapedString] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [html replaceOccurrencesOfString:@"%author%" withString:[[epubFile author] escapedString] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
 
     /*
      * Other metadata goes into a table
@@ -109,25 +111,25 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     if ([[epubFile editors] count] > 0) {
         [metadata appendFormat:@"<tr><th>editor%@:</th><td>%@</td></tr>\n",
          [[epubFile editors] count] > 1 ? @"s" : @"",
-         [[epubFile editors] componentsJoinedByString:@"<br>\n"]];
+         [[epubFile editors] escapedComponentsJoinedByString:@"<br>\n"]];
     }
     if ([[epubFile illustrators] count] > 0) {
         [metadata appendFormat:@"<tr><th>illustrator%@:</th><td>%@</td></tr>\n",
          [[epubFile illustrators] count] > 1 ? @"s" : @"",
-         [[epubFile illustrators] componentsJoinedByString:@"<br>\n"]];
+         [[epubFile illustrators] escapedComponentsJoinedByString:@"<br>\n"]];
     }
     if ([[epubFile translators] count] > 0) {
         [metadata appendFormat:@"<tr><th>translator%@:</th><td>%@</td></tr>\n",
          [[epubFile translators] count] > 1 ? @"s" : @"",
-         [[epubFile translators] componentsJoinedByString:@"<br>\n"]];
+         [[epubFile translators] escapedComponentsJoinedByString:@"<br>\n"]];
     }
     if (![[epubFile isbn] isEqualToString:@""]) {
         [metadata appendFormat:@"<tr><th>isbn:</th><td>%@</td></tr>\n",
-         [epubFile isbn]];
+         [[epubFile isbn] escapedString]];
     }
     if (![[epubFile publisher] isEqualToString:@""]) {
         [metadata appendFormat:@"<tr><th>publisher:</th><td>%@</td></tr>\n",
-         [epubFile publisher]];
+         [[epubFile publisher] escapedString]];
     }
     if ([epubFile publicationDate]) {
         [metadata appendFormat:@"<tr><th>date:</th><td>%@</td></tr>\n",
@@ -137,7 +139,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     }
     if (![[epubFile drm] isEqualToString:@""]) {
         [metadata appendFormat:@"<tr><th>drm:</th><td>%@</td></tr>\n",
-         [epubFile drm]];
+         [[epubFile drm] escapedString]];
     }
     if (![metadata isEqualToString:@""]) {
         [metadata insertString:@"<table>\n" atIndex:0];
