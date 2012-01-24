@@ -2,5 +2,3 @@
 *.pbxuser
 *.mode1v3
 xcuserdata/
-GDataXMLNode.h
-GDataXMLNode.m
