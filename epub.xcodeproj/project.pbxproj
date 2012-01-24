@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		674D09CB14CF297E00127A36 /* NSArray+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09C914CF297E00127A36 /* NSArray+HTML.h */; };
+		674D09CC14CF297E00127A36 /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
+		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
+		674D09D114CF2C6800127A36 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
 		D783884F1354890700E7937B /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783884E1354890700E7937B /* QuickLook.framework */; };
 		D78388511354890700E7937B /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388501354890700E7937B /* ApplicationServices.framework */; };
@@ -36,6 +40,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		674D09C914CF297E00127A36 /* NSArray+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HTML.h"; sourceTree = "<group>"; };
+		674D09CA14CF297E00127A36 /* NSArray+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HTML.m"; sourceTree = "<group>"; };
+		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		674D09CF14CF2C6800127A36 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		D727FC8313D771B200CB5355 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D783884B1354890700E7937B /* epub.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		D783884E1354890700E7937B /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
@@ -122,6 +130,10 @@
 				D783885F1354890700E7937B /* GeneratePreviewForURL.m */,
 				D78BA76C1360A90A000EB558 /* JTPepub.h */,
 				D78BA76D1360A90A000EB558 /* JTPepub.m */,
+				674D09C914CF297E00127A36 /* NSArray+HTML.h */,
+				674D09CA14CF297E00127A36 /* NSArray+HTML.m */,
+				674D09CE14CF2C6800127A36 /* NSString+HTML.h */,
+				674D09CF14CF2C6800127A36 /* NSString+HTML.m */,
 				D78388611354890700E7937B /* main.c */,
 				D78388681354891800E7937B /* ZipArchive */,
 				D78388571354890700E7937B /* Supporting Files */,
@@ -183,6 +195,8 @@
 				D78388A11354AA7600E7937B /* unzip.h in Headers */,
 				D78388A31354AA7600E7937B /* zip.h in Headers */,
 				D78BA76E1360A90A000EB558 /* JTPepub.h in Headers */,
+				674D09CB14CF297E00127A36 /* NSArray+HTML.h in Headers */,
+				674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +286,8 @@
 				D78388A01354AA7600E7937B /* unzip.c in Sources */,
 				D78388A21354AA7600E7937B /* zip.c in Sources */,
 				D78BA76F1360A90A000EB558 /* JTPepub.m in Sources */,
+				674D09CC14CF297E00127A36 /* NSArray+HTML.m in Sources */,
+				674D09D114CF2C6800127A36 /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
