@@ -19,11 +19,11 @@ table {
 	border-style: none;
 }
 th {
+	color: #666;
 	text-align: right;
 	vertical-align: text-top;
 	width: 25%;
 }
 td {
-	color: #666;
 	vertical-align: text-top;
 }
