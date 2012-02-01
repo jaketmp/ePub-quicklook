@@ -189,7 +189,7 @@ static NSMutableDictionary *xmlns = nil;
     NSError *xmlError = nil;
     
     // scan for a <dc:creator> element
-    NSArray *metaElements = [opfXML nodesForXPath:@"dc:creator"
+    NSArray *metaElements = [opfXML nodesForXPath:@"//dc:creator"
                                        namespaces:xmlns
                                             error:&xmlError];
     
