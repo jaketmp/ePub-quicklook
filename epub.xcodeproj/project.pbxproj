@@ -11,6 +11,22 @@
 		674D09CC14CF297E00127A36 /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
 		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
 		674D09D114CF2C6800127A36 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
+		675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3C14D9B8760065603A /* SenTestingKit.framework */; };
+		675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3E14D9B8760065603A /* Cocoa.framework */; };
+		675FAB4914D9B8760065603A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 675FAB4714D9B8760065603A /* InfoPlist.strings */; };
+		675FAB4C14D9B8760065603A /* EpubTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 675FAB4B14D9B8760065603A /* EpubTests.m */; };
+		675FAB5214D9BD5D0065603A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D76675C514CECDFF003850E7 /* libxml2.dylib */; };
+		675FAB5314D9BD6D0065603A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
+		675FAB5414D9BEEF0065603A /* JTPepub.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BA76D1360A90A000EB558 /* JTPepub.m */; };
+		675FAB5514D9BEFB0065603A /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
+		675FAB5614D9BEFE0065603A /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
+		675FAB5714D9BF030065603A /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
+		675FAB5814D9BF390065603A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
+		675FAB5914D9BF690065603A /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
+		675FAB5A14D9BF6C0065603A /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
+		675FAB5B14D9BF740065603A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
+		675FAB5C14D9BF780065603A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		67D3E1DC14D9C8160064FDDF /* Untitled.epub in Resources */ = {isa = PBXBuildFile; fileRef = D7838884135499ED00E7937B /* Untitled.epub */; };
 		D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
 		D76675C114CECD50003850E7 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D76675BF14CECD50003850E7 /* GDataXMLNode.h */; };
 		D76675C214CECD50003850E7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
@@ -47,6 +63,17 @@
 		674D09CA14CF297E00127A36 /* NSArray+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HTML.m"; sourceTree = "<group>"; };
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		674D09CF14CF2C6800127A36 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		675FAB3B14D9B8760065603A /* EpubTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpubTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		675FAB3C14D9B8760065603A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		675FAB3E14D9B8760065603A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		675FAB4114D9B8760065603A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		675FAB4214D9B8760065603A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		675FAB4314D9B8760065603A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		675FAB4614D9B8760065603A /* EpubTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EpubTests-Info.plist"; sourceTree = "<group>"; };
+		675FAB4814D9B8760065603A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		675FAB4A14D9B8760065603A /* EpubTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpubTests.h; sourceTree = "<group>"; };
+		675FAB4B14D9B8760065603A /* EpubTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpubTests.m; sourceTree = "<group>"; };
+		675FAB4D14D9B8760065603A /* EpubTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EpubTests-Prefix.pch"; sourceTree = "<group>"; };
 		D727FC8313D771B200CB5355 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = epub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
 		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = epub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
@@ -83,6 +110,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		675FAB3714D9B8760065603A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				675FAB5214D9BD5D0065603A /* libxml2.dylib in Frameworks */,
+				675FAB5314D9BD6D0065603A /* libz.dylib in Frameworks */,
+				675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */,
+				675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D78388461354890700E7937B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,6 +138,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		675FAB4014D9B8760065603A /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				675FAB4114D9B8760065603A /* AppKit.framework */,
+				675FAB4214D9B8760065603A /* CoreData.framework */,
+				675FAB4314D9B8760065603A /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		675FAB4414D9B8760065603A /* EpubTests */ = {
+			isa = PBXGroup;
+			children = (
+				675FAB4A14D9B8760065603A /* EpubTests.h */,
+				675FAB4B14D9B8760065603A /* EpubTests.m */,
+				675FAB4514D9B8760065603A /* Supporting Files */,
+			);
+			path = EpubTests;
+			sourceTree = "<group>";
+		};
+		675FAB4514D9B8760065603A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				675FAB4614D9B8760065603A /* EpubTests-Info.plist */,
+				675FAB4714D9B8760065603A /* InfoPlist.strings */,
+				675FAB4D14D9B8760065603A /* EpubTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D76675C414CECD57003850E7 /* Supporting Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				D78388561354890700E7937B /* epub */,
+				675FAB4414D9B8760065603A /* EpubTests */,
 				D783884D1354890700E7937B /* Frameworks */,
 				D783884C1354890700E7937B /* Products */,
 			);
@@ -122,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				D783884B1354890700E7937B /* epub.qlgenerator */,
+				675FAB3B14D9B8760065603A /* EpubTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,6 +206,9 @@
 				D78388501354890700E7937B /* ApplicationServices.framework */,
 				D78388521354890700E7937B /* CoreServices.framework */,
 				D78388541354890700E7937B /* CoreFoundation.framework */,
+				675FAB3C14D9B8760065603A /* SenTestingKit.framework */,
+				675FAB3E14D9B8760065603A /* Cocoa.framework */,
+				675FAB4014D9B8760065603A /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -222,6 +295,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		675FAB3A14D9B8760065603A /* EpubTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 675FAB5014D9B8760065603A /* Build configuration list for PBXNativeTarget "EpubTests" */;
+			buildPhases = (
+				675FAB3614D9B8760065603A /* Sources */,
+				675FAB3714D9B8760065603A /* Frameworks */,
+				675FAB3814D9B8760065603A /* Resources */,
+				675FAB3914D9B8760065603A /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EpubTests;
+			productName = EpubTests;
+			productReference = 675FAB3B14D9B8760065603A /* EpubTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		D783884A1354890700E7937B /* epub */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D78388651354890700E7937B /* Build configuration list for PBXNativeTarget "epub" */;
@@ -263,11 +354,21 @@
 			projectRoot = "";
 			targets = (
 				D783884A1354890700E7937B /* epub */,
+				675FAB3A14D9B8760065603A /* EpubTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		675FAB3814D9B8760065603A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				675FAB4914D9B8760065603A /* InfoPlist.strings in Resources */,
+				67D3E1DC14D9C8160064FDDF /* Untitled.epub in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D78388481354890700E7937B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -291,7 +392,40 @@
 		};
 /* End PBXRezBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		675FAB3914D9B8760065603A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		675FAB3614D9B8760065603A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				675FAB4C14D9B8760065603A /* EpubTests.m in Sources */,
+				675FAB5814D9BF390065603A /* ZipArchive.mm in Sources */,
+				675FAB5914D9BF690065603A /* ioapi.c in Sources */,
+				675FAB5A14D9BF6C0065603A /* mztools.c in Sources */,
+				675FAB5B14D9BF740065603A /* unzip.c in Sources */,
+				675FAB5C14D9BF780065603A /* zip.c in Sources */,
+				675FAB5414D9BEEF0065603A /* JTPepub.m in Sources */,
+				675FAB5614D9BEFE0065603A /* NSArray+HTML.m in Sources */,
+				675FAB5714D9BF030065603A /* NSString+HTML.m in Sources */,
+				675FAB5514D9BEFB0065603A /* GDataXMLNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D78388451354890700E7937B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -314,6 +448,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		675FAB4714D9B8760065603A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				675FAB4814D9B8760065603A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D78388591354890700E7937B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -325,6 +467,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		675FAB4E14D9B8760065603A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EpubTests/EpubTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		675FAB4F14D9B8760065603A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "EpubTests/EpubTests-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		D78388631354890700E7937B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -398,6 +582,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		675FAB5014D9B8760065603A /* Build configuration list for PBXNativeTarget "EpubTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				675FAB4E14D9B8760065603A /* Debug */,
+				675FAB4F14D9B8760065603A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D78388431354890700E7937B /* Build configuration list for PBXProject "epub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
