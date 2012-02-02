@@ -12,10 +12,6 @@
 		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
 		674D09D114CF2C6800127A36 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
-		D730B7B714D9B456000EED6C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D730B7B614D9B456000EED6C /* SenTestingKit.framework */; };
-		D730B7B914D9B456000EED6C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D730B7B814D9B456000EED6C /* Cocoa.framework */; };
-		D730B7C314D9B456000EED6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D730B7C114D9B456000EED6C /* InfoPlist.strings */; };
-		D730B7C614D9B456000EED6C /* epubTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D730B7C514D9B456000EED6C /* epubTests.m */; };
 		D76675C114CECD50003850E7 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D76675BF14CECD50003850E7 /* GDataXMLNode.h */; };
 		D76675C214CECD50003850E7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
 		D76675C614CECDFF003850E7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D76675C514CECDFF003850E7 /* libxml2.dylib */; };
@@ -46,33 +42,12 @@
 		D7E5A5C81386A9F7007EB5E9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = D7E5A5C71386A9F7007EB5E9 /* index.html */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D730B7CC14D9B469000EED6C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D78388401354890700E7937B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D783884A1354890700E7937B;
-			remoteInfo = epub;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		674D09C914CF297E00127A36 /* NSArray+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HTML.h"; sourceTree = "<group>"; };
 		674D09CA14CF297E00127A36 /* NSArray+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HTML.m"; sourceTree = "<group>"; };
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		674D09CF14CF2C6800127A36 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		D727FC8313D771B200CB5355 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		D730B7B514D9B456000EED6C /* epubTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epubTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D730B7B614D9B456000EED6C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		D730B7B814D9B456000EED6C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		D730B7BB14D9B456000EED6C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D730B7BC14D9B456000EED6C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		D730B7BD14D9B456000EED6C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D730B7C014D9B456000EED6C /* epubTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "epubTests-Info.plist"; sourceTree = "<group>"; };
-		D730B7C214D9B456000EED6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D730B7C414D9B456000EED6C /* epubTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = epubTests.h; sourceTree = "<group>"; };
-		D730B7C514D9B456000EED6C /* epubTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = epubTests.m; sourceTree = "<group>"; };
-		D730B7C714D9B456000EED6C /* epubTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "epubTests-Prefix.pch"; sourceTree = "<group>"; };
 		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = epub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
 		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = epub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
 		D76675C514CECDFF003850E7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -108,15 +83,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D730B7B114D9B456000EED6C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D730B7B714D9B456000EED6C /* SenTestingKit.framework in Frameworks */,
-				D730B7B914D9B456000EED6C /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D78388461354890700E7937B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,36 +100,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D730B7BA14D9B456000EED6C /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D730B7BB14D9B456000EED6C /* AppKit.framework */,
-				D730B7BC14D9B456000EED6C /* CoreData.framework */,
-				D730B7BD14D9B456000EED6C /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		D730B7BE14D9B456000EED6C /* epubTests */ = {
-			isa = PBXGroup;
-			children = (
-				D730B7C414D9B456000EED6C /* epubTests.h */,
-				D730B7C514D9B456000EED6C /* epubTests.m */,
-				D730B7BF14D9B456000EED6C /* Supporting Files */,
-			);
-			path = epubTests;
-			sourceTree = "<group>";
-		};
-		D730B7BF14D9B456000EED6C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D730B7C014D9B456000EED6C /* epubTests-Info.plist */,
-				D730B7C114D9B456000EED6C /* InfoPlist.strings */,
-				D730B7C714D9B456000EED6C /* epubTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		D76675C414CECD57003850E7 /* Supporting Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				D78388561354890700E7937B /* epub */,
-				D730B7BE14D9B456000EED6C /* epubTests */,
 				D783884D1354890700E7937B /* Frameworks */,
 				D783884C1354890700E7937B /* Products */,
 			);
@@ -187,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				D783884B1354890700E7937B /* epub.qlgenerator */,
-				D730B7B514D9B456000EED6C /* epubTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,9 +136,6 @@
 				D78388501354890700E7937B /* ApplicationServices.framework */,
 				D78388521354890700E7937B /* CoreServices.framework */,
 				D78388541354890700E7937B /* CoreFoundation.framework */,
-				D730B7B614D9B456000EED6C /* SenTestingKit.framework */,
-				D730B7B814D9B456000EED6C /* Cocoa.framework */,
-				D730B7BA14D9B456000EED6C /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -291,25 +222,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D730B7B414D9B456000EED6C /* epubTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D730B7CA14D9B456000EED6C /* Build configuration list for PBXNativeTarget "epubTests" */;
-			buildPhases = (
-				D730B7B014D9B456000EED6C /* Sources */,
-				D730B7B114D9B456000EED6C /* Frameworks */,
-				D730B7B214D9B456000EED6C /* Resources */,
-				D730B7B314D9B456000EED6C /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D730B7CD14D9B469000EED6C /* PBXTargetDependency */,
-			);
-			name = epubTests;
-			productName = epubTests;
-			productReference = D730B7B514D9B456000EED6C /* epubTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 		D783884A1354890700E7937B /* epub */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D78388651354890700E7937B /* Build configuration list for PBXNativeTarget "epub" */;
@@ -351,20 +263,11 @@
 			projectRoot = "";
 			targets = (
 				D783884A1354890700E7937B /* epub */,
-				D730B7B414D9B456000EED6C /* epubTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D730B7B214D9B456000EED6C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D730B7C314D9B456000EED6C /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D78388481354890700E7937B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -388,31 +291,7 @@
 		};
 /* End PBXRezBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		D730B7B314D9B456000EED6C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		D730B7B014D9B456000EED6C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D730B7C614D9B456000EED6C /* epubTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D78388451354890700E7937B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -434,23 +313,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		D730B7CD14D9B469000EED6C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D783884A1354890700E7937B /* epub */;
-			targetProxy = D730B7CC14D9B469000EED6C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		D730B7C114D9B456000EED6C /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D730B7C214D9B456000EED6C /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		D78388591354890700E7937B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -462,48 +325,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D730B7C814D9B456000EED6C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "epubTests/epubTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INFOPLIST_FILE = "epubTests/epubTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		D730B7C914D9B456000EED6C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "epubTests/epubTests-Prefix.pch";
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INFOPLIST_FILE = "epubTests/epubTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 		D78388631354890700E7937B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -577,14 +398,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D730B7CA14D9B456000EED6C /* Build configuration list for PBXNativeTarget "epubTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D730B7C814D9B456000EED6C /* Debug */,
-				D730B7C914D9B456000EED6C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 		D78388431354890700E7937B /* Build configuration list for PBXProject "epub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
