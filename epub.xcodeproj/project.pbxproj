@@ -12,6 +12,8 @@
 		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
 		674D09D114CF2C6800127A36 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
+		D749581E14DD800D0048D619 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D78388591354890700E7937B /* InfoPlist.strings */; };
+		D749582414DD82360048D619 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D749582614DD82360048D619 /* Localizable.strings */; };
 		D76675C114CECD50003850E7 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D76675BF14CECD50003850E7 /* GDataXMLNode.h */; };
 		D76675C214CECD50003850E7 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
 		D76675C614CECDFF003850E7 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D76675C514CECDFF003850E7 /* libxml2.dylib */; };
@@ -19,7 +21,6 @@
 		D78388511354890700E7937B /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388501354890700E7937B /* ApplicationServices.framework */; };
 		D78388531354890700E7937B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388521354890700E7937B /* CoreServices.framework */; };
 		D78388551354890700E7937B /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388541354890700E7937B /* CoreFoundation.framework */; };
-		D783885B1354890700E7937B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D78388591354890700E7937B /* InfoPlist.strings */; };
 		D783885E1354890700E7937B /* GenerateThumbnailForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = D783885D1354890700E7937B /* GenerateThumbnailForURL.m */; };
 		D78388601354890700E7937B /* GeneratePreviewForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = D783885F1354890700E7937B /* GeneratePreviewForURL.m */; };
 		D78388621354890700E7937B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388611354890700E7937B /* main.c */; };
@@ -48,6 +49,7 @@
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		674D09CF14CF2C6800127A36 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		D727FC8313D771B200CB5355 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D749582514DD82360048D619 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = epub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
 		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = epub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
 		D76675C514CECDFF003850E7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -168,6 +170,7 @@
 				D7838884135499ED00E7937B /* Untitled.epub */,
 				D78388581354890700E7937B /* epub-Info.plist */,
 				D78388591354890700E7937B /* InfoPlist.strings */,
+				D749582614DD82360048D619 /* Localizable.strings */,
 				D783885C1354890700E7937B /* epub-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -272,10 +275,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D783885B1354890700E7937B /* InfoPlist.strings in Resources */,
+				D749581E14DD800D0048D619 /* InfoPlist.strings in Resources */,
 				D7E5A5C81386A9F7007EB5E9 /* index.html in Resources */,
 				D7DA65C313D77C97006BED29 /* lion.css in Resources */,
 				D7DA65C513D77CCD006BED29 /* leopard.css in Resources */,
+				D749582414DD82360048D619 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +318,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		D749582614DD82360048D619 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D749582514DD82360048D619 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		D78388591354890700E7937B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -109,37 +109,68 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      */
     NSMutableString *metadata = [NSMutableString string];
     if ([[epubFile editors] count] > 0) {
-        [metadata appendFormat:@"<tr><th>editor%@:</th><td>%@</td></tr>\n",
-         [[epubFile editors] count] > 1 ? @"s" : @"",
-         [[epubFile editors] escapedComponentsJoinedByString:@"<br>\n"]];
+        
+        NSString *localST = [pluginBundle localizedStringForKey:@"editor" 
+                                                          value:@"editor" 
+                                                          table:nil];
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+             [[epubFile editors] count] > 1 ? [pluginBundle localizedStringForKey:@"editors" 
+                                                                            value:@"editors" 
+                                                                            table:nil] : 
+                                              [pluginBundle localizedStringForKey:@"editor" 
+                                                                            value:@"editor" 
+                                                                            table:nil],
+             [[epubFile editors] escapedComponentsJoinedByString:@"<br>\n"]];
     }
     if ([[epubFile illustrators] count] > 0) {
-        [metadata appendFormat:@"<tr><th>illustrator%@:</th><td>%@</td></tr>\n",
-         [[epubFile illustrators] count] > 1 ? @"s" : @"",
-         [[epubFile illustrators] escapedComponentsJoinedByString:@"<br>\n"]];
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+             [[epubFile illustrators] count] > 1 ? [pluginBundle localizedStringForKey:@"illustrators" 
+                                                                                 value:@"illustrators" 
+                                                                                 table:nil] : 
+                                                   [pluginBundle localizedStringForKey:@"illustrator" 
+                                                                                 value:@"illustrator" 
+                                                                                 table:nil],
+             [[epubFile illustrators] escapedComponentsJoinedByString:@"<br>\n"]];
     }
     if ([[epubFile translators] count] > 0) {
-        [metadata appendFormat:@"<tr><th>translator%@:</th><td>%@</td></tr>\n",
-         [[epubFile translators] count] > 1 ? @"s" : @"",
-         [[epubFile translators] escapedComponentsJoinedByString:@"<br>\n"]];
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+             [[epubFile translators] count] > 1 ? [pluginBundle localizedStringForKey:@"translators" 
+                                                                                value:@"translators" 
+                                                                                table:nil] : 
+                                                  [pluginBundle localizedStringForKey:@"translator" 
+                                                                                value:@"translator" 
+                                                                                table:nil],
+             [[epubFile translators] escapedComponentsJoinedByString:@"<br>\n"]];        
     }
     if (![[epubFile isbn] isEqualToString:@""]) {
-        [metadata appendFormat:@"<tr><th>isbn:</th><td>%@</td></tr>\n",
-         [[epubFile isbn] escapedString]];
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+             [pluginBundle localizedStringForKey:@"ISBN" 
+                                           value:@"ISBN" 
+                                           table:nil],
+             [[epubFile isbn] escapedString]];
     }
     if (![[epubFile publisher] isEqualToString:@""]) {
-        [metadata appendFormat:@"<tr><th>publisher:</th><td>%@</td></tr>\n",
-         [[epubFile publisher] escapedString]];
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+             [pluginBundle localizedStringForKey:@"publisher" 
+                                           value:@"publisher" 
+                                           table:nil],
+             [[epubFile publisher] escapedString]];
     }
     if ([epubFile publicationDate]) {
-        [metadata appendFormat:@"<tr><th>date:</th><td>%@</td></tr>\n",
-         [[epubFile publicationDate] descriptionWithCalendarFormat:@"%Y" 
-                                                          timeZone:nil 
-                                                            locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+             [pluginBundle localizedStringForKey:@"pubDate" 
+                                           value:@"publication date" 
+                                           table:nil],
+             [[epubFile publicationDate] descriptionWithCalendarFormat:@"%Y" 
+                                                              timeZone:nil 
+                                                                locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]]];
     }
     if (![[epubFile drm] isEqualToString:@""]) {
-        [metadata appendFormat:@"<tr><th>drm:</th><td>%@</td></tr>\n",
-         [[epubFile drm] escapedString]];
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+             [pluginBundle localizedStringForKey:@"drm" 
+                                           value:@"DRM Scheme" 
+                                           table:nil],
+             [[epubFile drm] escapedString]];
     }
     if (![metadata isEqualToString:@""]) {
         [metadata insertString:@"<table>\n" atIndex:0];
