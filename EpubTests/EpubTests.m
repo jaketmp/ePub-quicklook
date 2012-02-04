@@ -37,11 +37,19 @@
     STAssertEqualObjects(actual, expected, @"Title should be %@ but is %@", actual, expected);
 }
 
-- (void)testAuthor
+- (void)testTitleWithAmpersand
 {
-    NSString *actual = [untitledFile author];
-    NSString *expected = @"";
-    STAssertEqualObjects(actual, expected, @"Author should be %@ but is %@", actual, expected);
+    NSString *actual = [metadataFile title];
+    NSString *expected = @"This & That";
+    STAssertEqualObjects(actual, expected, @"Title should be %@ but is %@", actual, expected);
+}
+
+- (void)testAuthors
+{
+    NSArray *actual = [untitledFile authors];
+    NSString *expected = @"Test Author";
+    STAssertTrue([actual count] == 1, @"1 author expected");
+    STAssertEqualObjects([actual lastObject], expected, @"Author should be %@ but is %@", [actual lastObject], expected);
 }
 
 - (void)testISBN
@@ -63,19 +71,28 @@
 - (void)testTranslator
 {
     NSArray *actual = [untitledFile translators];
-    STAssertTrue([actual count] == 0, @"No translators expected");
+    NSString *expected = @"Test Translator";
+    STAssertTrue([actual count] == 1, @"1 translator expected");
+    STAssertEqualObjects([actual lastObject], expected, @"Translator should be %@ but is %@", [actual lastObject], expected);
 }
 
 - (void)testIllustrator
 {
     NSArray *actual = [untitledFile illustrators];
-    STAssertTrue([actual count] == 0, @"No illustrators expected");
+    NSString *expected = @"Test Illustrator";
+    STAssertTrue([actual count] == 1, @"1 illustrator expected");
+    STAssertEqualObjects([actual lastObject], expected, @"Illustrator should be %@ but is %@", [actual lastObject], expected);
 }
 
 - (void)testThreeAuthors
 {
-    NSString *actual = [metadataFile author];
-    NSString *expected = @"Primary Author, Second Author, Third Author";
-    STAssertEqualObjects(actual, expected, @"Should have 3 authors but have %@", actual);
+    NSArray *actual = [metadataFile authors];
+    NSString *expected0 = @"Primary Author";
+    NSString *expected1 = @"Second Author";
+    NSString *expected2 = @"Third Author";
+    STAssertTrue([actual count] == 3, @"3 authors expected");
+    STAssertEqualObjects([actual objectAtIndex:0], expected0, @"First author should be %@ but is %@", [actual objectAtIndex:0], expected0);
+    STAssertEqualObjects([actual objectAtIndex:1], expected1, @"Second author should be %@ but is %@", [actual objectAtIndex:1], expected1);
+    STAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author should be %@ but is %@", [actual objectAtIndex:2], expected2);
 }
 @end
