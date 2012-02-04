@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  epub
+
+  Created by Jake Pearce on 04/02/2012.
+  Copyright (c) 2012 Imperial College. All rights reserved.
+*/
+"author" = "Author";
+"authors" = "Authors";
+"title" = "Title";
+"synopsis" = "Synopsis";
+"pubDate" = "Publication Date";
+"drm" = "DRM Scheme";
+"illustrator" = "Illustrator";
+"illustrators" = "Illustrators";
+"editor" = "Editor";
+"editors" = "Editors";
+"publisher" = "Publisher";
+"publishers" = "Publishers";
