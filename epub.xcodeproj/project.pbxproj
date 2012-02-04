@@ -11,6 +11,7 @@
 		674D09CC14CF297E00127A36 /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
 		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
 		674D09D114CF2C6800127A36 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
+		6755959714DDB5D000D04B6D /* metadata.epub in Resources */ = {isa = PBXBuildFile; fileRef = 6755959614DDB5D000D04B6D /* metadata.epub */; };
 		675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3C14D9B8760065603A /* SenTestingKit.framework */; };
 		675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3E14D9B8760065603A /* Cocoa.framework */; };
 		675FAB4914D9B8760065603A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 675FAB4714D9B8760065603A /* InfoPlist.strings */; };
@@ -63,6 +64,7 @@
 		674D09CA14CF297E00127A36 /* NSArray+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HTML.m"; sourceTree = "<group>"; };
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		674D09CF14CF2C6800127A36 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		6755959614DDB5D000D04B6D /* metadata.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = metadata.epub; sourceTree = "<group>"; };
 		675FAB3B14D9B8760065603A /* EpubTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpubTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675FAB3C14D9B8760065603A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		675FAB3E14D9B8760065603A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -235,6 +237,7 @@
 		D78388571354890700E7937B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6755959614DDB5D000D04B6D /* metadata.epub */,
 				D7DA65C213D77C97006BED29 /* lion.css */,
 				D7DA65C413D77CCD006BED29 /* leopard.css */,
 				D7E5A5C71386A9F7007EB5E9 /* index.html */,
@@ -366,6 +369,7 @@
 			files = (
 				675FAB4914D9B8760065603A /* InfoPlist.strings in Resources */,
 				67D3E1DC14D9C8160064FDDF /* Untitled.epub in Resources */,
+				6755959714DDB5D000D04B6D /* metadata.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

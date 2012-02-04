@@ -16,12 +16,15 @@
     [super setUp];
     
     NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
-    NSString *testFile = [thisBundle pathForResource:@"Untitled" ofType:@"epub"];
-    untitledFile = [[JTPepub alloc] initWithFile:testFile];
+    NSString *untitled = [thisBundle pathForResource:@"Untitled" ofType:@"epub"];
+    NSString *metadata = [thisBundle pathForResource:@"metadata" ofType:@"epub"];
+    untitledFile = [[JTPepub alloc] initWithFile:untitled];
+    metadataFile = [[JTPepub alloc] initWithFile:metadata];
 }
 
 - (void)tearDown
 {
+    [metadataFile release];
     [untitledFile release];
 
     [super tearDown];
@@ -69,4 +72,10 @@
     STAssertTrue([actual count] == 0, @"No illustrators expected");
 }
 
+- (void)testThreeAuthors
+{
+    NSString *actual = [metadataFile author];
+    NSString *expected = @"Primary Author, Second Author, Third Author";
+    STAssertEqualObjects(actual, expected, @"Should have 3 authors but have %@", actual);
+}
 @end

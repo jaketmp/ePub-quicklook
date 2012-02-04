@@ -12,5 +12,6 @@
 
 @interface EpubTests : SenTestCase {
     JTPepub *untitledFile;
+    JTPepub *metadataFile;
 }
 @end
