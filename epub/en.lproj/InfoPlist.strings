@@ -1,14 +1,2 @@
 /* Localized versions of Info.plist keys */
 
-"%author%" = "Author";
-"%authors%" = "Authors";
-"%title%" = "Title";
-"%synopsis%" = "Synopsis";
-"%pubDate%" = "Publication Date";
-"%drm%" = "DRM Scheme";
-"%illustrator%" = "Illustrator";
-"%illustrators%" = "Illustrators";
-"%editor%" = "Editor";
-"%editors%" = "Editors";
-"%publisher%" = "Publisher";
-"%publishers%" = "Publishers";
