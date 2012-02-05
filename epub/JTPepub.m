@@ -515,7 +515,7 @@ static NSMutableDictionary *xmlns = nil;
         }
     }
     // Apple Fairplay DRM has "META-INF/sinf.xml" containing <policy>.
-        if ([epubFile testForNamedFile:@"META-INF/sinf.xml"]) {
+    if ([epubFile testForNamedFile:@"META-INF/sinf.xml"]) {
         NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
         NSError *xmlError;
         GDataXMLDocument *fairplayXML = [[GDataXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
@@ -529,7 +529,7 @@ static NSMutableDictionary *xmlns = nil;
         }
     }
     // Kobo DRM has "rights.xml" containing <kdrm> (no namespace)
-        if ([epubFile testForNamedFile:@"rights.xml"]) {
+    if ([epubFile testForNamedFile:@"rights.xml"]) {
         NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
         NSError *xmlError;
         GDataXMLDocument *koboXML = [[GDataXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
