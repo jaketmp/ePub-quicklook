@@ -18,12 +18,21 @@
     NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
     NSString *untitled = [thisBundle pathForResource:@"Untitled" ofType:@"epub"];
     NSString *metadata = [thisBundle pathForResource:@"metadata" ofType:@"epub"];
+    NSString *adept = [thisBundle pathForResource:@"fake-adept" ofType:@"epub"];
+    NSString *fairplay = [thisBundle pathForResource:@"fake-fairplay" ofType:@"epub"];
+    NSString *kobo = [thisBundle pathForResource:@"fake-kobo" ofType:@"epub"];
     untitledFile = [[JTPepub alloc] initWithFile:untitled];
     metadataFile = [[JTPepub alloc] initWithFile:metadata];
+    adeptFile = [[JTPepub alloc] initWithFile:adept];
+    fairplayFile = [[JTPepub alloc] initWithFile:fairplay];
+    koboFile = [[JTPepub alloc] initWithFile:kobo];
 }
 
 - (void)tearDown
 {
+    [koboFile release];
+    [fairplayFile release];
+    [adeptFile release];
     [metadataFile release];
     [untitledFile release];
 
@@ -94,5 +103,33 @@
     STAssertEqualObjects([actual objectAtIndex:0], expected0, @"First author should be %@ but is %@", [actual objectAtIndex:0], expected0);
     STAssertEqualObjects([actual objectAtIndex:1], expected1, @"Second author should be %@ but is %@", [actual objectAtIndex:1], expected1);
     STAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author should be %@ but is %@", [actual objectAtIndex:2], expected2);
+}
+
+-(void)testNoDRM
+{
+    NSString *actual = [untitledFile drm];
+    NSString *expected = @"";
+    STAssertEqualObjects(actual, expected, @"Untitled file has wrong DRM");
+}
+
+-(void)testAdobeDRM
+{
+    NSString *actual = [adeptFile drm];
+    NSString *expected = @"Adobe";
+    STAssertEqualObjects(actual, expected, @"fake-adept file has wrong DRM");
+}
+
+-(void)testAppleDRM
+{
+    NSString *actual = [fairplayFile drm];
+    NSString *expected = @"Apple";
+    STAssertEqualObjects(actual, expected, @"fake-fairplay file has wrong DRM");
+}
+
+-(void)testKoboDRM
+{
+    NSString *actual = [koboFile drm];
+    NSString *expected = @"Kobo";
+    STAssertEqualObjects(actual, expected, @"fake-kobo file has wrong DRM");
 }
 @end
