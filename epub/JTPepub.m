@@ -504,8 +504,7 @@ static NSMutableDictionary *xmlns = nil;
         NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
         NSError *xmlError;
         GDataXMLDocument *adeptXML = [[GDataXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
-        // @"//adept:licenseURL" doesn't work any more
-        NSArray *urls = [adeptXML nodesForXPath:@"//*[local-name()='licenseURL']"
+        NSArray *urls = [adeptXML nodesForXPath:@"//adept:licenseURL"
                                      namespaces:xmlns
                                           error:&xmlError];
         [adeptXML release];
@@ -515,17 +514,16 @@ static NSMutableDictionary *xmlns = nil;
             return drm;
         }
     }
-    // Apple Fairplay DRM has "META-INF/sinf.xml" containing <policy>.
+    // Apple Fairplay DRM has "META-INF/sinf.xml" containing <fairplay:sinf>.
     if ([epubFile testForNamedFile:@"META-INF/sinf.xml"]) {
         NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
         NSError *xmlError;
         GDataXMLDocument *fairplayXML = [[GDataXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
-        // @"/fairplay:policy" doesn't work any more
-        NSArray *policy = [fairplayXML nodesForXPath:@"/*[local-name()='policy']"
-                                          namespaces:xmlns
-                                               error:&xmlError];
+        NSArray *sinf = [fairplayXML nodesForXPath:@"//fairplay:sinf"
+                                        namespaces:xmlns
+                                             error:&xmlError];
         [fairplayXML release];
-        if ([policy count] == 1) {
+        if ([sinf count] > 0) {
             drm = @"Apple";
             return drm;
         }
