@@ -504,7 +504,8 @@ static NSMutableDictionary *xmlns = nil;
         NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
         NSError *xmlError;
         GDataXMLDocument *adeptXML = [[GDataXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
-        NSArray *urls = [adeptXML nodesForXPath:@"//adept:licenseURL"
+        // @"//adept:licenseURL" doesn't work any more
+        NSArray *urls = [adeptXML nodesForXPath:@"//*[local-name()='licenseURL']"
                                      namespaces:xmlns
                                           error:&xmlError];
         [adeptXML release];
@@ -519,7 +520,8 @@ static NSMutableDictionary *xmlns = nil;
         NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
         NSError *xmlError;
         GDataXMLDocument *fairplayXML = [[GDataXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
-        NSArray *policy = [fairplayXML nodesForXPath:@"//fairplay:policy"
+        // @"/fairplay:policy" doesn't work any more
+        NSArray *policy = [fairplayXML nodesForXPath:@"/*[local-name()='policy']"
                                           namespaces:xmlns
                                                error:&xmlError];
         [fairplayXML release];
@@ -533,7 +535,7 @@ static NSMutableDictionary *xmlns = nil;
         NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
         NSError *xmlError;
         GDataXMLDocument *koboXML = [[GDataXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
-        NSArray *kdrm = [koboXML nodesForXPath:@"//kdrm" error:&xmlError];
+        NSArray *kdrm = [koboXML nodesForXPath:@"/kdrm" error:&xmlError];
         [koboXML release];
         if ([kdrm count] > 0) {
             drm = @"Kobo";
