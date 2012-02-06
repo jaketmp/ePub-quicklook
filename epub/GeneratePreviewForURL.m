@@ -120,10 +120,6 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      */
     NSMutableString *metadata = [NSMutableString string];
     if ([[epubFile editors] count] > 0) {
-        
-        NSString *localST = [pluginBundle localizedStringForKey:@"editor" 
-                                                          value:@"editor" 
-                                                          table:nil];
         [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
              [[epubFile editors] count] > 1 ? [pluginBundle localizedStringForKey:@"editors" 
                                                                             value:@"editors" 
