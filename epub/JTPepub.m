@@ -83,7 +83,7 @@ static NSMutableDictionary *xmlns = nil;
     NSString *rootFileType = [[[rootFile objectAtIndex:0] attributeForName:@"media-type"] stringValue];
     
     
-    // This code is all designed arround oebps+xml epubs, DTBook is unsuported.
+    // This code is all designed arround oebps+xml epubs, DTBook is unsupported.
     if([rootFileType caseInsensitiveCompare:@"application/oebps-package+xml"] == NSOrderedSame) {
         rootFilePath = [[[[rootFile objectAtIndex:0] attributeForName:@"full-path"] stringValue] retain];
     }else{
@@ -135,7 +135,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No title found
+        // No <dc:title>s found
         title = @"";
         return title;
     }
@@ -165,7 +165,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No publisher found
+        // No <dc:publisher>s found
         publisher = @"";
         return publisher;
     }
@@ -181,14 +181,14 @@ static NSMutableDictionary *xmlns = nil;
 {
     NSError *xmlError = nil;
     
-    // scan for a <dc:contributor> element
+    // scan for a <dc:creator> element
     NSArray *metaElements = [opfXML nodesForXPath:@"//dc:creator"
                                        namespaces:xmlns
                                             error:&xmlError];
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No dc:contributor found
+        // No <dc:creator>s found
         return [NSArray array];
     }
     NSMutableArray *results = [NSMutableArray array];
@@ -234,7 +234,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No dc:contributor found
+        // No <dc:contributor>s found
         return [NSArray array];
     }
     NSMutableArray *results = [NSMutableArray array];
@@ -308,7 +308,7 @@ static NSMutableDictionary *xmlns = nil;
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
         
-        // No title found return an empty array
+        // No <dc:creator>s found return an empty array
         
         creators = [[NSArray alloc] initWithObjects:@"", nil];
         [creators retain];
@@ -419,7 +419,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No title found
+        // No <dc:description>s found
         synopsis = @"";
         return synopsis;
     }
@@ -447,7 +447,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No date found
+        // No <dc:date>s found
         return nil;
     }
     // Find the date of publication.
@@ -474,7 +474,7 @@ static NSMutableDictionary *xmlns = nil;
     // Otherwise load it.
     NSError *xmlError = nil;
     
-    // scan for a <dc:title> element    
+    // scan for a <dc:identifier> element    
     NSArray *metaElements = [opfXML nodesForXPath:@"//dc:identifier"
                                        namespaces:xmlns
                                             error:&xmlError];
