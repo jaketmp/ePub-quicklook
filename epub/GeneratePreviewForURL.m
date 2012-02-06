@@ -100,7 +100,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      * Localise and subsitute derived values into the template html
      */
     [html replaceOccurrencesOfString:@"%title%" withString:[[epubFile title] escapedString] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
-    [html replaceOccurrencesOfString:@"%author%" withString:[[epubFile author] escapedString] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [html replaceOccurrencesOfString:@"%author%" withString:[[epubFile authors] escapedComponentsJoinedByString:@", "] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
 
     /*
      * Other metadata goes into a table

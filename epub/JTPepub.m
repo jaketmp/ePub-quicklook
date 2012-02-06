@@ -177,56 +177,50 @@ static NSMutableDictionary *xmlns = nil;
     return publisher;
 }
 
-- (NSString *)author
+- (NSArray *)creatorsWithOPFRole:(NSString *)role
 {
-    // If the author has been set, return it.
-    if (author) {
-        return author;
-    }
-    
-    
-    // Otherwise load it.
     NSError *xmlError = nil;
     
-    // scan for a <dc:creator> element
+    // scan for a <dc:contributor> element
     NSArray *metaElements = [opfXML nodesForXPath:@"//dc:creator"
                                        namespaces:xmlns
                                             error:&xmlError];
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No dc:creator found
-        author = @"";
-        return author;
+        // No dc:contributor found
+        return [NSArray array];
     }
-    NSMutableString *mutableAuthors = [[NSMutableString alloc] init];
+    NSMutableArray *results = [NSMutableArray array];
     // Fast enumerate over meta elements
-    UInt16 count = 0;
     for(id item in metaElements)
     {
-        if (count > 0) {
-            [mutableAuthors appendString:@", "];
-        }
         NSString *itemID = [[item attributeForName:@"role"] stringValue];
         
-        if([itemID caseInsensitiveCompare:@"aut"] == NSOrderedSame) {
-            
-            [mutableAuthors appendString:[item stringValue]];
-            count++;
-            
-        } else if([itemID caseInsensitiveCompare:@"edt"] == NSOrderedSame) {
-            
-            [mutableAuthors appendString:[[item stringValue] stringByAppendingString:@" (Editor)"]];
-            count++;
+        if([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
+            // The name should be in the item contents.
+            // If the element contents is empty, look in the file-as attribute
+            // instead. If that's not there either, skip this item.
+            if ([[item stringValue] isEqualToString:@""]) {
+                NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
+                if (![fileAs isEqualToString:@""])
+                    [results addObject:fileAs];
+            } else {
+                [results addObject:[item stringValue]];
+            }
         }
     }
-    
-    author = [[NSString alloc] initWithString:mutableAuthors];
-    [author retain];
-    [mutableAuthors release];
-    
-    return author;
+    return results;
+}
 
+- (NSArray *)authors
+{
+    // If authors has been set, return it.
+    if (authors) {
+        return authors;
+    }
+    authors = [[self creatorsWithOPFRole:@"aut"] retain];
+    return authors;
 }
 
 - (NSArray *)contributorsWithOPFRole:(NSString *)role
@@ -520,26 +514,26 @@ static NSMutableDictionary *xmlns = nil;
             return drm;
         }
     }
-    // Apple Fairplay DRM has "META-INF/sinf.xml" containing <policy>.
-        if ([epubFile testForNamedFile:@"META-INF/sinf.xml"]) {
+    // Apple Fairplay DRM has "META-INF/sinf.xml" containing <fairplay:sinf>.
+    if ([epubFile testForNamedFile:@"META-INF/sinf.xml"]) {
         NSData *fairplay = [epubFile dataForNamedFile:@"META-INF/sinf.xml"];
         NSError *xmlError;
         GDataXMLDocument *fairplayXML = [[GDataXMLDocument alloc] initWithData:fairplay options:0 error:&xmlError];
-        NSArray *policy = [fairplayXML nodesForXPath:@"//fairplay:policy"
-                                          namespaces:xmlns
-                                               error:&xmlError];
+        NSArray *sinf = [fairplayXML nodesForXPath:@"//fairplay:sinf"
+                                        namespaces:xmlns
+                                             error:&xmlError];
         [fairplayXML release];
-        if ([policy count] == 1) {
+        if ([sinf count] > 0) {
             drm = @"Apple";
             return drm;
         }
     }
     // Kobo DRM has "rights.xml" containing <kdrm> (no namespace)
-        if ([epubFile testForNamedFile:@"rights.xml"]) {
+    if ([epubFile testForNamedFile:@"rights.xml"]) {
         NSData *kobo = [epubFile dataForNamedFile:@"rights.xml"];
         NSError *xmlError;
         GDataXMLDocument *koboXML = [[GDataXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
-        NSArray *kdrm = [koboXML nodesForXPath:@"//kdrm" error:&xmlError];
+        NSArray *kdrm = [koboXML nodesForXPath:@"/kdrm" error:&xmlError];
         [koboXML release];
         if ([kdrm count] > 0) {
             drm = @"Kobo";
@@ -560,9 +554,7 @@ static NSMutableDictionary *xmlns = nil;
     if (publisher) {
         [publisher release];
     }
-    if (author) {
-        [author release];
-    }
+    [authors release];
     if (creators) {
         [creators release];
     }
