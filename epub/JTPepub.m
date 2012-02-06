@@ -258,6 +258,7 @@ static NSMutableDictionary *xmlns = nil;
     }
     return results;
 }
+
 - (NSArray *)editors
 {
     // If editors has been set, return it.
@@ -267,6 +268,7 @@ static NSMutableDictionary *xmlns = nil;
     editors = [[self contributorsWithOPFRole:@"edt"] retain];
     return editors;
 }
+
 - (NSArray *)illustrators
 {
     // If illustrators has been set, return it.
@@ -276,6 +278,7 @@ static NSMutableDictionary *xmlns = nil;
     illustrators = [[self contributorsWithOPFRole:@"ill"] retain];
     return illustrators;
 }
+
 - (NSArray *)translators
 {
     // If translators has been set, return it.
@@ -285,6 +288,7 @@ static NSMutableDictionary *xmlns = nil;
     translators = [[self contributorsWithOPFRole:@"trl"] retain];
     return translators;
 }
+
 - (NSArray *)creators
 {
     // If creators has been set, return it.
@@ -397,6 +401,7 @@ static NSMutableDictionary *xmlns = nil;
     
     return cover;
 }
+
 - (NSString *)synopsis
 {
     // If the synopsis has been set, return it.
@@ -425,6 +430,7 @@ static NSMutableDictionary *xmlns = nil;
     
     return synopsis;    
 }
+
 - (NSDate *)publicationDate
 {
     if (publicationDate) {
@@ -456,6 +462,7 @@ static NSMutableDictionary *xmlns = nil;
         
     return publicationDate;
 }
+
 - (NSString *)isbn
 {
     // If the ISBN has been set, return it.
@@ -492,6 +499,7 @@ static NSMutableDictionary *xmlns = nil;
     ISBN = @"";
     return ISBN;    
 }
+
 - (NSString *)drm
 {
     // If the DRM scheme has been set, return it.
@@ -544,42 +552,22 @@ static NSMutableDictionary *xmlns = nil;
 }
 - (void)dealloc
 {
-    if (epubFile) {
-        [epubFile release];
-    }
-    if (title) {
-        [title release];
-    }
-    if (publisher) {
-        [publisher release];
-    }
+    [epubFile release];
+    [title release];
+    [publisher release];
     [authors release];
-    if (creators) {
-        [creators release];
-    }
+    [creators release];
     [editors release];
     [illustrators release];
     [translators release];
-    if (opfXML) {
-        [opfXML release];
-    }
-    if (cover) {
-        [cover release];
-    }
-    if (synopsis) {
-        [synopsis release];
-    }
-    if (ISBN) {
-        [ISBN release];
-    }
+    [opfXML release];
+    [cover release];
+    [synopsis release];
+    [ISBN release];
     [drm release];
-    if (rootFilePath) {
-        [rootFilePath release];
-    }
-    if (publicationDate) {
-        [publicationDate release];
-    }
-    
+    [rootFilePath release];
+    [publicationDate release];
+
     [super dealloc];
 }
 
