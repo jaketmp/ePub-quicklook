@@ -72,8 +72,19 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         [props setObject:[NSDictionary dictionaryWithObject:iconProps forKey:@"icon.tiff"] forKey:(NSString *)kQLPreviewPropertyAttachmentsKey];
         
         [iconData release];
-    }else{ // Delete image if we find no cover.
-        [html replaceOccurrencesOfString:@"<img src=\"cid:icon.tiff\" alt=\"cover image\" />" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    }else{ // Lacking a cover image, load the finder icon in case the user has pasted something custom.
+        // Get file icon
+        NSImage *theIcon = [[[NSWorkspace sharedWorkspace] iconForFile:(NSString*)filePath] retain];
+        [theIcon setSize:NSMakeSize(128.0,128.0)];
+        
+        NSData *iconData = [[theIcon TIFFRepresentation] retain];
+        NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
+        [iconProps setObject:@"image/tiff" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
+        [iconProps setObject:iconData forKey:(NSString *)kQLPreviewPropertyAttachmentDataKey];
+        [props setObject:[NSDictionary dictionaryWithObject:iconProps forKey:@"icon.tiff"] forKey:(NSString *)kQLPreviewPropertyAttachmentsKey];
+        
+        [theIcon release];
+        [iconData release];
     }
     
     
