@@ -79,6 +79,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;$(SRCROOT)/epub/Untitled.epub&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;$(SRCROOT)/epub/metadata.epub&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

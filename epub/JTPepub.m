@@ -356,8 +356,7 @@ static NSMutableDictionary *xmlns = nil;
         }
     }
     if(coverID == nil) {
-        cover = [[NSImage alloc] init];
-        return cover; // No cover in this epub.
+        return nil; // No cover in this epub.
     }
     
     
