@@ -17,7 +17,7 @@
     ZipArchive *epubFile;
     NSInteger epubVersion;
     NSString *title;
-    NSString *author;
+    NSArray *authors;
     NSString *publisher;
     NSArray * creators;
     NSArray *editors;
@@ -36,7 +36,7 @@
 - (BOOL)openEPUBFile:(NSString*)fileName;
 
 - (NSString *)title;
-- (NSString *)author;
+- (NSArray *)authors;
 - (NSString *)publisher;
 - (NSArray *)creators;
 - (NSArray *)editors;

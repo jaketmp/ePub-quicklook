@@ -13,8 +13,3 @@ Place the ePub.quicklook generator file into `/Library/QuickLook` (for all users
 ### Conflict with other quicklook generators
 
 Under some circumstances, epub.quicklook can conflict with other quicklook generators (notably BetterZipQL under OS X 10.6 and earlier). To fix this, rename epub.quicklook to come before the conflicting plugin alphabetically (AA_epub.quicklook should work).
-
-
-## Building the plugin
-
-The plugin requires the **GDataXMLDocument** class from the [Google Data APIs Objective-C Client Library](http://code.google.com/p/gdata-objectivec-client/). Download `GDataXMLNode.h` and `GDataXMLNode.m` and place them in the `epub` folder.

@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'EpubTests' target in the 'EpubTests' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
