@@ -506,20 +506,28 @@ static NSMutableDictionary *xmlns = nil;
     if (drm) {
         return drm;
     }
-    // Adobe Adept DRM has "META-INF/rights.xml", containing <licenseURL> with an adobe.com URL.
+    // Adobe Adept DRM has "META-INF/rights.xml", containing <operatorURL>.
+    // B&N have an <operatorURL> with "barnesandnoble.com" somewhere inside.
+    // Adobe uses a variety of other URLs.
     if ([epubFile testForNamedFile:@"META-INF/rights.xml"]) {
         NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
         NSError *xmlError;
         GDataXMLDocument *adeptXML = [[GDataXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
-        NSArray *urls = [adeptXML nodesForXPath:@"//adept:licenseURL"
+        NSArray *urls = [adeptXML nodesForXPath:@"//adept:operatorURL"
                                      namespaces:xmlns
                                           error:&xmlError];
-        [adeptXML release];
         if ([urls count] > 0) {
-            // should probably check for adobe.com here...
-            drm = @"Adobe";
+            NSString *url = [[urls lastObject] stringValue];
+            NSRange match = [url rangeOfString:@"barnesandnoble" options:NSCaseInsensitiveSearch];
+            if (match.location != NSNotFound) {
+                drm = @"Barnes & Noble";
+            } else {
+                drm = @"Adobe";
+            }
+            [adeptXML release];
             return drm;
         }
+        [adeptXML release];
     }
     // Apple Fairplay DRM has "META-INF/sinf.xml" containing <fairplay:sinf>.
     if ([epubFile testForNamedFile:@"META-INF/sinf.xml"]) {
