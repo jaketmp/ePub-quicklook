@@ -182,7 +182,8 @@ static NSMutableDictionary *xmlns = nil;
     NSError *xmlError = nil;
     
     // scan for a <dc:creator> element
-    NSArray *metaElements = [opfXML nodesForXPath:@"//dc:creator"
+    NSString *query = [NSString stringWithFormat:@"//dc:creator[@opf:role='%@']", role];
+    NSArray *metaElements = [opfXML nodesForXPath:query
                                        namespaces:xmlns
                                             error:&xmlError];
     
@@ -195,19 +196,15 @@ static NSMutableDictionary *xmlns = nil;
     // Fast enumerate over meta elements
     for(id item in metaElements)
     {
-        NSString *itemID = [[item attributeForName:@"role"] stringValue];
-        
-        if([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
-            // The name should be in the item contents.
-            // If the element contents is empty, look in the file-as attribute
-            // instead. If that's not there either, skip this item.
-            if ([[item stringValue] isEqualToString:@""]) {
-                NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
-                if (![fileAs isEqualToString:@""])
-                    [results addObject:fileAs];
-            } else {
-                [results addObject:[item stringValue]];
-            }
+        // The name should be in the item contents.
+        // If the element contents is empty, look in the file-as attribute
+        // instead. If that's not there either, skip this item.
+        if ([[item stringValue] isEqualToString:@""]) {
+            NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
+            if (![fileAs isEqualToString:@""])
+                [results addObject:fileAs];
+        } else {
+            [results addObject:[item stringValue]];
         }
     }
     return results;
@@ -228,10 +225,11 @@ static NSMutableDictionary *xmlns = nil;
     NSError *xmlError = nil;
     
     // scan for a <dc:contributor> element
-    NSArray *metaElements = [opfXML nodesForXPath:@"//dc:contributor"
+    NSString *query = [NSString stringWithFormat:@"//dc:contributor[@opf:role='%@']", role];
+    NSArray *metaElements = [opfXML nodesForXPath:query
                                        namespaces:xmlns
                                             error:&xmlError];
-    
+
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
         // No <dc:contributor>s found
@@ -239,21 +237,17 @@ static NSMutableDictionary *xmlns = nil;
     }
     NSMutableArray *results = [NSMutableArray array];
     // Fast enumerate over meta elements
-    for(id item in metaElements)
+    for (id item in metaElements)
     {
-        NSString *itemID = [[item attributeForName:@"role"] stringValue];
-        
-        if([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
-            // The name should be in the item contents.
-            // If the element contents is empty, look in the file-as attribute
-            // instead. If that's not there either, skip this item.
-            if ([[item stringValue] isEqualToString:@""]) {
-                NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
-                if (![fileAs isEqualToString:@""])
-                    [results addObject:fileAs];
-            } else {
-                [results addObject:[item stringValue]];
-            }
+        // The name should be in the item contents.
+        // If the element contents is empty, look in the file-as attribute
+        // instead. If that's not there either, skip this item.
+        if ([[item stringValue] isEqualToString:@""]) {
+            NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
+            if (![fileAs isEqualToString:@""])
+                [results addObject:fileAs];
+        } else {
+            [results addObject:[item stringValue]];
         }
     }
     return results;
