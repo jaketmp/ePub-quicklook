@@ -15,7 +15,6 @@
 		6755959714DDB5D000D04B6D /* metadata.epub in Resources */ = {isa = PBXBuildFile; fileRef = 6755959614DDB5D000D04B6D /* metadata.epub */; };
 		675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3C14D9B8760065603A /* SenTestingKit.framework */; };
 		675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3E14D9B8760065603A /* Cocoa.framework */; };
-		675FAB4914D9B8760065603A /* (null) in Resources */ = {isa = PBXBuildFile; };
 		675FAB4C14D9B8760065603A /* EpubTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 675FAB4B14D9B8760065603A /* EpubTests.m */; };
 		675FAB5214D9BD5D0065603A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D76675C514CECDFF003850E7 /* libxml2.dylib */; };
 		675FAB5314D9BD6D0065603A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
@@ -388,7 +387,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				675FAB4914D9B8760065603A /* (null) in Resources */,
 				67D3E1DC14D9C8160064FDDF /* Untitled.epub in Resources */,
 				6755959714DDB5D000D04B6D /* metadata.epub in Resources */,
 				67BE43EE14DEC886003C7DFC /* fake-adept.epub in Resources */,
