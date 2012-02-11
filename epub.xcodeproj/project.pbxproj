@@ -11,6 +11,7 @@
 		674D09CC14CF297E00127A36 /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
 		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
 		674D09D114CF2C6800127A36 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
+		67543ADF14E70B1600A42752 /* badcontributor.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67543ADE14E70B1600A42752 /* badcontributor.epub */; };
 		6755959714DDB5D000D04B6D /* metadata.epub in Resources */ = {isa = PBXBuildFile; fileRef = 6755959614DDB5D000D04B6D /* metadata.epub */; };
 		675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3C14D9B8760065603A /* SenTestingKit.framework */; };
 		675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3E14D9B8760065603A /* Cocoa.framework */; };
@@ -68,6 +69,7 @@
 		674D09CA14CF297E00127A36 /* NSArray+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HTML.m"; sourceTree = "<group>"; };
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		674D09CF14CF2C6800127A36 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		67543ADE14E70B1600A42752 /* badcontributor.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = badcontributor.epub; sourceTree = "<group>"; };
 		6755959614DDB5D000D04B6D /* metadata.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = metadata.epub; path = ../epub/metadata.epub; sourceTree = "<group>"; };
 		675FAB3B14D9B8760065603A /* EpubTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpubTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675FAB3C14D9B8760065603A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -180,6 +182,7 @@
 		67BE43E914DEC832003C7DFC /* Test Files */ = {
 			isa = PBXGroup;
 			children = (
+				67543ADE14E70B1600A42752 /* badcontributor.epub */,
 				D7838884135499ED00E7937B /* Untitled.epub */,
 				6755959614DDB5D000D04B6D /* metadata.epub */,
 				67BE43EB14DEC886003C7DFC /* fake-adept.epub */,
@@ -391,6 +394,7 @@
 				67BE43EE14DEC886003C7DFC /* fake-adept.epub in Resources */,
 				67BE43EF14DEC886003C7DFC /* fake-fairplay.epub in Resources */,
 				67BE43F014DEC886003C7DFC /* fake-kobo.epub in Resources */,
+				67543ADF14E70B1600A42752 /* badcontributor.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

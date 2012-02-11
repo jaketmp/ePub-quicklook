@@ -18,11 +18,13 @@
     NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
     NSString *untitled = [thisBundle pathForResource:@"Untitled" ofType:@"epub"];
     NSString *metadata = [thisBundle pathForResource:@"metadata" ofType:@"epub"];
+    NSString *badcontributor = [thisBundle pathForResource:@"badcontributor" ofType:@"epub"];
     NSString *adept = [thisBundle pathForResource:@"fake-adept" ofType:@"epub"];
     NSString *fairplay = [thisBundle pathForResource:@"fake-fairplay" ofType:@"epub"];
     NSString *kobo = [thisBundle pathForResource:@"fake-kobo" ofType:@"epub"];
     untitledFile = [[JTPepub alloc] initWithFile:untitled];
     metadataFile = [[JTPepub alloc] initWithFile:metadata];
+    badcontributorFile = [[JTPepub alloc] initWithFile:badcontributor];
     adeptFile = [[JTPepub alloc] initWithFile:adept];
     fairplayFile = [[JTPepub alloc] initWithFile:fairplay];
     koboFile = [[JTPepub alloc] initWithFile:kobo];
@@ -33,6 +35,7 @@
     [koboFile release];
     [fairplayFile release];
     [adeptFile release];
+    [badcontributorFile release];
     [metadataFile release];
     [untitledFile release];
 
@@ -103,6 +106,12 @@
     STAssertEqualObjects([actual objectAtIndex:0], expected0, @"First author should be %@ but is %@", [actual objectAtIndex:0], expected0);
     STAssertEqualObjects([actual objectAtIndex:1], expected1, @"Second author should be %@ but is %@", [actual objectAtIndex:1], expected1);
     STAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author should be %@ but is %@", [actual objectAtIndex:2], expected2);
+}
+
+- (void)testBadContributor
+{
+    NSArray *actual = [badcontributorFile translators];
+    STAssertTrue([actual count] == 0, @"No translators expected");
 }
 
 -(void)testNoDRM
