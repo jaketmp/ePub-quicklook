@@ -12,7 +12,8 @@
 		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
 		674D09D114CF2C6800127A36 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		67543ADF14E70B1600A42752 /* badcontributor.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67543ADE14E70B1600A42752 /* badcontributor.epub */; };
-		6755959714DDB5D000D04B6D /* metadata.epub in Resources */ = {isa = PBXBuildFile; fileRef = 6755959614DDB5D000D04B6D /* metadata.epub */; };
+		675F07F014E7190700FEFD90 /* metadata.epub in Resources */ = {isa = PBXBuildFile; fileRef = 675F07EE14E7190700FEFD90 /* metadata.epub */; };
+		675F07F114E7190700FEFD90 /* Untitled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 675F07EF14E7190700FEFD90 /* Untitled.epub */; };
 		675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3C14D9B8760065603A /* SenTestingKit.framework */; };
 		675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3E14D9B8760065603A /* Cocoa.framework */; };
 		675FAB4C14D9B8760065603A /* EpubTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 675FAB4B14D9B8760065603A /* EpubTests.m */; };
@@ -30,7 +31,6 @@
 		67BE43EE14DEC886003C7DFC /* fake-adept.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EB14DEC886003C7DFC /* fake-adept.epub */; };
 		67BE43EF14DEC886003C7DFC /* fake-fairplay.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */; };
 		67BE43F014DEC886003C7DFC /* fake-kobo.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43ED14DEC886003C7DFC /* fake-kobo.epub */; };
-		67D3E1DC14D9C8160064FDDF /* Untitled.epub in Resources */ = {isa = PBXBuildFile; fileRef = D7838884135499ED00E7937B /* Untitled.epub */; };
 		D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
 		D749581E14DD800D0048D619 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D78388591354890700E7937B /* InfoPlist.strings */; };
 		D749582414DD82360048D619 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D749582614DD82360048D619 /* Localizable.strings */; };
@@ -69,7 +69,8 @@
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		674D09CF14CF2C6800127A36 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		67543ADE14E70B1600A42752 /* badcontributor.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = badcontributor.epub; sourceTree = "<group>"; };
-		6755959614DDB5D000D04B6D /* metadata.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = metadata.epub; path = ../epub/metadata.epub; sourceTree = "<group>"; };
+		675F07EE14E7190700FEFD90 /* metadata.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = metadata.epub; sourceTree = "<group>"; };
+		675F07EF14E7190700FEFD90 /* Untitled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Untitled.epub; sourceTree = "<group>"; };
 		675FAB3B14D9B8760065603A /* EpubTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpubTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675FAB3C14D9B8760065603A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		675FAB3E14D9B8760065603A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -102,7 +103,6 @@
 		D78388731354891800E7937B /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		D78388741354891800E7937B /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		D783888213548ADA00E7937B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D7838884135499ED00E7937B /* Untitled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = Untitled.epub; path = ../epub/Untitled.epub; sourceTree = "<group>"; };
 		D78388921354AA7600E7937B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		D78388931354AA7600E7937B /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		D78388941354AA7600E7937B /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -181,9 +181,9 @@
 		67BE43E914DEC832003C7DFC /* Test Files */ = {
 			isa = PBXGroup;
 			children = (
+				675F07EF14E7190700FEFD90 /* Untitled.epub */,
+				675F07EE14E7190700FEFD90 /* metadata.epub */,
 				67543ADE14E70B1600A42752 /* badcontributor.epub */,
-				D7838884135499ED00E7937B /* Untitled.epub */,
-				6755959614DDB5D000D04B6D /* metadata.epub */,
 				67BE43EB14DEC886003C7DFC /* fake-adept.epub */,
 				67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */,
 				67BE43ED14DEC886003C7DFC /* fake-kobo.epub */,
@@ -387,12 +387,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67D3E1DC14D9C8160064FDDF /* Untitled.epub in Resources */,
-				6755959714DDB5D000D04B6D /* metadata.epub in Resources */,
 				67BE43EE14DEC886003C7DFC /* fake-adept.epub in Resources */,
 				67BE43EF14DEC886003C7DFC /* fake-fairplay.epub in Resources */,
 				67BE43F014DEC886003C7DFC /* fake-kobo.epub in Resources */,
 				67543ADF14E70B1600A42752 /* badcontributor.epub in Resources */,
+				675F07F014E7190700FEFD90 /* metadata.epub in Resources */,
+				675F07F114E7190700FEFD90 /* Untitled.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
