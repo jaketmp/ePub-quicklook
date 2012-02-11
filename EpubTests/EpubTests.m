@@ -114,6 +114,12 @@
     STAssertTrue([actual count] == 0, @"No translators expected");
 }
 
+- (void)testBadAuthor
+{
+    NSArray *actual = [badcontributorFile authors];
+    STAssertTrue([actual count] == 1, @"1 author expected");
+}
+
 -(void)testNoDRM
 {
     NSString *actual = [untitledFile drm];
