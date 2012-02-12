@@ -31,6 +31,7 @@
 		67BE43EE14DEC886003C7DFC /* fake-adept.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EB14DEC886003C7DFC /* fake-adept.epub */; };
 		67BE43EF14DEC886003C7DFC /* fake-fairplay.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */; };
 		67BE43F014DEC886003C7DFC /* fake-kobo.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43ED14DEC886003C7DFC /* fake-kobo.epub */; };
+		67F77F9214E7B25000D9D71D /* fake-bn.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67F77F9114E7B25000D9D71D /* fake-bn.epub */; };
 		D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
 		D749581E14DD800D0048D619 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D78388591354890700E7937B /* InfoPlist.strings */; };
 		D749582414DD82360048D619 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D749582614DD82360048D619 /* Localizable.strings */; };
@@ -84,6 +85,7 @@
 		67BE43EB14DEC886003C7DFC /* fake-adept.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-adept.epub"; sourceTree = "<group>"; };
 		67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-fairplay.epub"; sourceTree = "<group>"; };
 		67BE43ED14DEC886003C7DFC /* fake-kobo.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-kobo.epub"; sourceTree = "<group>"; };
+		67F77F9114E7B25000D9D71D /* fake-bn.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-bn.epub"; sourceTree = "<group>"; };
 		D727FC8313D771B200CB5355 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D749582514DD82360048D619 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = epub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
@@ -185,6 +187,7 @@
 				675F07EE14E7190700FEFD90 /* metadata.epub */,
 				67543ADE14E70B1600A42752 /* badcontributor.epub */,
 				67BE43EB14DEC886003C7DFC /* fake-adept.epub */,
+				67F77F9114E7B25000D9D71D /* fake-bn.epub */,
 				67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */,
 				67BE43ED14DEC886003C7DFC /* fake-kobo.epub */,
 			);
@@ -393,6 +396,7 @@
 				67543ADF14E70B1600A42752 /* badcontributor.epub in Resources */,
 				675F07F014E7190700FEFD90 /* metadata.epub in Resources */,
 				675F07F114E7190700FEFD90 /* Untitled.epub in Resources */,
+				67F77F9214E7B25000D9D71D /* fake-bn.epub in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,12 +20,14 @@
     NSString *metadata = [thisBundle pathForResource:@"metadata" ofType:@"epub"];
     NSString *badcontributor = [thisBundle pathForResource:@"badcontributor" ofType:@"epub"];
     NSString *adept = [thisBundle pathForResource:@"fake-adept" ofType:@"epub"];
+    NSString *bn = [thisBundle pathForResource:@"fake-bn" ofType:@"epub"];
     NSString *fairplay = [thisBundle pathForResource:@"fake-fairplay" ofType:@"epub"];
     NSString *kobo = [thisBundle pathForResource:@"fake-kobo" ofType:@"epub"];
     untitledFile = [[JTPepub alloc] initWithFile:untitled];
     metadataFile = [[JTPepub alloc] initWithFile:metadata];
     badcontributorFile = [[JTPepub alloc] initWithFile:badcontributor];
     adeptFile = [[JTPepub alloc] initWithFile:adept];
+    bnFile = [[JTPepub alloc] initWithFile:bn];
     fairplayFile = [[JTPepub alloc] initWithFile:fairplay];
     koboFile = [[JTPepub alloc] initWithFile:kobo];
 }
@@ -34,6 +36,7 @@
 {
     [koboFile release];
     [fairplayFile release];
+    [bnFile release];
     [adeptFile release];
     [badcontributorFile release];
     [metadataFile release];
@@ -134,6 +137,13 @@
     NSString *actual = [adeptFile drm];
     NSString *expected = @"Adobe";
     STAssertEqualObjects(actual, expected, @"fake-adept file has wrong DRM");
+}
+
+- (void)testBarnesAndNobleDRM
+{
+    NSString *actual = [bnFile drm];
+    NSString *expected = @"Barnes & Noble";
+    STAssertEqualObjects(actual, expected, @"fake-bn file has wrong DRM");
 }
 
 - (void)testAppleDRM

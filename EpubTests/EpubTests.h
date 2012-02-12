@@ -15,6 +15,7 @@
     JTPepub *metadataFile;
     JTPepub *badcontributorFile;
     JTPepub *adeptFile;
+    JTPepub *bnFile;
     JTPepub *fairplayFile;
     JTPepub *koboFile;
 }
