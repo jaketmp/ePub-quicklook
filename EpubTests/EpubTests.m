@@ -149,4 +149,17 @@
     NSString *expected = @"Kobo";
     STAssertEqualObjects(actual, expected, @"fake-kobo file has wrong DRM");
 }
+
+#pragma mark Test covers
+- (void)testUntitledCover
+{
+    NSImage *actual = [untitledFile cover];
+    STAssertNotNil(actual, @"Cover not found");
+}
+
+- (void)testMissingCover
+{
+    NSImage *actual = [metadataFile cover];
+    STAssertNil(actual, @"Cover not missing");
+}
 @end
