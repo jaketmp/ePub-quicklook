@@ -7,6 +7,7 @@
 //
 
 #import "JTPepub.h"
+#import "NSDate+OPF.h"
 
 @interface JTPepub (Private)
 @end
@@ -452,7 +453,7 @@ static NSMutableDictionary *xmlns = nil;
     for(id item in metaElements)
     {
         if([[[item attributeForName:@"event"] stringValue] caseInsensitiveCompare:@"publication"] == NSOrderedSame) {
-            publicationDate = [NSDate dateWithNaturalLanguageString:[item stringValue]];
+            publicationDate = [NSDate dateFromOPFString:[item stringValue]];
             [publicationDate retain];
         }        
     }
@@ -521,7 +522,19 @@ static NSMutableDictionary *xmlns = nil;
             } else {
                 drm = @"Adobe";
             }
+
+            // Also try to extract an expiry date
+            NSArray *dates = [adeptXML nodesForXPath:@"//adept:until"
+                                          namespaces:xmlns
+                                               error:&xmlError];
+            // looks like 2012-02-21T07:23:19Z
+            // but try parsing the full range of formats anyway
+            [expiryDate release];
+            expiryDate = [NSDate dateFromOPFString:[[dates lastObject] stringValue]];
+            [expiryDate retain];
+
             [adeptXML release];
+
             return drm;
         }
         [adeptXML release];
@@ -555,6 +568,17 @@ static NSMutableDictionary *xmlns = nil;
     drm = @"";
     return drm;
 }
+
+- (NSDate *)expiryDate
+{
+    // If the expiry date has been set, return it.
+    if (expiryDate) {
+        return expiryDate;
+    }
+    (void)[self drm];
+    return expiryDate;
+}
+
 - (void)dealloc
 {
     [epubFile release];
@@ -570,6 +594,7 @@ static NSMutableDictionary *xmlns = nil;
     [synopsis release];
     [ISBN release];
     [drm release];
+    [expiryDate release];
     [rootFilePath release];
     [publicationDate release];
 

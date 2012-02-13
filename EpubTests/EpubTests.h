@@ -18,5 +18,6 @@
     JTPepub *bnFile;
     JTPepub *fairplayFile;
     JTPepub *koboFile;
+    JTPepub *libraryFile;
 }
 @end

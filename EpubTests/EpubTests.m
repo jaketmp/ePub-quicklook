@@ -8,6 +8,7 @@
 
 #import "EpubTests.h"
 #import "JTPepub.h"
+#import "NSDate+OPF.h"
 
 @implementation EpubTests
 
@@ -23,6 +24,7 @@
     NSString *bn = [thisBundle pathForResource:@"fake-bn" ofType:@"epub"];
     NSString *fairplay = [thisBundle pathForResource:@"fake-fairplay" ofType:@"epub"];
     NSString *kobo = [thisBundle pathForResource:@"fake-kobo" ofType:@"epub"];
+    NSString *library = [thisBundle pathForResource:@"fake-library" ofType:@"epub"];
     untitledFile = [[JTPepub alloc] initWithFile:untitled];
     metadataFile = [[JTPepub alloc] initWithFile:metadata];
     badcontributorFile = [[JTPepub alloc] initWithFile:badcontributor];
@@ -30,10 +32,12 @@
     bnFile = [[JTPepub alloc] initWithFile:bn];
     fairplayFile = [[JTPepub alloc] initWithFile:fairplay];
     koboFile = [[JTPepub alloc] initWithFile:kobo];
+    libraryFile = [[JTPepub alloc] initWithFile:library];
 }
 
 - (void)tearDown
 {
+    [libraryFile release];
     [koboFile release];
     [fairplayFile release];
     [bnFile release];
@@ -111,6 +115,22 @@
     STAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author is wrong");
 }
 
+#pragma mark Test date parsing
+- (void)testDateParsing
+{
+    NSDate *d;
+    NSArray *goodDates = [NSArray arrayWithObjects:
+                          @"2012", @"2012-02", @"2012-02-13",
+                          @"2012-02-13T19:49Z",
+                          @"2012-02-13T19:49+0100",
+                          nil];
+    for (id date in goodDates) {
+        d = [NSDate dateFromOPFString:date];
+        STAssertNotNil(d, @"%@ should parse", date);
+    }
+    
+}
+
 #pragma mark Test lack of opf:role
 - (void)testBadContributor
 {
@@ -158,6 +178,24 @@
     NSString *actual = [koboFile drm];
     NSString *expected = @"Kobo";
     STAssertEqualObjects(actual, expected, @"fake-kobo file has wrong DRM");
+}
+
+- (void)testUnexpiringAdobe
+{
+    NSDate *actual = [adeptFile expiryDate];
+    STAssertNil(actual, @"fake-adept should not expire");
+}
+
+- (void)testUnexpiringApple
+{
+    NSDate *actual = [fairplayFile expiryDate];
+    STAssertNil(actual, @"fake-fairplay should not expire");
+}
+
+- (void)testExpiringAdobe
+{
+    NSDate *actual = [libraryFile expiryDate];
+    STAssertNotNil(actual, @"fake-library does not expire");
 }
 
 #pragma mark Test covers
