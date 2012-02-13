@@ -3,7 +3,7 @@
 //  epub
 //
 //  Created by Chris Ridd on 13/02/2012.
-//  Copyright (c) 2012 Imperial College. All rights reserved.
+//  Copyright (c) 2012 Chris Ridd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
