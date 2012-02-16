@@ -44,6 +44,7 @@ static NSMutableDictionary *xmlns = nil;
     self = [super init];
     if (self) {
         [self openEPUBFile:fileName];
+        haveCheckedForCover = false;
     }
     return self;
 }
@@ -335,8 +336,12 @@ static NSMutableDictionary *xmlns = nil;
 - (NSImage *)cover
 {
     // If cover exists, return it.
-    if (cover) {
-        return cover;
+    if (haveCheckedForCover) {
+        if (cover) {
+            return cover;
+        } else {
+            return nil;
+        }
     }
     // scan for a <meta> element with name="cover"
     NSError *xmlError = nil;
@@ -356,6 +361,7 @@ static NSMutableDictionary *xmlns = nil;
         }
     }
     if(coverID == nil) {
+        haveCheckedForCover = true;
         return nil; // No cover in this epub.
     }
     
@@ -378,6 +384,7 @@ static NSMutableDictionary *xmlns = nil;
         }
     }
     if(coverPath == nil) {
+        haveCheckedForCover = true;
         return nil; // No cover in this epub.
     }
     
@@ -394,6 +401,8 @@ static NSMutableDictionary *xmlns = nil;
     cover = [[NSImage alloc] initWithData:coverData];
     [cover retain];
     [coverData release];
+    
+    haveCheckedForCover= true;
     
     return cover;
 }
