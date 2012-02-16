@@ -375,7 +375,7 @@
 		D78388401354890700E7937B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Imperial College";
 			};
 			buildConfigurationList = D78388431354890700E7937B /* Build configuration list for PBXProject "epub" */;

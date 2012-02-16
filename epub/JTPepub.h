@@ -28,6 +28,7 @@
     NSString *ISBN;
     GDataXMLDocument *opfXML;
     NSImage *cover;
+    BOOL haveCheckedForCover;
     NSDate *publicationDate;
     NSString *drm;
     NSDate *expiryDate;
