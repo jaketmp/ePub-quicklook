@@ -7,6 +7,7 @@
 //
 
 #import "JTPepub.h"
+#import "NSDate+OPF.h"
 
 @interface JTPepub (Private)
 @end
@@ -84,7 +85,7 @@ static NSMutableDictionary *xmlns = nil;
     NSString *rootFileType = [[[rootFile objectAtIndex:0] attributeForName:@"media-type"] stringValue];
     
     
-    // This code is all designed arround oebps+xml epubs, DTBook is unsuported.
+    // This code is all designed arround oebps+xml epubs, DTBook is unsupported.
     if([rootFileType caseInsensitiveCompare:@"application/oebps-package+xml"] == NSOrderedSame) {
         rootFilePath = [[[[rootFile objectAtIndex:0] attributeForName:@"full-path"] stringValue] retain];
     }else{
@@ -136,7 +137,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No title found
+        // No <dc:title>s found
         title = @"";
         return title;
     }
@@ -166,7 +167,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No publisher found
+        // No <dc:publisher>s found
         publisher = @"";
         return publisher;
     }
@@ -182,14 +183,14 @@ static NSMutableDictionary *xmlns = nil;
 {
     NSError *xmlError = nil;
     
-    // scan for a <dc:contributor> element
+    // scan for a <dc:creator> element
     NSArray *metaElements = [opfXML nodesForXPath:@"//dc:creator"
                                        namespaces:xmlns
                                             error:&xmlError];
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No dc:contributor found
+        // No <dc:creator>s found
         return [NSArray array];
     }
     NSMutableArray *results = [NSMutableArray array];
@@ -198,7 +199,7 @@ static NSMutableDictionary *xmlns = nil;
     {
         NSString *itemID = [[item attributeForName:@"role"] stringValue];
         
-        if([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
+        if ([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
             // The name should be in the item contents.
             // If the element contents is empty, look in the file-as attribute
             // instead. If that's not there either, skip this item.
@@ -229,36 +230,34 @@ static NSMutableDictionary *xmlns = nil;
     NSError *xmlError = nil;
     
     // scan for a <dc:contributor> element
-    NSArray *metaElements = [opfXML nodesForXPath:@"//dc:contributor"
+    NSString *query = [NSString stringWithFormat:@"//dc:contributor[@opf:role='%@']", role];
+    NSArray *metaElements = [opfXML nodesForXPath:query
                                        namespaces:xmlns
                                             error:&xmlError];
-    
+
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No dc:contributor found
+        // No <dc:contributor>s found
         return [NSArray array];
     }
     NSMutableArray *results = [NSMutableArray array];
     // Fast enumerate over meta elements
-    for(id item in metaElements)
+    for (id item in metaElements)
     {
-        NSString *itemID = [[item attributeForName:@"role"] stringValue];
-        
-        if([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
-            // The name should be in the item contents.
-            // If the element contents is empty, look in the file-as attribute
-            // instead. If that's not there either, skip this item.
-            if ([[item stringValue] isEqualToString:@""]) {
-                NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
-                if (![fileAs isEqualToString:@""])
-                    [results addObject:fileAs];
-            } else {
-                [results addObject:[item stringValue]];
-            }
+        // The name should be in the item contents.
+        // If the element contents is empty, look in the file-as attribute
+        // instead. If that's not there either, skip this item.
+        if ([[item stringValue] isEqualToString:@""]) {
+            NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
+            if (![fileAs isEqualToString:@""])
+                [results addObject:fileAs];
+        } else {
+            [results addObject:[item stringValue]];
         }
     }
     return results;
 }
+
 - (NSArray *)editors
 {
     // If editors has been set, return it.
@@ -268,6 +267,7 @@ static NSMutableDictionary *xmlns = nil;
     editors = [[self contributorsWithOPFRole:@"edt"] retain];
     return editors;
 }
+
 - (NSArray *)illustrators
 {
     // If illustrators has been set, return it.
@@ -277,6 +277,7 @@ static NSMutableDictionary *xmlns = nil;
     illustrators = [[self contributorsWithOPFRole:@"ill"] retain];
     return illustrators;
 }
+
 - (NSArray *)translators
 {
     // If translators has been set, return it.
@@ -286,6 +287,7 @@ static NSMutableDictionary *xmlns = nil;
     translators = [[self contributorsWithOPFRole:@"trl"] retain];
     return translators;
 }
+
 - (NSArray *)creators
 {
     // If creators has been set, return it.
@@ -305,7 +307,7 @@ static NSMutableDictionary *xmlns = nil;
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
         
-        // No title found return an empty array
+        // No <dc:creator>s found return an empty array
         
         creators = [[NSArray alloc] initWithObjects:@"", nil];
         [creators retain];
@@ -406,6 +408,7 @@ static NSMutableDictionary *xmlns = nil;
     
     return cover;
 }
+
 - (NSString *)synopsis
 {
     // If the synopsis has been set, return it.
@@ -423,7 +426,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No title found
+        // No <dc:description>s found
         synopsis = @"";
         return synopsis;
     }
@@ -434,6 +437,7 @@ static NSMutableDictionary *xmlns = nil;
     
     return synopsis;    
 }
+
 - (NSDate *)publicationDate
 {
     if (publicationDate) {
@@ -450,7 +454,7 @@ static NSMutableDictionary *xmlns = nil;
     
     // Check the array isn't empty.
     if ([metaElements count] == 0) {
-        // No date found
+        // No <dc:date>s found
         return nil;
     }
     // Find the date of publication.
@@ -458,13 +462,14 @@ static NSMutableDictionary *xmlns = nil;
     for(id item in metaElements)
     {
         if([[[item attributeForName:@"event"] stringValue] caseInsensitiveCompare:@"publication"] == NSOrderedSame) {
-            publicationDate = [NSDate dateWithNaturalLanguageString:[item stringValue]];
+            publicationDate = [NSDate dateFromOPFString:[item stringValue]];
             [publicationDate retain];
         }        
     }
         
     return publicationDate;
 }
+
 - (NSString *)isbn
 {
     // If the ISBN has been set, return it.
@@ -476,7 +481,7 @@ static NSMutableDictionary *xmlns = nil;
     // Otherwise load it.
     NSError *xmlError = nil;
     
-    // scan for a <dc:title> element    
+    // scan for a <dc:identifier> element    
     NSArray *metaElements = [opfXML nodesForXPath:@"//dc:identifier"
                                        namespaces:xmlns
                                             error:&xmlError];
@@ -501,26 +506,47 @@ static NSMutableDictionary *xmlns = nil;
     ISBN = @"";
     return ISBN;    
 }
+
 - (NSString *)drm
 {
     // If the DRM scheme has been set, return it.
     if (drm) {
         return drm;
     }
-    // Adobe Adept DRM has "META-INF/rights.xml", containing <licenseURL> with an adobe.com URL.
+    // Adobe Adept DRM has "META-INF/rights.xml", containing <operatorURL>.
+    // B&N have an <operatorURL> with "barnesandnoble.com" somewhere inside.
+    // Adobe uses a variety of other URLs.
     if ([epubFile testForNamedFile:@"META-INF/rights.xml"]) {
         NSData *adept = [epubFile dataForNamedFile:@"META-INF/rights.xml"];
         NSError *xmlError;
         GDataXMLDocument *adeptXML = [[GDataXMLDocument alloc] initWithData:adept options:0 error:&xmlError];
-        NSArray *urls = [adeptXML nodesForXPath:@"//adept:licenseURL"
+        NSArray *urls = [adeptXML nodesForXPath:@"//adept:operatorURL"
                                      namespaces:xmlns
                                           error:&xmlError];
-        [adeptXML release];
         if ([urls count] > 0) {
-            // should probably check for adobe.com here...
-            drm = @"Adobe";
+            NSString *url = [[urls lastObject] stringValue];
+            NSRange match = [url rangeOfString:@"barnesandnoble" options:NSCaseInsensitiveSearch];
+            if (match.location != NSNotFound) {
+                drm = @"Barnes & Noble";
+            } else {
+                drm = @"Adobe";
+            }
+
+            // Also try to extract an expiry date
+            NSArray *dates = [adeptXML nodesForXPath:@"//adept:until"
+                                          namespaces:xmlns
+                                               error:&xmlError];
+            // looks like 2012-02-21T07:23:19Z
+            // but try parsing the full range of formats anyway
+            [expiryDate release];
+            expiryDate = [NSDate dateFromOPFString:[[dates lastObject] stringValue]];
+            [expiryDate retain];
+
+            [adeptXML release];
+
             return drm;
         }
+        [adeptXML release];
     }
     // Apple Fairplay DRM has "META-INF/sinf.xml" containing <fairplay:sinf>.
     if ([epubFile testForNamedFile:@"META-INF/sinf.xml"]) {
@@ -551,44 +577,36 @@ static NSMutableDictionary *xmlns = nil;
     drm = @"";
     return drm;
 }
+
+- (NSDate *)expiryDate
+{
+    // If the expiry date has been set, return it.
+    if (expiryDate) {
+        return expiryDate;
+    }
+    (void)[self drm];
+    return expiryDate;
+}
+
 - (void)dealloc
 {
-    if (epubFile) {
-        [epubFile release];
-    }
-    if (title) {
-        [title release];
-    }
-    if (publisher) {
-        [publisher release];
-    }
+    [epubFile release];
+    [title release];
+    [publisher release];
     [authors release];
-    if (creators) {
-        [creators release];
-    }
+    [creators release];
     [editors release];
     [illustrators release];
     [translators release];
-    if (opfXML) {
-        [opfXML release];
-    }
-    if (cover) {
-        [cover release];
-    }
-    if (synopsis) {
-        [synopsis release];
-    }
-    if (ISBN) {
-        [ISBN release];
-    }
+    [opfXML release];
+    [cover release];
+    [synopsis release];
+    [ISBN release];
     [drm release];
-    if (rootFilePath) {
-        [rootFilePath release];
-    }
-    if (publicationDate) {
-        [publicationDate release];
-    }
-    
+    [expiryDate release];
+    [rootFilePath release];
+    [publicationDate release];
+
     [super dealloc];
 }
 

@@ -31,7 +31,7 @@
     BOOL haveCheckedForCover;
     NSDate *publicationDate;
     NSString *drm;
-
+    NSDate *expiryDate;
 }
 - (id) initWithFile:(NSString *)fileName;
 - (BOOL)openEPUBFile:(NSString*)fileName;
@@ -48,5 +48,6 @@
 - (NSDate *)publicationDate;
 - (NSString *)isbn;
 - (NSString *)drm;
+- (NSDate *)expiryDate;
 
 @end
