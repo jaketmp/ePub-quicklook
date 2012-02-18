@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D783884A1354890700E7937B"
-               BuildableName = "epubQL.qlgenerator"
+               BuildableName = "epub.qlgenerator"
                BlueprintName = "epubQL"
                ReferencedContainer = "container:epub.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D783884A1354890700E7937B"
-            BuildableName = "epubQL.qlgenerator"
+            BuildableName = "epub.qlgenerator"
             BlueprintName = "epubQL"
             ReferencedContainer = "container:epub.xcodeproj">
          </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D783884A1354890700E7937B"
-            BuildableName = "epubQL.qlgenerator"
+            BuildableName = "epub.qlgenerator"
             BlueprintName = "epubQL"
             ReferencedContainer = "container:epub.xcodeproj">
          </BuildableReference>
