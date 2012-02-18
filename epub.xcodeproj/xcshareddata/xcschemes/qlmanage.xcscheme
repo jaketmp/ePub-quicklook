@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D783884A1354890700E7937B"
-               BuildableName = "epub.qlgenerator"
+               BuildableName = "epubQL.qlgenerator"
                BlueprintName = "epubQL"
                ReferencedContainer = "container:epub.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D783884A1354890700E7937B"
-            BuildableName = "epub.qlgenerator"
+            BuildableName = "epubQL.qlgenerator"
             BlueprintName = "epubQL"
             ReferencedContainer = "container:epub.xcodeproj">
          </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D783884A1354890700E7937B"
-            BuildableName = "epub.qlgenerator"
+            BuildableName = "epubQL.qlgenerator"
             BlueprintName = "epubQL"
             ReferencedContainer = "container:epub.xcodeproj">
          </BuildableReference>
@@ -81,11 +81,11 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;$(SRCROOT)/EpubTests/Untitled.epub&quot;"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;$(SRCROOT)/EpubTests/metadata.epub&quot;"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
