@@ -13,8 +13,11 @@
 @interface EpubTests : SenTestCase {
     JTPepub *untitledFile;
     JTPepub *metadataFile;
+    JTPepub *badcontributorFile;
     JTPepub *adeptFile;
+    JTPepub *bnFile;
     JTPepub *fairplayFile;
     JTPepub *koboFile;
+    JTPepub *libraryFile;
 }
 @end

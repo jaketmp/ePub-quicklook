@@ -174,10 +174,20 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     }
     if (![[epubFile drm] isEqualToString:@""]) {
         [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
-             [pluginBundle localizedStringForKey:@"drm" 
-                                           value:@"DRM Scheme" 
-                                           table:nil],
-             [[epubFile drm] escapedString]];
+         [pluginBundle localizedStringForKey:@"drm" 
+                                       value:@"DRM Scheme" 
+                                       table:nil],
+         [[epubFile drm] escapedString]];
+    }
+    if ([epubFile expiryDate]) {
+        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+         [pluginBundle localizedStringForKey:@"expiryDate" 
+                                       value:@"expiry date" 
+                                       table:nil],
+         [formatter stringFromDate:[epubFile expiryDate]]];
     }
     if (![metadata isEqualToString:@""]) {
         [metadata insertString:@"<table>\n" atIndex:0];

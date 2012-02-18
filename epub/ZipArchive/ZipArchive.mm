@@ -40,7 +40,7 @@
     
     [fileName retain];
     
-    _zipFile = unzOpen([fileName   UTF8String]);
+    _zipFile = unzOpen([fileName fileSystemRepresentation]);
     if(_zipFile) {
         return self;
     }else{
