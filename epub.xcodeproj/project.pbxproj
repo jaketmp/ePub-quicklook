@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		235DC64B14EFB3C800D28657 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388521354890700E7937B /* CoreServices.framework */; };
+		235DC64C14EFB3C800D28657 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D78388541354890700E7937B /* CoreFoundation.framework */; };
+		235DC64E14EFB3C800D28657 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235DC64D14EFB3C800D28657 /* CoreData.framework */; };
+		235DC65014EFB3C800D28657 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235DC64F14EFB3C800D28657 /* Foundation.framework */; };
+		235DC65614EFB3C800D28657 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 235DC65414EFB3C800D28657 /* InfoPlist.strings */; };
+		235DC65814EFB3C800D28657 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65714EFB3C800D28657 /* main.c */; };
+		235DC65A14EFB3C800D28657 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65914EFB3C800D28657 /* GetMetadataForFile.m */; };
+		235DC65D14EFB3C800D28657 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */; };
 		674D09CB14CF297E00127A36 /* NSArray+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09C914CF297E00127A36 /* NSArray+HTML.h */; };
 		674D09CC14CF297E00127A36 /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
 		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
@@ -69,6 +77,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		235DC64A14EFB3C800D28657 /* epub.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
+		235DC64D14EFB3C800D28657 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		235DC64F14EFB3C800D28657 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		235DC65314EFB3C800D28657 /* epubMDI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "epubMDI-Info.plist"; sourceTree = "<group>"; };
+		235DC65514EFB3C800D28657 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		235DC65714EFB3C800D28657 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		235DC65914EFB3C800D28657 /* GetMetadataForFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
+		235DC65B14EFB3C800D28657 /* MySpotlightImporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySpotlightImporter.h; sourceTree = "<group>"; };
+		235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
+		235DC65E14EFB3C800D28657 /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
+		235DC65F14EFB3C800D28657 /* epubMDI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "epubMDI-Prefix.pch"; sourceTree = "<group>"; };
 		674D09C914CF297E00127A36 /* NSArray+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HTML.h"; sourceTree = "<group>"; };
 		674D09CA14CF297E00127A36 /* NSArray+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HTML.m"; sourceTree = "<group>"; };
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
@@ -95,10 +114,10 @@
 		67F77F9114E7B25000D9D71D /* fake-bn.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-bn.epub"; sourceTree = "<group>"; };
 		D727FC8313D771B200CB5355 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		D749582514DD82360048D619 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = epub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
-		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = epub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
+		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = JTPepub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
+		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = JTPepub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
 		D76675C514CECDFF003850E7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		D783884B1354890700E7937B /* epub.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		D783884B1354890700E7937B /* epubQL.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epubQL.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		D783884E1354890700E7937B /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		D78388501354890700E7937B /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		D78388521354890700E7937B /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
@@ -129,6 +148,17 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		235DC64714EFB3C800D28657 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				235DC64B14EFB3C800D28657 /* CoreServices.framework in Frameworks */,
+				235DC64C14EFB3C800D28657 /* CoreFoundation.framework in Frameworks */,
+				235DC64E14EFB3C800D28657 /* CoreData.framework in Frameworks */,
+				235DC65014EFB3C800D28657 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		675FAB3714D9B8760065603A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,6 +187,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		235DC65114EFB3C800D28657 /* epubMDI */ = {
+			isa = PBXGroup;
+			children = (
+				235DC65914EFB3C800D28657 /* GetMetadataForFile.m */,
+				235DC65B14EFB3C800D28657 /* MySpotlightImporter.h */,
+				235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */,
+				235DC65E14EFB3C800D28657 /* Importer Read Me.txt */,
+				235DC65214EFB3C800D28657 /* Supporting Files */,
+			);
+			path = epubMDI;
+			sourceTree = "<group>";
+		};
+		235DC65214EFB3C800D28657 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				235DC65314EFB3C800D28657 /* epubMDI-Info.plist */,
+				235DC65414EFB3C800D28657 /* InfoPlist.strings */,
+				235DC65714EFB3C800D28657 /* main.c */,
+				235DC65F14EFB3C800D28657 /* epubMDI-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		235DC66414EFB43500D28657 /* JTPepub */ = {
+			isa = PBXGroup;
+			children = (
+				D78388681354891800E7937B /* ZipArchive */,
+				D76675C414CECD57003850E7 /* Supporting Code */,
+				D78BA76C1360A90A000EB558 /* JTPepub.h */,
+				D78BA76D1360A90A000EB558 /* JTPepub.m */,
+				674D09C914CF297E00127A36 /* NSArray+HTML.h */,
+				674D09CA14CF297E00127A36 /* NSArray+HTML.m */,
+				674D09CE14CF2C6800127A36 /* NSString+HTML.h */,
+				674D09CF14CF2C6800127A36 /* NSString+HTML.m */,
+				67E3077114E9A24A0004C1D8 /* NSDate+OPF.h */,
+				67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */,
+			);
+			path = JTPepub;
+			sourceTree = "<group>";
+		};
 		675FAB4014D9B8760065603A /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,23 +279,27 @@
 				D76675C014CECD50003850E7 /* GDataXMLNode.m */,
 			);
 			name = "Supporting Code";
+			path = ../epubQL;
 			sourceTree = "<group>";
 		};
 		D783883E1354890700E7937B = {
 			isa = PBXGroup;
 			children = (
-				D78388561354890700E7937B /* epub */,
+				D78388561354890700E7937B /* epubQL */,
 				675FAB4414D9B8760065603A /* EpubTests */,
+				235DC65114EFB3C800D28657 /* epubMDI */,
 				D783884D1354890700E7937B /* Frameworks */,
 				D783884C1354890700E7937B /* Products */,
+				235DC66414EFB43500D28657 /* JTPepub */,
 			);
 			sourceTree = "<group>";
 		};
 		D783884C1354890700E7937B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D783884B1354890700E7937B /* epub.qlgenerator */,
+				D783884B1354890700E7937B /* epubQL.qlgenerator */,
 				675FAB3B14D9B8760065603A /* EpubTests.octest */,
+				235DC64A14EFB3C800D28657 /* epub.mdimporter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,30 +316,22 @@
 				D78388541354890700E7937B /* CoreFoundation.framework */,
 				675FAB3C14D9B8760065603A /* SenTestingKit.framework */,
 				675FAB3E14D9B8760065603A /* Cocoa.framework */,
+				235DC64D14EFB3C800D28657 /* CoreData.framework */,
+				235DC64F14EFB3C800D28657 /* Foundation.framework */,
 				675FAB4014D9B8760065603A /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D78388561354890700E7937B /* epub */ = {
+		D78388561354890700E7937B /* epubQL */ = {
 			isa = PBXGroup;
 			children = (
 				D783885D1354890700E7937B /* GenerateThumbnailForURL.m */,
 				D783885F1354890700E7937B /* GeneratePreviewForURL.m */,
-				D78BA76C1360A90A000EB558 /* JTPepub.h */,
-				D78BA76D1360A90A000EB558 /* JTPepub.m */,
-				674D09C914CF297E00127A36 /* NSArray+HTML.h */,
-				674D09CA14CF297E00127A36 /* NSArray+HTML.m */,
-				674D09CE14CF2C6800127A36 /* NSString+HTML.h */,
-				674D09CF14CF2C6800127A36 /* NSString+HTML.m */,
-				67E3077114E9A24A0004C1D8 /* NSDate+OPF.h */,
-				67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */,
 				D78388611354890700E7937B /* main.c */,
-				D76675C414CECD57003850E7 /* Supporting Code */,
-				D78388681354891800E7937B /* ZipArchive */,
 				D78388571354890700E7937B /* Supporting Files */,
 			);
-			path = epub;
+			path = epubQL;
 			sourceTree = "<group>";
 		};
 		D78388571354890700E7937B /* Supporting Files */ = {
@@ -332,6 +398,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		235DC64914EFB3C800D28657 /* epubMDI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 235DC66214EFB3C800D28657 /* Build configuration list for PBXNativeTarget "epubMDI" */;
+			buildPhases = (
+				235DC64614EFB3C800D28657 /* Sources */,
+				235DC64714EFB3C800D28657 /* Frameworks */,
+				235DC64814EFB3C800D28657 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = epubMDI;
+			productName = epubMDI;
+			productReference = 235DC64A14EFB3C800D28657 /* epub.mdimporter */;
+			productType = "com.apple.product-type.bundle";
+		};
 		675FAB3A14D9B8760065603A /* EpubTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 675FAB5014D9B8760065603A /* Build configuration list for PBXNativeTarget "EpubTests" */;
@@ -350,9 +433,9 @@
 			productReference = 675FAB3B14D9B8760065603A /* EpubTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		D783884A1354890700E7937B /* epub */ = {
+		D783884A1354890700E7937B /* epubQL */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D78388651354890700E7937B /* Build configuration list for PBXNativeTarget "epub" */;
+			buildConfigurationList = D78388651354890700E7937B /* Build configuration list for PBXNativeTarget "epubQL" */;
 			buildPhases = (
 				D78388451354890700E7937B /* Sources */,
 				D78388461354890700E7937B /* Frameworks */,
@@ -364,9 +447,9 @@
 			);
 			dependencies = (
 			);
-			name = epub;
+			name = epubQL;
 			productName = epub;
-			productReference = D783884B1354890700E7937B /* epub.qlgenerator */;
+			productReference = D783884B1354890700E7937B /* epubQL.qlgenerator */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -390,13 +473,22 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D783884A1354890700E7937B /* epub */,
+				D783884A1354890700E7937B /* epubQL */,
 				675FAB3A14D9B8760065603A /* EpubTests */,
+				235DC64914EFB3C800D28657 /* epubMDI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		235DC64814EFB3C800D28657 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				235DC65614EFB3C800D28657 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		675FAB3814D9B8760065603A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -453,6 +545,16 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		235DC64614EFB3C800D28657 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				235DC65814EFB3C800D28657 /* main.c in Sources */,
+				235DC65A14EFB3C800D28657 /* GetMetadataForFile.m in Sources */,
+				235DC65D14EFB3C800D28657 /* MySpotlightImporter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		675FAB3614D9B8760065603A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -494,6 +596,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		235DC65414EFB3C800D28657 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				235DC65514EFB3C800D28657 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		D749582614DD82360048D619 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -513,6 +623,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		235DC66014EFB3C800D28657 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "epubMDI/epubMDI-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "epubMDI/epubMDI-Info.plist";
+				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
+				LIBRARY_STYLE = BUNDLE;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = epub;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Debug;
+		};
+		235DC66114EFB3C800D28657 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "epubMDI/epubMDI-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "epubMDI/epubMDI-Info.plist";
+				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
+				LIBRARY_STYLE = BUNDLE;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = epub;
+				SKIP_INSTALL = YES;
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Release;
+		};
 		675FAB4E14D9B8760065603A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -597,8 +753,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "epub/epub-Prefix.pch";
-				INFOPLIST_FILE = "epub/epub-Info.plist";
+				GCC_PREFIX_HEADER = "epubQL/epub-Prefix.pch";
+				INFOPLIST_FILE = "epubQL/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -615,8 +771,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "epub/epub-Prefix.pch";
-				INFOPLIST_FILE = "epub/epub-Info.plist";
+				GCC_PREFIX_HEADER = "epubQL/epub-Prefix.pch";
+				INFOPLIST_FILE = "epubQL/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -628,6 +784,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		235DC66214EFB3C800D28657 /* Build configuration list for PBXNativeTarget "epubMDI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				235DC66014EFB3C800D28657 /* Debug */,
+				235DC66114EFB3C800D28657 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		675FAB5014D9B8760065603A /* Build configuration list for PBXNativeTarget "EpubTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -646,7 +811,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D78388651354890700E7937B /* Build configuration list for PBXNativeTarget "epub" */ = {
+		D78388651354890700E7937B /* Build configuration list for PBXNativeTarget "epubQL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D78388661354890700E7937B /* Debug */,

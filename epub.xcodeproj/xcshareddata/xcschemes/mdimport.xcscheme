@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0430"
-   version = "1.8">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,36 +13,25 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D783884A1354890700E7937B"
-               BuildableName = "epub.qlgenerator"
-               BlueprintName = "epubQL"
+               BlueprintIdentifier = "235DC64914EFB3C800D28657"
+               BuildableName = "epub.mdimporter"
+               BlueprintName = "epubMDI"
                ReferencedContainer = "container:epub.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D783884A1354890700E7937B"
-            BuildableName = "epub.qlgenerator"
-            BlueprintName = "epubQL"
-            ReferencedContainer = "container:epub.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
@@ -51,49 +39,35 @@
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <PathRunnable
-         FilePath = "/System/Library/Frameworks/QuickLook.framework/Versions/A/Resources/quicklookd.app/Contents/MacOS/qlmanage">
+         FilePath = "/usr/bin/mdimport">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D783884A1354890700E7937B"
-            BuildableName = "epub.qlgenerator"
-            BlueprintName = "epubQL"
+            BlueprintIdentifier = "235DC64914EFB3C800D28657"
+            BuildableName = "epub.mdimporter"
+            BlueprintName = "epubMDI"
             ReferencedContainer = "container:epub.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-p"
+            argument = "-d2"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-t -s 512"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-c org.idpf.epub-container"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = " -g $(BUILT_PRODUCTS_DIR)/epub.qlgenerator"
+            argument = "-g $(BUILT_PRODUCTS_DIR)/epub.mdimporter"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;$(SRCROOT)/EpubTests/Untitled.epub&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
-         <CommandLineArgument
-            argument = "&quot;$(SRCROOT)/EpubTests/metadata.epub&quot;"
-            isEnabled = "NO">
-         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"

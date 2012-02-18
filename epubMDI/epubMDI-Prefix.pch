@@ -1,0 +1,6 @@
+//
+// Prefix header for all source files of the 'epubMDI' target in the 'epubMDI' project
+//
+
+#ifdef __OBJC__
+#endif
