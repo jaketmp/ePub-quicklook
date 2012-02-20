@@ -15,6 +15,16 @@
 		235DC65814EFB3C800D28657 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65714EFB3C800D28657 /* main.c */; };
 		235DC65A14EFB3C800D28657 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65914EFB3C800D28657 /* GetMetadataForFile.m */; };
 		235DC65D14EFB3C800D28657 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */; };
+		6749F2C814F2F1C4007AB6C4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
+		6749F2CA14F2F1EE007AB6C4 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
+		6749F2CB14F2F1F2007AB6C4 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
+		6749F2CC14F2F1F5007AB6C4 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
+		6749F2CD14F2F206007AB6C4 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		6749F2CE14F2F21A007AB6C4 /* JTPepub.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BA76D1360A90A000EB558 /* JTPepub.m */; };
+		6749F2CF14F2F247007AB6C4 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
+		6749F2D014F2F261007AB6C4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D76675C514CECDFF003850E7 /* libxml2.dylib */; };
+		6749F2D114F2F26C007AB6C4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
+		6749F2D214F2F2B2007AB6C4 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783888213548ADA00E7937B /* AppKit.framework */; };
 		674D09CB14CF297E00127A36 /* NSArray+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09C914CF297E00127A36 /* NSArray+HTML.h */; };
 		674D09CC14CF297E00127A36 /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
 		674D09D014CF2C6800127A36 /* NSString+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 674D09CE14CF2C6800127A36 /* NSString+HTML.h */; };
@@ -152,10 +162,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6749F2D014F2F261007AB6C4 /* libxml2.dylib in Frameworks */,
+				6749F2D114F2F26C007AB6C4 /* libz.dylib in Frameworks */,
 				235DC64B14EFB3C800D28657 /* CoreServices.framework in Frameworks */,
 				235DC64C14EFB3C800D28657 /* CoreFoundation.framework in Frameworks */,
 				235DC64E14EFB3C800D28657 /* CoreData.framework in Frameworks */,
 				235DC65014EFB3C800D28657 /* Foundation.framework in Frameworks */,
+				6749F2D214F2F2B2007AB6C4 /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +565,13 @@
 				235DC65814EFB3C800D28657 /* main.c in Sources */,
 				235DC65A14EFB3C800D28657 /* GetMetadataForFile.m in Sources */,
 				235DC65D14EFB3C800D28657 /* MySpotlightImporter.m in Sources */,
+				6749F2C814F2F1C4007AB6C4 /* ZipArchive.mm in Sources */,
+				6749F2CA14F2F1EE007AB6C4 /* ioapi.c in Sources */,
+				6749F2CB14F2F1F2007AB6C4 /* mztools.c in Sources */,
+				6749F2CC14F2F1F5007AB6C4 /* unzip.c in Sources */,
+				6749F2CD14F2F206007AB6C4 /* zip.c in Sources */,
+				6749F2CE14F2F21A007AB6C4 /* JTPepub.m in Sources */,
+				6749F2CF14F2F247007AB6C4 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
