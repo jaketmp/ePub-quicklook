@@ -23,13 +23,17 @@
 
     NSString *publisher = [epub publisher];
     if ([publisher length] > 0)
-        [spotlightData setObject:publisher forKey:(NSString *)kMDItemPublishers];
+        [spotlightData setObject:[NSArray arrayWithObject:publisher] forKey:(NSString *)kMDItemPublishers];
 
     NSArray *creators = [epub creators];
     if ([creators count] > 0)
         [spotlightData setObject:creators forKey:(NSString *)kMDItemContributors];
 
-    // editors
+    // editors          kMDItemEditors
+    NSArray *editors = [epub editors];
+    if ([editors count] > 0)
+        [spotlightData setObject:editors forKey:(NSString *)kMDItemEditors];
+
     // illustrators
     // translators
     // synopsis         kMDItemHeadline ?
