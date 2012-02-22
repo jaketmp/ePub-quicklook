@@ -65,7 +65,7 @@
 
     // drm              kMDItemSecurityMethod (string)
     NSString *drm = [epub drm];
-    if (!drm) drm = @"None"; // PDF uses "None" explicitly
+    if ([drm isEqualToString:@""]) drm = @"None"; // PDF uses "None" explicitly
     [spotlightData setObject:drm forKey:(NSString *)kMDItemSecurityMethod];
 
     // expiryDate       kMDItemDueDate (date)
