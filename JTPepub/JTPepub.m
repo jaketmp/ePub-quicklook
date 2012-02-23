@@ -359,7 +359,7 @@ static NSMutableDictionary *xmlns = nil;
     if (epubVersion == 3) {
         
         // Scan for an <item> element with properties="cover-image".
-        NSArray *metaElements = [opfXML nodesForXPath:@"//item[@properties='cover-image']"
+        NSArray *metaElements = [opfXML nodesForXPath:@"//opf:item[@properties='cover-image']"
                                            namespaces:xmlns
                                                 error:&xmlError];
         
