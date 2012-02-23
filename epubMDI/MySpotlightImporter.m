@@ -39,13 +39,33 @@
 
     // illustrators
     // translators
+
     // synopsis         kMDItemHeadline ?
+    NSString *str = [epub synopsis];
+    // we manually remove any HTML tags
+    NSScanner *s = [NSScanner scannerWithString:str];
+    [s setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@""]];
+    NSCharacterSet *pre = [[NSCharacterSet characterSetWithCharactersInString:@"<"] invertedSet];
+    NSCharacterSet *end = [NSCharacterSet characterSetWithCharactersInString:@">"];
+    NSCharacterSet *tag = [end invertedSet];
+
+    NSMutableString *synopsis = [NSMutableString string];
+    while ([s isAtEnd] == NO) {
+        NSString *p = nil;
+        if ([s scanCharactersFromSet:pre intoString:&p] == YES)
+            [synopsis appendString:p];
+        [s scanCharactersFromSet:tag intoString:NULL];
+        [s scanCharactersFromSet:end intoString:NULL];
+    }
+    if ([synopsis length] > 0)
+        [spotlightData setObject:synopsis forKey:(NSString *)kMDItemHeadline];
+
     // ISBN             kMDItemIdentifier (string)
     // publicationDate  not kMDItemContentCreationDate
 
     // drm              kMDItemSecurityMethod (string)
     NSString *drm = [epub drm];
-    if (!drm) drm = @"None"; // PDF uses "None" explicitly
+    if ([drm isEqualToString:@""]) drm = @"None"; // PDF uses "None" explicitly
     [spotlightData setObject:drm forKey:(NSString *)kMDItemSecurityMethod];
 
     // expiryDate       kMDItemDueDate (date)

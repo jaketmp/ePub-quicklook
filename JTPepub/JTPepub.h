@@ -19,7 +19,7 @@
     NSString *title;
     NSArray *authors;
     NSString *publisher;
-    NSArray * creators;
+    NSMutableArray *creators;
     NSArray *editors;
     NSArray *illustrators;
     NSArray *translators;

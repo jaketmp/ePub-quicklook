@@ -210,4 +210,29 @@
     NSImage *actual = [metadataFile cover];
     STAssertNil(actual, @"Cover not missing");
 }
+
+#pragma mark Test creators (for Spotlight)
+- (void)testUntitledCreators
+{
+    NSArray *actual = [untitledFile creators];
+    NSArray *expected = [NSArray arrayWithObjects:@"Test Author", @"Test Illustrator",
+                         @"Test Editor", @"Test Translator", nil];
+    STAssertTrue([actual count] == [expected count], @"Untitled file has wrong number of creators");
+    for (id item in expected) {
+        STAssertTrue([actual containsObject:item], @"Creator is missing");
+    }
+}
+
+- (void)testMetadataCreators
+{
+    NSArray *actual = [metadataFile creators];
+    NSArray *expected = [NSArray arrayWithObjects:@"Primary Author", @"Second Author", @"Third Author", nil];
+    // metadata has one contributor for each known MARC role and then 3 authors
+    // Just check the authors are present, and the total is right.
+    STAssertTrue([actual count] == 228, @"metadata file has wrong number of creators");
+    for (id item in expected) {
+        STAssertTrue([actual containsObject:item], @"Creator is missing");
+    }
+}
+
 @end

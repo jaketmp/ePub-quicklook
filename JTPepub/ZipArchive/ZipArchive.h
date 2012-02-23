@@ -26,8 +26,10 @@
 
 @interface ZipArchive : NSObject {
 @private
-	zipFile		_zipFile;
-    NSString    *archiveName;
+	zipFile             _zipFile;
+    NSString            *archiveName;
+    zlib_filefunc_def   mmap_defs;
+    NSInteger           pos;
 }
 
 
