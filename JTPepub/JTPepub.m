@@ -345,46 +345,86 @@ static NSMutableDictionary *xmlns = nil;
             return nil;
         }
     }
-    // scan for a <meta> element with name="cover"
+    
+    
     NSError *xmlError = nil;
-    NSArray *metaElements = [opfXML nodesForXPath:@"//opf:meta"
-                                       namespaces:xmlns
-                                            error:&xmlError];
-    
-    // Fast enumerate over meta elements
-    NSString *coverID = nil;
-    for(id item in metaElements)
-    {
-        NSString *metaName = [[item attributeForName:@"name"] stringValue];
-        
-        if([metaName caseInsensitiveCompare:@"cover"] == NSOrderedSame) {
-            coverID = [[item attributeForName:@"content"] stringValue];
-            break;
-        }
-    }
-    if(coverID == nil) {
-        haveCheckedForCover = true;
-        return nil; // No cover in this epub.
-    }
-    
-    
-    // Now iterate over the manifest to find the path.
-    NSArray *itemElements = [opfXML nodesForXPath:@"//opf:item"
-                                       namespaces:xmlns
-                                            error:&xmlError];
     NSString *coverPath = nil;
-    NSString *coverMIME;
-    // Fast enumerate over meta elements
-    for(id item in itemElements)
-    {
-        NSString *itemID = [[item attributeForName:@"id"] stringValue];
+    NSString *coverMIME = nil;
+
+    /*
+     * Branch based on epub version, if epub3, look for 'properties="cover-image"'
+     * and fall back to the epub2 code if we don't find anything.
+     */
+    
+    if (epubVersion == 3) {
         
-        if([itemID caseInsensitiveCompare:coverID] == NSOrderedSame) {
-            coverPath = [[item attributeForName:@"href"] stringValue];
-            coverMIME = [[item attributeForName:@"media-type"] stringValue];
-            break;
+        // Scan for an <item> element with properties="cover-image".
+        NSArray *metaElements = [opfXML nodesForXPath:@"//item[@properties='cover-image']"
+                                           namespaces:xmlns
+                                                error:&xmlError];
+        
+        // If nothing found, skip the rest of the epub3 code.
+        if (metaElements != nil) {
+            
+            // There may only be one "cover-image" so take the last element of the array.
+            coverPath = [[[metaElements lastObject] attributeForName:@"href"] stringValue];
+            coverMIME = [[[metaElements lastObject] attributeForName:@"media-type"] stringValue];
+            
+            
         }
     }
+    
+    /*
+     * epub2 code from here - may also be valid in epub3 if 'properties="cover-image"' is
+     * not specified.
+     */
+    
+    // Don't look for the coverPath if we already found it above.
+    if (coverPath == nil) {
+        // scan for a <meta> element with name="cover"
+        NSArray *metaElements = [opfXML nodesForXPath:@"//opf:meta"
+                                           namespaces:xmlns
+                                                error:&xmlError];
+        
+        // Fast enumerate over meta elements
+        NSString *coverID = nil;
+        for(id item in metaElements)
+        {
+            NSString *metaName = [[item attributeForName:@"name"] stringValue];
+            
+            if([metaName caseInsensitiveCompare:@"cover"] == NSOrderedSame) {
+                coverID = [[item attributeForName:@"content"] stringValue];
+                break;
+            }
+        }
+        if(coverID == nil) {
+            haveCheckedForCover = true;
+            return nil; // No cover in this epub.
+        }
+        
+        
+        // Now iterate over the manifest to find the path.
+        NSArray *itemElements = [opfXML nodesForXPath:@"//opf:item"
+                                           namespaces:xmlns
+                                                error:&xmlError];
+        
+        // Fast enumerate over meta elements
+        for(id item in itemElements)
+        {
+            NSString *itemID = [[item attributeForName:@"id"] stringValue];
+            
+            if([itemID caseInsensitiveCompare:coverID] == NSOrderedSame) {
+                coverPath = [[item attributeForName:@"href"] stringValue];
+                coverMIME = [[item attributeForName:@"media-type"] stringValue];
+                break;
+            }
+        }
+    }
+    
+    /*
+     * Image loading code is generic for epub2/3
+     */
+    
     if(coverPath == nil) {
         haveCheckedForCover = true;
         return nil; // No cover in this epub.
