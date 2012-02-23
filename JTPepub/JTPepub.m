@@ -179,6 +179,22 @@ static NSMutableDictionary *xmlns = nil;
     return publisher;
 }
 
+// Return the name from a dc:creator/dc:contributor element
+// The name should be in the item contents.
+// If the element contents is empty, look in the file-as attribute
+// instead. If that's not there either, return nil.
+- (NSString *)extractName:(GDataXMLElement *)element
+{
+    if ([[element stringValue] isEqualToString:@""]) {
+        NSString *fileAs = [[element attributeForName:@"file-as"] stringValue];
+        if (![fileAs isEqualToString:@""])
+            return fileAs;
+        else
+            return nil;
+    }
+    return [element stringValue];
+}
+
 - (NSArray *)creatorsWithOPFRole:(NSString *)role
 {
     NSError *xmlError = nil;
@@ -200,16 +216,9 @@ static NSMutableDictionary *xmlns = nil;
         NSString *itemID = [[item attributeForName:@"role"] stringValue];
         
         if ([itemID caseInsensitiveCompare:role] == NSOrderedSame) {
-            // The name should be in the item contents.
-            // If the element contents is empty, look in the file-as attribute
-            // instead. If that's not there either, skip this item.
-            if ([[item stringValue] isEqualToString:@""]) {
-                NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
-                if (![fileAs isEqualToString:@""])
-                    [results addObject:fileAs];
-            } else {
-                [results addObject:[item stringValue]];
-            }
+            NSString *name = [self extractName:item];
+            if (name)
+                [results addObject:name];
         }
     }
     return results;
@@ -244,16 +253,9 @@ static NSMutableDictionary *xmlns = nil;
     // Fast enumerate over meta elements
     for (id item in metaElements)
     {
-        // The name should be in the item contents.
-        // If the element contents is empty, look in the file-as attribute
-        // instead. If that's not there either, skip this item.
-        if ([[item stringValue] isEqualToString:@""]) {
-            NSString *fileAs = [[item attributeForName:@"file-as"] stringValue];
-            if (![fileAs isEqualToString:@""])
-                [results addObject:fileAs];
-        } else {
-            [results addObject:[item stringValue]];
-        }
+        NSString *name = [self extractName:item];
+        if (name)
+            [results addObject:name];
     }
     return results;
 }
@@ -296,41 +298,22 @@ static NSMutableDictionary *xmlns = nil;
     }
     
     // Otherwise load it.
-    NSMutableArray *creatorsMutable = [[NSMutableArray alloc] init];
+    creators = [[NSMutableArray alloc] init];
     NSError *xmlError = nil;
     
     // scan for a <dc:creator> element
-    NSArray *metaElements = [opfXML nodesForXPath:@"//dc:creator"
+    NSArray *metaElements = [opfXML nodesForXPath:@"//dc:creator|//dc:contributor"
                                        namespaces:xmlns
                                             error:&xmlError];
-    
-    // Check the array isn't empty.
-    if ([metaElements count] == 0) {
         
-        // No <dc:creator>s found return an empty array
-        
-        creators = [[NSArray alloc] initWithObjects:@"", nil];
-        [creators retain];
-        [creatorsMutable release];
-        
-        return creators;
-    }
-    
     // Fast enumerate over meta elements
-    for(id item in metaElements)
+    for (id item in metaElements)
     {
-        NSString *itemID = [[item attributeForName:@"role"] stringValue];
-                    
-        [creatorsMutable addObject:[item stringValue]];
-        [creatorsMutable addObject:itemID];
-
+        NSString *name = [self extractName:item];
+        if (name)
+            [creators addObject:name];
     }
-    
-    creators = [[NSArray alloc] initWithArray:creatorsMutable];
-    [creators retain];
-         
-    [creatorsMutable release];
-    
+
     return creators;
     
 }
