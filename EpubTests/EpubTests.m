@@ -9,6 +9,7 @@
 #import "EpubTests.h"
 #import "JTPepub.h"
 #import "NSDate+OPF.h"
+#import "NSString+HTML.h"
 
 @implementation EpubTests
 
@@ -113,6 +114,35 @@
     STAssertEqualObjects([actual objectAtIndex:0], expected0, @"First author is wrong");
     STAssertEqualObjects([actual objectAtIndex:1], expected1, @"Second author is wrong");
     STAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author is wrong");
+}
+
+#pragma mark Test HTML escaping/stripping
+- (void)testEscapingPlain
+{
+    NSString *expected = @"This is plain text.";
+    NSString *actual = [expected stringByEscapingHTML];
+    STAssertEqualObjects(actual, expected, @"escaping went wrong");
+}
+
+- (void)testEscaping
+{
+    NSString *expected = @"This is &lt;escaped&gt; &amp; safe.";
+    NSString *actual = [@"This is <escaped> & safe." stringByEscapingHTML];
+    STAssertEqualObjects(actual, expected, @"escaping went wrong");
+}
+
+- (void)testStrippingPlain
+{
+    NSString *expected = @"This is plain text.";
+    NSString *actual = [expected stringByStrippingHTML];
+    STAssertEqualObjects(actual, expected, @"stripping went wrong");
+}
+
+- (void)testStripping
+{
+    NSString *expected = @"This is plain text.";
+    NSString *actual = [@"This is <em>plain</em> text." stringByStrippingHTML];
+    STAssertEqualObjects(actual, expected, @"stripping went wrong");
 }
 
 #pragma mark Test date parsing
