@@ -10,4 +10,5 @@
 
 @interface NSString (HTML)
 - (NSString *)escapedString;
+- (NSString *)stringByStrippingHTML;
 @end
