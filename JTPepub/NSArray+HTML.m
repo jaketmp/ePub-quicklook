@@ -16,7 +16,7 @@
 {
     NSMutableArray *escaped = [NSMutableArray array];
     for (NSString *s in self) {
-        [escaped addObject:[s escapedString]];
+        [escaped addObject:[s stringByEscapingHTML]];
     }
     return [escaped componentsJoinedByString:separator];
 }

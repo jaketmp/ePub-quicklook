@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (HTML)
-- (NSString *)escapedString;
+- (NSString *)stringByEscapingHTML;
 - (NSString *)stringByStrippingHTML;
 @end

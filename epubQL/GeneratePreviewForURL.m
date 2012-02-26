@@ -110,7 +110,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     /*
      * Localise and subsitute derived values into the template html
      */
-    [html replaceOccurrencesOfString:@"%title%" withString:[[epubFile title] escapedString] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
+    [html replaceOccurrencesOfString:@"%title%" withString:[[epubFile title] stringByEscapingHTML] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
     [html replaceOccurrencesOfString:@"%author%" withString:[[epubFile authors] escapedComponentsJoinedByString:@", "] options:NSLiteralSearch range:NSMakeRange(0, [html length])];
 
     /*
@@ -154,14 +154,14 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
              [pluginBundle localizedStringForKey:@"ISBN" 
                                            value:@"ISBN" 
                                            table:nil],
-             [[epubFile isbn] escapedString]];
+             [[epubFile isbn] stringByEscapingHTML]];
     }
     if (![[epubFile publisher] isEqualToString:@""]) {
         [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
              [pluginBundle localizedStringForKey:@"publisher" 
                                            value:@"publisher" 
                                            table:nil],
-             [[epubFile publisher] escapedString]];
+             [[epubFile publisher] stringByEscapingHTML]];
     }
     if ([epubFile publicationDate]) {
         [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
@@ -177,7 +177,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
          [pluginBundle localizedStringForKey:@"drm" 
                                        value:@"DRM Scheme" 
                                        table:nil],
-         [[epubFile drm] escapedString]];
+         [[epubFile drm] stringByEscapingHTML]];
     }
     if ([epubFile expiryDate]) {
         NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];

@@ -11,7 +11,7 @@
 @implementation NSString (HTML)
 
 /* Return an autoreleased version with HTML specials escaped. */
-- (NSString *)escapedString
+- (NSString *)stringByEscapingHTML
 {
     NSMutableString *e = [self mutableCopy];
     [e replaceOccurrencesOfString:@"&" withString:@"&amp;" options:0 range:NSMakeRange(0, [e length])];
