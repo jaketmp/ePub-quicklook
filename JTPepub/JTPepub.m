@@ -44,8 +44,14 @@ static NSMutableDictionary *xmlns = nil;
 {
     self = [super init];
     if (self) {
-        [self openEPUBFile:fileName];
+        bookType = jtpUnknownBook;
         haveCheckedForCover = false;
+        
+        // Properly handle failing to load fileName;
+        if (![self openEPUBFile:fileName]){
+            [self release];
+            return nil;
+        }
     }
     return self;
 }

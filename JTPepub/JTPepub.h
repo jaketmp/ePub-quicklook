@@ -11,10 +11,17 @@
 #include <AppKit/AppKit.h>
 #include "ZipArchive/ZipArchive.h"
 
+typedef enum {
+    jtpUnknownBook = 0,
+    jtpEPUB2,
+    jtpEPUB3,
+    jtpiBooks
+} JTPbookType;
 
 @interface JTPepub : NSObject {
 @private
     ZipArchive *epubFile;
+    JTPbookType bookType;
     NSInteger epubVersion;
     NSString *title;
     NSArray *authors;
