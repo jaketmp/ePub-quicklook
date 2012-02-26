@@ -520,7 +520,7 @@ static NSMutableDictionary *xmlns = nil;
     {
         NSString *metaName = [[item attributeForName:@"scheme"] stringValue];
         
-        if([metaName caseInsensitiveCompare:@"ISBN"] == NSOrderedSame) {
+        if([@"ISBN" caseInsensitiveCompare:metaName] == NSOrderedSame) {
             // Remove any leading urn:isbn: and whitespace.
             NSMutableString *val = [[item stringValue] mutableCopy];
             [val replaceOccurrencesOfString:@"urn:isbn:" withString:@"" options:NSCaseInsensitiveSearch
