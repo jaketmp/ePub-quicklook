@@ -66,18 +66,25 @@ static NSMutableDictionary *xmlns = nil;
     }
     epubFile = [[ZipArchive alloc] initWithZipFile:(NSString*)fileName];
     
-    
-    // Check the mimetype to be sure it's an epub
+    /*
+     * Determine the type of books from the mimetype.
+     */
     NSString *mimetype = [NSString stringWithUTF8String:[[epubFile dataForNamedFile:@"mimetype"] bytes]];
-    NSRange mimeRange = [mimetype rangeOfString:@"application/epub+zip"];
     
-    if(mimeRange.location != 0 && mimeRange.length != 20) {
-        //[mimetype release];
-        [epubFile release];
+    if ([mimetype isEqualToString:@"application/epub+zip"]) {
+        //Assure we have an epub2 until we load the xml.
+        bookType = jtpEPUB2;
+        epubVersion = 2;
+    } else if ([mimetype isEqualToString:@"application/x-ibooks+zip"]) {
+        // We have an iBooks file
+        bookType = jtpiBooks;
+        epubVersion = 2;
+    } else {
+        // Not a format we understand.
+        bookType = jtpUnknownBook;
+        //[epubFile release]; - We release this when we fail to init and call [self release].
         return FALSE;
     }
-   // [mimetype release];
-
     
     // Read the container.xml to find the root file.    
     NSData *container = [epubFile dataForNamedFile:@"META-INF/container.xml"];
@@ -102,7 +109,7 @@ static NSMutableDictionary *xmlns = nil;
     // Tidy
     [container release];
     [containerXML release];
-
+    
     
     /* 
      * Get the OEBPS/content.opf from the .epub
@@ -121,6 +128,11 @@ static NSMutableDictionary *xmlns = nil;
     NSString *versionText = [[[metaElements lastObject] attributeForName:@"version"] stringValue];
     
     epubVersion = [versionText integerValue];
+    // Be default we assume epub 2 - this might be better as a switch stament if we ever need to handle many for combinations.
+    if (epubVersion == 3) {
+        bookType = jtpEPUB3;
+    }
+    
     
     return TRUE;
 }
