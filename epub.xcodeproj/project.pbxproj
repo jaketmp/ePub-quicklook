@@ -46,6 +46,7 @@
 		675FAB5A14D9BF6C0065603A /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
 		675FAB5B14D9BF740065603A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
 		675FAB5C14D9BF780065603A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		6783BD9F14FA8C1C00696991 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		67909CE914F37D9E009819B2 /* NSDate+OPF.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */; };
 		67BE43EE14DEC886003C7DFC /* fake-adept.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EB14DEC886003C7DFC /* fake-adept.epub */; };
 		67BE43EF14DEC886003C7DFC /* fake-fairplay.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */; };
@@ -99,6 +100,7 @@
 		235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
 		235DC65E14EFB3C800D28657 /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
 		235DC65F14EFB3C800D28657 /* epubMDI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "epubMDI-Prefix.pch"; sourceTree = "<group>"; };
+		6709959514FA89B600EEEFA6 /* test.ibooks */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.ibooks; sourceTree = "<group>"; };
 		674D09C914CF297E00127A36 /* NSArray+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HTML.h"; sourceTree = "<group>"; };
 		674D09CA14CF297E00127A36 /* NSArray+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HTML.m"; sourceTree = "<group>"; };
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 		67BE43E914DEC832003C7DFC /* Test Files */ = {
 			isa = PBXGroup;
 			children = (
+				6709959514FA89B600EEEFA6 /* test.ibooks */,
 				675F07EF14E7190700FEFD90 /* Untitled.epub */,
 				675F07EE14E7190700FEFD90 /* metadata.epub */,
 				67543ADE14E70B1600A42752 /* badcontributor.epub */,
@@ -574,6 +577,7 @@
 				6749F2CE14F2F21A007AB6C4 /* JTPepub.m in Sources */,
 				6749F2CF14F2F247007AB6C4 /* GDataXMLNode.m in Sources */,
 				67909CE914F37D9E009819B2 /* NSDate+OPF.m in Sources */,
+				6783BD9F14FA8C1C00696991 /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

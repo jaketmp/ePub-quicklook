@@ -8,6 +8,7 @@
 
 #import "MySpotlightImporter.h"
 #import "JTPepub.h"
+#import "NSString+HTML.h"
 
 @implementation MySpotlightImporter
 
@@ -41,26 +42,15 @@
     // translators
 
     // synopsis         kMDItemHeadline ?
-    NSString *str = [epub synopsis];
-    // we manually remove any HTML tags
-    NSScanner *s = [NSScanner scannerWithString:str];
-    [s setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@""]];
-    NSCharacterSet *pre = [[NSCharacterSet characterSetWithCharactersInString:@"<"] invertedSet];
-    NSCharacterSet *end = [NSCharacterSet characterSetWithCharactersInString:@">"];
-    NSCharacterSet *tag = [end invertedSet];
-
-    NSMutableString *synopsis = [NSMutableString string];
-    while ([s isAtEnd] == NO) {
-        NSString *p = nil;
-        if ([s scanCharactersFromSet:pre intoString:&p] == YES)
-            [synopsis appendString:p];
-        [s scanCharactersFromSet:tag intoString:NULL];
-        [s scanCharactersFromSet:end intoString:NULL];
-    }
+    NSString *synopsis = [[epub synopsis] stringByStrippingHTML];
     if ([synopsis length] > 0)
         [spotlightData setObject:synopsis forKey:(NSString *)kMDItemHeadline];
 
     // ISBN             kMDItemIdentifier (string)
+    NSString *isbn = [epub isbn];
+    if ([isbn length] > 0)
+        [spotlightData setObject:isbn forKey:kMDItemIdentifier];
+
     // publicationDate  not kMDItemContentCreationDate
 
     // drm              kMDItemSecurityMethod (string)
