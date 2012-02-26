@@ -47,6 +47,10 @@
         [spotlightData setObject:synopsis forKey:(NSString *)kMDItemHeadline];
 
     // ISBN             kMDItemIdentifier (string)
+    NSString *isbn = [epub isbn];
+    if ([isbn length] > 0)
+        [spotlightData setObject:isbn forKey:kMDItemIdentifier];
+
     // publicationDate  not kMDItemContentCreationDate
 
     // drm              kMDItemSecurityMethod (string)
