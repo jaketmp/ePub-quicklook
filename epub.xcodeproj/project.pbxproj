@@ -99,6 +99,7 @@
 		235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
 		235DC65E14EFB3C800D28657 /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
 		235DC65F14EFB3C800D28657 /* epubMDI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "epubMDI-Prefix.pch"; sourceTree = "<group>"; };
+		6709959514FA89B600EEEFA6 /* test.ibooks */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.ibooks; sourceTree = "<group>"; };
 		674D09C914CF297E00127A36 /* NSArray+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HTML.h"; sourceTree = "<group>"; };
 		674D09CA14CF297E00127A36 /* NSArray+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HTML.m"; sourceTree = "<group>"; };
 		674D09CE14CF2C6800127A36 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
@@ -274,6 +275,7 @@
 		67BE43E914DEC832003C7DFC /* Test Files */ = {
 			isa = PBXGroup;
 			children = (
+				6709959514FA89B600EEEFA6 /* test.ibooks */,
 				675F07EF14E7190700FEFD90 /* Untitled.epub */,
 				675F07EE14E7190700FEFD90 /* metadata.epub */,
 				67543ADE14E70B1600A42752 /* badcontributor.epub */,
