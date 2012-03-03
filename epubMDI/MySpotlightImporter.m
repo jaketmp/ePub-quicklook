@@ -49,7 +49,7 @@
     // ISBN             kMDItemIdentifier (string)
     NSString *isbn = [epub isbn];
     if ([isbn length] > 0)
-        [spotlightData setObject:isbn forKey:kMDItemIdentifier];
+        [spotlightData setObject:isbn forKey:(NSString *)kMDItemIdentifier];
 
     // publicationDate  not kMDItemContentCreationDate
 

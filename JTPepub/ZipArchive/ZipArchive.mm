@@ -105,13 +105,10 @@ unsigned long mmap_zread(void *opaque, void *stream, void *buf, unsigned long si
 
 @implementation ZipArchive
 
--(id) init
-{
+-(id) initWithZipFile:(NSString *)fileName {
     self = [super init];
-	if(self)
-	{
-		_zipFile = nil ;
-        archiveName = nil;
+    if (self) {
+        archiveName = [fileName retain];
         mmap_defs.zopen_file = mmap_zopen;
         mmap_defs.zread_file = mmap_zread;
         mmap_defs.zwrite_file = NULL; // no writing!
@@ -120,36 +117,25 @@ unsigned long mmap_zread(void *opaque, void *stream, void *buf, unsigned long si
         mmap_defs.zclose_file = mmap_zclose;
         mmap_defs.zerror_file = mmap_zerror;
         mmap_defs.opaque = &(self->pos);
-	}
-	return self;
+
+        _zipFile = unzOpen2([fileName fileSystemRepresentation], &(self->mmap_defs));
+        if (!_zipFile) {
+            [self release];
+            return nil;
+        }
+    }
+    return self;
 }
 
--(id) initWithZipFile:(NSString *)fileName {
-    self = [self init];
-    
-    archiveName = fileName;
-    
-    [fileName retain];
-    
-    _zipFile = unzOpen2([fileName fileSystemRepresentation], &(self->mmap_defs));
-    if(_zipFile) {
-        return self;
-    }else{
-        [self dealloc];
-        return nil;
-    }
-    
-}
 -(void) dealloc
 {
     if( _zipFile != nil) {        
         [self closeZipFile];
     }
-    if (archiveName != nil) {
-        [archiveName release];
-    }
+    [archiveName release];
 	[super dealloc];
 }
+
 /*
  * Test for the existance of fileName in the archive.
  * Returns true if found.
@@ -192,9 +178,15 @@ unsigned long mmap_zread(void *opaque, void *stream, void *buf, unsigned long si
 	}
     
 	buffer = (UInt8*)malloc(info.uncompressed_size);
+    if ( buffer == NULL ) {
+        unzCloseCurrentFile( _zipFile );
+        NSLog(@"No memory for decompressing %@ from archive", fileName);
+        return nil;
+    }
 	result = unzReadCurrentFile( _zipFile, buffer, (uint)info.uncompressed_size );
 	if ( result != info.uncompressed_size ) {
-		// Error checking	
+		// Error checking
+        free(buffer);
         NSLog(@"Failed to read %@ from archive", fileName);
         return nil;
     }

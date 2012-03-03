@@ -69,10 +69,13 @@ static NSMutableDictionary *xmlns = nil;
     /*
      * Determine the type of books from the mimetype.
      */
-    NSString *mimetype = [NSString stringWithUTF8String:[[epubFile dataForNamedFile:@"mimetype"] bytes]];
-    
-    if ([mimetype isEqualToString:@"application/epub+zip"]) {
-        //Assure we have an epub2 until we load the xml.
+    NSData *data = [epubFile dataForNamedFile:@"mimetype"];
+    NSString *mimetype = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+    NSRange mimeRange = [mimetype rangeOfString:@"application/epub+zip"];
+    if (mimeRange.location == 0 && mimeRange.length == 20) {
+        // I've seen malformed epubs from the iBookstore with a linebreak after "+zip".
+        // Assume we have an epub2 until we load the xml.
         bookType = jtpEPUB2;
         epubVersion = 2;
     } else if ([mimetype isEqualToString:@"application/x-ibooks+zip"]) {
