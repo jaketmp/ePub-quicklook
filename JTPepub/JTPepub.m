@@ -69,8 +69,9 @@ static NSMutableDictionary *xmlns = nil;
     /*
      * Determine the type of books from the mimetype.
      */
-    NSString *mimetype = [NSString stringWithUTF8String:[[epubFile dataForNamedFile:@"mimetype"] bytes]];
-    
+    NSData *data = [epubFile dataForNamedFile:@"mimetype"];
+    NSString *mimetype = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
     if ([mimetype isEqualToString:@"application/epub+zip"]) {
         //Assure we have an epub2 until we load the xml.
         bookType = jtpEPUB2;
