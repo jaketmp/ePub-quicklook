@@ -135,6 +135,78 @@ static NSMutableDictionary *xmlns = nil;
     return YES;
 }
 
+- (NSString *)textFromManifestItem:(NSUInteger)n
+{
+    NSError *error;
+    if (manifest == nil) {
+        manifest = [[NSMutableArray alloc] init];
+        NSArray *items = [opfXML nodesForXPath:@"//opf:item[@media-type='application/xhtml+xml']"
+                                    namespaces:xmlns
+                                         error:&error];
+        for (id item in items) {
+            [manifest addObject:[[item attributeForName:@"href"] stringValue]];
+        }
+    }
+
+    // Return an item from the manifest
+    if (n >= [manifest count])
+        return nil;
+
+    NSString *contentRoot = [rootFilePath stringByDeletingLastPathComponent];
+    NSArray *textPathArray = [NSArray arrayWithObjects:contentRoot, [manifest objectAtIndex:n], nil];
+    NSString *path = [NSString pathWithComponents:textPathArray];
+
+    NSData *content = [epubFile dataForNamedFile:path];
+
+    // SAX-based conversion
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
+    [parser setDelegate:(id<NSXMLParserDelegate>)self];
+    [parser parse];
+    [parser release];
+    NSMutableString *plain = capturing;
+    capturing = nil;
+    return plain;
+}
+
+#pragma mark NSXMLParser delegate methods
+
+// Start capturing text when we get to the <body>
+- (void)parser:(NSXMLParser *)parser
+didStartElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI
+ qualifiedName:(NSString *)qName
+    attributes:(NSDictionary *)attributeDict
+{
+    if (capturing)
+        return;
+    if ([@"body" isEqualToString:elementName])
+        capturing = [NSMutableString string];
+}
+
+- (void)parser:(NSXMLParser *)parser
+foundCharacters:(NSString *)string
+{
+    [capturing appendString:string];
+}
+
+// When we get an &foo; this is called with entityName=foo.
+// Lazily load in the named entities specified for XHTML from
+// a plist.
+- (NSData *)parser:(NSXMLParser *)parser
+resolveExternalEntityName:(NSString *)entityName
+          systemID:(NSString *)systemID
+{
+    if (entities == nil) {
+        NSBundle *b = [NSBundle bundleForClass:[self class]];
+        NSString *path = [b pathForResource:@"entities" ofType:@"plist"];
+        entities = [NSDictionary dictionaryWithContentsOfFile:path];
+        [entities retain];
+    }
+    NSString *s = [entities valueForKey:entityName];
+    return [s dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+#pragma mark Metadata extraction methods
 - (NSString *)title
 {
     // If the title has been set, return it.
@@ -628,6 +700,9 @@ static NSMutableDictionary *xmlns = nil;
 - (void)dealloc
 {
     [epubFile release];
+    [manifest release];
+    [capturing release];
+    [entities release];
     [title release];
     [publisher release];
     [authors release];
