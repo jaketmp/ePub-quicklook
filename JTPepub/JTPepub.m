@@ -45,10 +45,10 @@ static NSMutableDictionary *xmlns = nil;
     self = [super init];
     if (self) {
         bookType = jtpUnknownBook;
-        haveCheckedForCover = false;
+        haveCheckedForCover = NO;
         
         // Properly handle failing to load fileName;
-        if (![self openEPUBFile:fileName]){
+        if ([self openEPUBFile:fileName] == NO){
             [self release];
             return nil;
         }
@@ -62,7 +62,7 @@ static NSMutableDictionary *xmlns = nil;
 - (BOOL)openEPUBFile:(NSString*)fileName {
     // We're not reusable, so if we've already opened an epub, return.
     if (epubFile) {
-        return FALSE;
+        return NO;
     }
     epubFile = [[ZipArchive alloc] initWithZipFile:(NSString*)fileName];
     
@@ -86,12 +86,11 @@ static NSMutableDictionary *xmlns = nil;
         // Not a format we understand.
         bookType = jtpUnknownBook;
         //[epubFile release]; - We release this when we fail to init and call [self release].
-        return FALSE;
+        return NO;
     }
     
     // Read the container.xml to find the root file.    
     NSData *container = [epubFile dataForNamedFile:@"META-INF/container.xml"];
-    [container retain];
     
     NSError *xmlError;
     GDataXMLDocument *containerXML = [[GDataXMLDocument alloc] initWithData:container options:0 error:&xmlError];
@@ -105,12 +104,10 @@ static NSMutableDictionary *xmlns = nil;
     if([rootFileType caseInsensitiveCompare:@"application/oebps-package+xml"] == NSOrderedSame) {
         rootFilePath = [[[[rootFile objectAtIndex:0] attributeForName:@"full-path"] stringValue] retain];
     }else{
-        [container release];
         [containerXML release];
-        return FALSE;
+        return NO;
     }
     // Tidy
-    [container release];
     [containerXML release];
     
     
@@ -119,9 +116,7 @@ static NSMutableDictionary *xmlns = nil;
      * and identify the epub version.
      */
     NSData *content = [epubFile dataForNamedFile:rootFilePath];
-    [content retain];
     opfXML = [[GDataXMLDocument alloc] initWithData:content options:0 error:&xmlError];
-    [content release];
     
     //
     NSArray *metaElements = [opfXML nodesForXPath:@"//opf:package"
@@ -137,7 +132,7 @@ static NSMutableDictionary *xmlns = nil;
     }
     
     
-    return TRUE;
+    return YES;
 }
 
 - (NSString *)title
@@ -402,7 +397,7 @@ static NSMutableDictionary *xmlns = nil;
             }
         }
         if(coverID == nil) {
-            haveCheckedForCover = true;
+            haveCheckedForCover = YES;
             return nil; // No cover in this epub.
         }
         
@@ -430,7 +425,7 @@ static NSMutableDictionary *xmlns = nil;
      */
     
     if(coverPath == nil) {
-        haveCheckedForCover = true;
+        haveCheckedForCover = YES;
         return nil; // No cover in this epub.
     }
     
@@ -445,10 +440,8 @@ static NSMutableDictionary *xmlns = nil;
     
     //Extract and resize image
     cover = [[NSImage alloc] initWithData:coverData];
-    [cover retain];
-    [coverData release];
     
-    haveCheckedForCover= true;
+    haveCheckedForCover= YES;
     
     return cover;
 }
@@ -507,9 +500,9 @@ static NSMutableDictionary *xmlns = nil;
     {
         if([[[item attributeForName:@"event"] stringValue] caseInsensitiveCompare:@"publication"] == NSOrderedSame) {
             publicationDate = [NSDate dateFromOPFString:[item stringValue]];
-            [publicationDate retain];
         }        
     }
+    [publicationDate retain];
         
     return publicationDate;
 }
