@@ -1,18 +1,22 @@
 # An EPUB QuickLook generator and Spotlight importer for Mac OS X
 
-The epub.qlgenerator plugin is designed to extract the cover images from ePub files to use as the file icon, and present a nice overview of the ePub in QuickLook.
+The epub.qlgenerator plugin is designed to extract the cover images from EPUB files to use as the file icon, and present a nice overview of the EPUB in QuickLook.
 
-The epub.mdimporter plugin is designed to extract information from ePub files (including text content) and index it so that Spotlight can search it.
+The epub.mdimporter plugin is designed to extract information from EPUB files (metadata as well as text content) and index it so that Spotlight can search it.
 
-These plugins read the various information directly from the ePub contents - so will work on books that haven't been imported into iTunes.
+These plugins read the various information directly from the EPUB contents - so will work on books that haven't been imported into iTunes.
 
-**Note**: When used on DRM protected files (Adobe, iBooks, Kobo, Barnes & Noble), metadata will only be read from the unencrypted part of the ePub. Typically this means no cover image will be shown. Spotlight is unable to index the text in DRM protected files.
+**Note**: When used on DRM protected files (Adobe, iBooks, Kobo, Barnes & Noble), metadata will only be read from the unencrypted part of the EPUB. Typically this means no cover image will be shown. Spotlight is also unable to index the text in DRM protected files, though it can still search the metadata in DRM protected files.
 
 ## Installation
 
 Place the epub.qlgenerator file into `/Library/QuickLook` (for all users) or `~/Library/QuickLook` (for the current user only).
 
+The Mac should notice the plugin appearing and start using it automatically. If it doesn't seem to, try logging out and in again, or run Terminal.app and enter this command: `qlmanage -r` and press return.
+
 Place the epub.mdimporter file into `/Library/Spotlight` (for all users) or `~/Library/Spotlight` (for the current user only).
+
+To use the new Spotlight plugin you have to first make it index your EPUB files. Run Terminal.app and enter this command: `mdimport -r /Library/Spotlight/epub.mdimporter` (or `mdimport -r ~/Library/Spotlight/epub.mdimporter` if you installed it for the current user only) and press return. Spotlight will begin indexing your EPUB files in the background.
 
 ### Conflict with other QuickLook generators
 
