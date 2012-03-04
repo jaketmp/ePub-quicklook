@@ -52,16 +52,35 @@
         [spotlightData setObject:isbn forKey:(NSString *)kMDItemIdentifier];
 
     // publicationDate  not kMDItemContentCreationDate
+    
+    // expiryDate       kMDItemDueDate (date)
+    NSDate *expiryDate = [epub expiryDate];
+    if (expiryDate)
+        [spotlightData setObject:expiryDate forKey:(NSString *)kMDItemDueDate];
 
     // drm              kMDItemSecurityMethod (string)
     NSString *drm = [epub drm];
     if ([drm isEqualToString:@""]) drm = @"None"; // PDF uses "None" explicitly
     [spotlightData setObject:drm forKey:(NSString *)kMDItemSecurityMethod];
 
-    // expiryDate       kMDItemDueDate (date)
-    NSDate *expiryDate = [epub expiryDate];
-    if (expiryDate)
-        [spotlightData setObject:expiryDate forKey:(NSString *)kMDItemDueDate];
+    // Don't try to extract text if there's any DRM
+    if ([drm isEqualToString:@"None"]) {
+        NSMutableString *content = [[NSMutableString alloc] init];
+        NSString *text;
+        NSUInteger file = 0;
+        do {
+            text = [epub textFromManifestItem:file];
+            file++;
+            if (text)
+                [content appendString:text];
+        } while (text);
+        NSString *tmp = [NSString stringWithFormat:@"Indexed %lu", [content length]];
+        [spotlightData setObject:tmp forKey:(NSString *)kMDItemComment];
+        [spotlightData setObject:content forKey:(NSString *)kMDItemTextContent];
+        [content release];
+    } else {
+        [spotlightData setObject:@"No indexed content" forKey:(NSString *)kMDItemComment];
+    }
 
     [epub release];
     return YES;
