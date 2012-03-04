@@ -101,7 +101,6 @@
 		235DC65914EFB3C800D28657 /* GetMetadataForFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
 		235DC65B14EFB3C800D28657 /* MySpotlightImporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySpotlightImporter.h; sourceTree = "<group>"; };
 		235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
-		235DC65E14EFB3C800D28657 /* Importer Read Me.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Importer Read Me.txt"; sourceTree = "<group>"; };
 		235DC65F14EFB3C800D28657 /* epubMDI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "epubMDI-Prefix.pch"; sourceTree = "<group>"; };
 		6709959514FA89B600EEEFA6 /* test.ibooks */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.ibooks; sourceTree = "<group>"; };
 		674566931502B4810012224C /* entities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entities.plist; sourceTree = "<group>"; };
@@ -213,7 +212,6 @@
 				235DC65914EFB3C800D28657 /* GetMetadataForFile.m */,
 				235DC65B14EFB3C800D28657 /* MySpotlightImporter.h */,
 				235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */,
-				235DC65E14EFB3C800D28657 /* Importer Read Me.txt */,
 				235DC65214EFB3C800D28657 /* Supporting Files */,
 			);
 			path = epubMDI;
