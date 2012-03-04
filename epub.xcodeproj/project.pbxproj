@@ -51,6 +51,7 @@
 		675FAB5C14D9BF780065603A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
 		6783BD9F14FA8C1C00696991 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		67909CE914F37D9E009819B2 /* NSDate+OPF.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */; };
+		67932B221503FEA600D61278 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 67932B211503FEA600D61278 /* schema.xml */; };
 		67BE43EE14DEC886003C7DFC /* fake-adept.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EB14DEC886003C7DFC /* fake-adept.epub */; };
 		67BE43EF14DEC886003C7DFC /* fake-fairplay.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */; };
 		67BE43F014DEC886003C7DFC /* fake-kobo.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43ED14DEC886003C7DFC /* fake-kobo.epub */; };
@@ -121,6 +122,7 @@
 		675FAB4A14D9B8760065603A /* EpubTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpubTests.h; sourceTree = "<group>"; };
 		675FAB4B14D9B8760065603A /* EpubTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpubTests.m; sourceTree = "<group>"; };
 		675FAB4D14D9B8760065603A /* EpubTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EpubTests-Prefix.pch"; sourceTree = "<group>"; };
+		67932B211503FEA600D61278 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema.xml; sourceTree = "<group>"; };
 		67BE43EB14DEC886003C7DFC /* fake-adept.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-adept.epub"; sourceTree = "<group>"; };
 		67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-fairplay.epub"; sourceTree = "<group>"; };
 		67BE43ED14DEC886003C7DFC /* fake-kobo.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-kobo.epub"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				235DC65414EFB3C800D28657 /* InfoPlist.strings */,
 				235DC65714EFB3C800D28657 /* main.c */,
 				235DC65F14EFB3C800D28657 /* epubMDI-Prefix.pch */,
+				67932B211503FEA600D61278 /* schema.xml */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 			files = (
 				235DC65614EFB3C800D28657 /* InfoPlist.strings in Resources */,
 				674566961502B4810012224C /* entities.plist in Resources */,
+				67932B221503FEA600D61278 /* schema.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

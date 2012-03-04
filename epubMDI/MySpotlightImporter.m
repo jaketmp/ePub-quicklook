@@ -39,7 +39,14 @@
         [spotlightData setObject:editors forKey:(NSString *)kMDItemEditors];
 
     // illustrators
+    NSArray *illustrators = [epub illustrators];
+    if ([illustrators count] > 0)
+        [spotlightData setObject:illustrators forKey:@"org_idpf_epub_container_metadata_illustrators"];
+
     // translators
+    NSArray *translators = [epub translators];
+    if ([translators count] > 0)
+        [spotlightData setObject:translators forKey:@"org_idpf_epub_container_metadata_translators"];
 
     // synopsis         kMDItemHeadline ?
     NSString *synopsis = [[epub synopsis] stringByStrippingHTML];
@@ -74,12 +81,12 @@
             if (text)
                 [content appendString:text];
         } while (text);
-        NSString *tmp = [NSString stringWithFormat:@"Indexed %lu", [content length]];
-        [spotlightData setObject:tmp forKey:(NSString *)kMDItemComment];
+        //NSString *tmp = [NSString stringWithFormat:@"Indexed %lu", [content length]];
+        //[spotlightData setObject:tmp forKey:(NSString *)kMDItemComment];
         [spotlightData setObject:content forKey:(NSString *)kMDItemTextContent];
         [content release];
     } else {
-        [spotlightData setObject:@"No indexed content" forKey:(NSString *)kMDItemComment];
+        //[spotlightData setObject:@"No indexed content" forKey:(NSString *)kMDItemComment];
     }
 
     [epub release];
