@@ -6,4 +6,6 @@
   Copyright (c) 2012 Chris Ridd. All rights reserved.
 */
 org_idpf_epub_container_metadata_illustrators = "Illustrators";
+org_idpf_epub_container_metadata_illustrators.Description = "Person or organization who illustrates a written text";
 org_idpf_epub_container_metadata_translators = "Translators";
+org_idpf_epub_container_metadata_translators.Description = "Person or organization who translates a text from one language into another";
