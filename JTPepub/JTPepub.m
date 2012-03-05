@@ -35,11 +35,6 @@ static NSMutableDictionary *xmlns = nil;
     }
 }
 
-- (id)init
-{
-    return [self initWithFile:nil];
-}
-
 - (id)initWithFile:(NSString *)fileName
 {
     self = [super init];
