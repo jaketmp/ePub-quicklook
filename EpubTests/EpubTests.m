@@ -116,6 +116,18 @@
     STAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author is wrong");
 }
 
+#pragma mark Text Extraction
+- (void)testExtractUntitled
+{
+    NSUInteger i = 0;
+    NSString *text;
+    do {
+        text = [untitledFile textFromManifestItem:i];
+        i++;
+    } while (text);
+    STAssertTrue(i == 4, @"wrong number of chapters");
+}
+
 #pragma mark Test HTML escaping/stripping
 - (void)testEscapingPlain
 {
