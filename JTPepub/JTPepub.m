@@ -35,20 +35,15 @@ static NSMutableDictionary *xmlns = nil;
     }
 }
 
-- (id)init
-{
-    return [self initWithFile:nil];
-}
-
 - (id)initWithFile:(NSString *)fileName
 {
     self = [super init];
     if (self) {
         bookType = jtpUnknownBook;
-        haveCheckedForCover = false;
+        haveCheckedForCover = NO;
         
         // Properly handle failing to load fileName;
-        if (![self openEPUBFile:fileName]){
+        if ([self openEPUBFile:fileName] == NO){
             [self release];
             return nil;
         }
@@ -62,7 +57,7 @@ static NSMutableDictionary *xmlns = nil;
 - (BOOL)openEPUBFile:(NSString*)fileName {
     // We're not reusable, so if we've already opened an epub, return.
     if (epubFile) {
-        return FALSE;
+        return NO;
     }
     epubFile = [[ZipArchive alloc] initWithZipFile:(NSString*)fileName];
     
@@ -86,12 +81,11 @@ static NSMutableDictionary *xmlns = nil;
         // Not a format we understand.
         bookType = jtpUnknownBook;
         //[epubFile release]; - We release this when we fail to init and call [self release].
-        return FALSE;
+        return NO;
     }
     
     // Read the container.xml to find the root file.    
     NSData *container = [epubFile dataForNamedFile:@"META-INF/container.xml"];
-    [container retain];
     
     NSError *xmlError;
     GDataXMLDocument *containerXML = [[GDataXMLDocument alloc] initWithData:container options:0 error:&xmlError];
@@ -105,12 +99,10 @@ static NSMutableDictionary *xmlns = nil;
     if([rootFileType caseInsensitiveCompare:@"application/oebps-package+xml"] == NSOrderedSame) {
         rootFilePath = [[[[rootFile objectAtIndex:0] attributeForName:@"full-path"] stringValue] retain];
     }else{
-        [container release];
         [containerXML release];
-        return FALSE;
+        return NO;
     }
     // Tidy
-    [container release];
     [containerXML release];
     
     
@@ -119,9 +111,7 @@ static NSMutableDictionary *xmlns = nil;
      * and identify the epub version.
      */
     NSData *content = [epubFile dataForNamedFile:rootFilePath];
-    [content retain];
     opfXML = [[GDataXMLDocument alloc] initWithData:content options:0 error:&xmlError];
-    [content release];
     
     //
     NSArray *metaElements = [opfXML nodesForXPath:@"//opf:package"
@@ -137,9 +127,81 @@ static NSMutableDictionary *xmlns = nil;
     }
     
     
-    return TRUE;
+    return YES;
 }
 
+- (NSString *)textFromManifestItem:(NSUInteger)n
+{
+    NSError *error;
+    if (manifest == nil) {
+        manifest = [[NSMutableArray alloc] init];
+        NSArray *items = [opfXML nodesForXPath:@"//opf:item[@media-type='application/xhtml+xml']"
+                                    namespaces:xmlns
+                                         error:&error];
+        for (id item in items) {
+            [manifest addObject:[[item attributeForName:@"href"] stringValue]];
+        }
+    }
+
+    // Return an item from the manifest
+    if (n >= [manifest count])
+        return nil;
+
+    NSString *contentRoot = [rootFilePath stringByDeletingLastPathComponent];
+    NSArray *textPathArray = [NSArray arrayWithObjects:contentRoot, [manifest objectAtIndex:n], nil];
+    NSString *path = [NSString pathWithComponents:textPathArray];
+
+    NSData *content = [epubFile dataForNamedFile:path];
+
+    // SAX-based conversion
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
+    [parser setDelegate:(id<NSXMLParserDelegate>)self];
+    [parser parse];
+    [parser release];
+    NSMutableString *plain = capturing;
+    capturing = nil;
+    return plain;
+}
+
+#pragma mark NSXMLParser delegate methods
+
+// Start capturing text when we get to the <body>
+- (void)parser:(NSXMLParser *)parser
+didStartElement:(NSString *)elementName
+  namespaceURI:(NSString *)namespaceURI
+ qualifiedName:(NSString *)qName
+    attributes:(NSDictionary *)attributeDict
+{
+    if (capturing)
+        return;
+    if ([@"body" isEqualToString:elementName])
+        capturing = [NSMutableString string];
+}
+
+- (void)parser:(NSXMLParser *)parser
+foundCharacters:(NSString *)string
+{
+    [capturing appendString:string];
+}
+
+// When we get an &foo; this is called with entityName=foo.
+// Lazily load in the named entities specified for XHTML from
+// a plist.
+- (NSData *)parser:(NSXMLParser *)parser
+resolveExternalEntityName:(NSString *)entityName
+          systemID:(NSString *)systemID
+{
+    if (entities == nil) {
+        NSBundle *b = [NSBundle bundleForClass:[self class]];
+        NSString *path = [b pathForResource:@"entities" ofType:@"plist"];
+        entities = [NSDictionary dictionaryWithContentsOfFile:path];
+        [entities retain];
+    }
+    NSString *s = [entities valueForKey:entityName];
+    return [s dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+#pragma mark Metadata extraction methods
 - (NSString *)title
 {
     // If the title has been set, return it.
@@ -402,7 +464,7 @@ static NSMutableDictionary *xmlns = nil;
             }
         }
         if(coverID == nil) {
-            haveCheckedForCover = true;
+            haveCheckedForCover = YES;
             return nil; // No cover in this epub.
         }
         
@@ -430,7 +492,7 @@ static NSMutableDictionary *xmlns = nil;
      */
     
     if(coverPath == nil) {
-        haveCheckedForCover = true;
+        haveCheckedForCover = YES;
         return nil; // No cover in this epub.
     }
     
@@ -445,10 +507,8 @@ static NSMutableDictionary *xmlns = nil;
     
     //Extract and resize image
     cover = [[NSImage alloc] initWithData:coverData];
-    [cover retain];
-    [coverData release];
     
-    haveCheckedForCover= true;
+    haveCheckedForCover= YES;
     
     return cover;
 }
@@ -507,9 +567,9 @@ static NSMutableDictionary *xmlns = nil;
     {
         if([[[item attributeForName:@"event"] stringValue] caseInsensitiveCompare:@"publication"] == NSOrderedSame) {
             publicationDate = [NSDate dateFromOPFString:[item stringValue]];
-            [publicationDate retain];
         }        
     }
+    [publicationDate retain];
         
     return publicationDate;
 }
@@ -635,6 +695,9 @@ static NSMutableDictionary *xmlns = nil;
 - (void)dealloc
 {
     [epubFile release];
+    [manifest release];
+    [capturing release];
+    [entities release];
     [title release];
     [publisher release];
     [authors release];

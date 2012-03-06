@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.0" xmlns="http://www.apple.com/metadata"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.apple.com/metadata
+    file:///System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Resources/MetadataSchema.xsd">
+    <note>
+        Custom attributes indexed by this EPUB metadata importer.
+    </note>
+    <attributes>
+        <attribute name="org_idpf_epub_container_metadata_illustrators" multivalued="true" type="CFString"/>
+        <attribute name="org_idpf_epub_container_metadata_translators" multivalued="true" type="CFString"/>
+    </attributes>
+    <types>
+        <type name="org.idpf.epub-container">
+            <allattrs>
+                kMDItemDisplayName
+                kMDItemAuthors
+                kMDItemPublishers
+                kMDItemContributors
+                kMDItemEditors
+                org_idpf_epub_container_metadata_illustrators
+                org_idpf_epub_container_metadata_translators
+                kMDItemHeadline
+                kMDItemIdentifier
+                kMDItemDueDate
+                kMDItemSecurityMethod
+                kMDItemComment
+                kMDItemTextContent
+            </allattrs>
+            <displayattrs>
+                kMDItemDisplayName
+                kMDItemAuthors
+                kMDItemPublishers
+                kMDItemDueDate
+                kMDItemSecurityMethod
+            </displayattrs>
+        </type>
+    </types>
+</schema>

@@ -23,6 +23,9 @@ typedef enum {
     ZipArchive *epubFile;
     JTPbookType bookType;
     NSInteger epubVersion;
+    NSMutableArray *manifest;
+    NSMutableString *capturing;
+    NSDictionary *entities;
     NSString *title;
     NSArray *authors;
     NSString *publisher;
@@ -40,9 +43,10 @@ typedef enum {
     NSString *drm;
     NSDate *expiryDate;
 }
-- (id) initWithFile:(NSString *)fileName;
+- (id)initWithFile:(NSString *)fileName;
 - (BOOL)openEPUBFile:(NSString*)fileName;
 
+- (NSString *)textFromManifestItem:(NSUInteger)n;
 - (NSString *)title;
 - (NSArray *)authors;
 - (NSString *)publisher;
