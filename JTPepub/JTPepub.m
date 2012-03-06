@@ -131,7 +131,7 @@ static NSMutableDictionary *xmlns = nil;
     NSString *versionText = [[[metaElements lastObject] attributeForName:@"version"] stringValue];
     
     epubVersion = [versionText integerValue];
-    // Be default we assume epub 2 - this might be better as a switch stament if we ever need to handle many for combinations.
+    // By default we assume epub 2 - this might be better as a switch stament if we ever need to handle many more combinations.
     if (epubVersion == 3) {
         bookType = jtpEPUB3;
     }
