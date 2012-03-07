@@ -277,4 +277,19 @@
     }
 }
 
+#pragma mark Test language
+- (void)testUntitledLanguage
+{
+    NSArray *actual = [untitledFile language];
+    NSArray *expected = [NSArray arrayWithObject:@"en"];
+    
+    STAssertTrue([actual count] == [expected count], @"Untitled file has wrong number of languages");
+
+    for (id item in expected) {
+        STAssertTrue([actual containsObject:item], @"Language is missing");
+    }
+
+}
+
+
 @end
