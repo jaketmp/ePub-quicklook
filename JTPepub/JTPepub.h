@@ -40,6 +40,7 @@ typedef enum {
     NSImage *cover;
     BOOL haveCheckedForCover;
     NSDate *publicationDate;
+    NSMutableArray *language;
     NSString *drm;
     NSDate *expiryDate;
 }
@@ -60,5 +61,6 @@ typedef enum {
 - (NSString *)isbn;
 - (NSString *)drm;
 - (NSDate *)expiryDate;
+- (NSMutableArray *)language;
 
 @end

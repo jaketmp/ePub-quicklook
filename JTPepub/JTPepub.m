@@ -213,6 +213,16 @@ resolveExternalEntityName:(NSString *)entityName
     // Otherwise load it.
     NSError *xmlError = nil;
 
+    /*
+     * Split title lookup based on epub 2 / 3. For epub 2, just look for dc:title. With epub 3, try the epub 2
+     * method, and if this fails look for:
+     *  <meta property="dcterms:title" id="dcterms-title">Title</meta>
+     *  <meta about="#dcterms-title" property="title-type">primary</meta>
+     * pairs.
+     * 
+     * Should we be return an array of the title and each subtitle? Or just concatenating them all?
+     */
+    
     // scan for a <dc:title> element
     NSArray *metaElements = [opfXML nodesForXPath:@"//dc:title"
                                        namespaces:xmlns
@@ -691,6 +701,60 @@ resolveExternalEntityName:(NSString *)entityName
     (void)[self drm];
     return expiryDate;
 }
+/*
+ * Return an array of RFC5646 languange identifiers.
+ */
+- (NSArray *)language
+{
+    if (language) {
+        return language;
+    }
+    
+    language = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    NSError *xmlError = nil;
+    
+    NSArray *metaElements = [opfXML nodesForXPath:@"//dc:language"
+                                       namespaces:xmlns
+                                            error:&xmlError];
+    
+    // Check the array isn't empty.
+    if ([metaElements count] == 0) {
+        // No <dc:language>s found - we should never get here in a valid epub!
+        return language;
+    }
+
+    // Enumerate over the elements we found.
+    for(id item in metaElements)
+    {        
+        [language addObject:[item stringValue]];
+    }
+    
+
+    /*
+     * ePub 3 can also list languages in <meta> elements.
+     */
+    if (epubVersion == 3) {
+        
+        NSArray *metaElements = [opfXML nodesForXPath:@"//meta[@property='dcterms:language']"
+                                           namespaces:xmlns
+                                                error:&xmlError];
+        
+        // Check the array isn't empty.
+        if ([metaElements count] == 0) {
+            return language;
+        }
+        // Enumerate over the elements we found.
+        for(id item in metaElements)
+        {        
+            [language addObject:[item stringValue]];
+        }
+
+    }
+    
+    
+    return language;
+}
 
 - (void)dealloc
 {
@@ -713,6 +777,7 @@ resolveExternalEntityName:(NSString *)entityName
     [expiryDate release];
     [rootFilePath release];
     [publicationDate release];
+    [language release];
 
     [super dealloc];
 }
