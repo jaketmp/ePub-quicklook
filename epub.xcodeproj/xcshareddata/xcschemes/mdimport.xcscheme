@@ -64,6 +64,10 @@
             argument = "&quot;$(SRCROOT)/EpubTests/Untitled.epub&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;$(SRCROOT)/EpubTests/9780316000000_MobyDick_r2.epub&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>

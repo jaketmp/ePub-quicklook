@@ -88,7 +88,13 @@
     } else {
         //[spotlightData setObject:@"No indexed content" forKey:(NSString *)kMDItemComment];
     }
-
+    
+    // language     kMDItemLanguages (string)
+    NSArray *language = [epub language];
+    if ([language count] > 0)
+        [spotlightData setObject:language forKey:(NSString *)kMDItemLanguages];
+    
+    
     [epub release];
     return YES;
 }
