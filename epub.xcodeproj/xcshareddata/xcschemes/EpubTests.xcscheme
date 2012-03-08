@@ -21,6 +21,11 @@
                BlueprintName = "EpubTests"
                ReferencedContainer = "container:epub.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "EpubTests/testStress">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

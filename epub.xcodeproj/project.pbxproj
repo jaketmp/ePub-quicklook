@@ -62,6 +62,22 @@
 		67E3077514E9A24A0004C1D8 /* NSDate+OPF.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */; };
 		67F77F9214E7B25000D9D71D /* fake-bn.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67F77F9114E7B25000D9D71D /* fake-bn.epub */; };
 		D727FC8413D771B200CB5355 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
+		D740FBDD15091EA7002D9C76 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235DC64D14EFB3C800D28657 /* CoreData.framework */; };
+		D740FBDE15091EA7002D9C76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235DC64F14EFB3C800D28657 /* Foundation.framework */; };
+		D740FBE115091EA7002D9C76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D740FBE015091EA7002D9C76 /* main.m */; };
+		D740FBED15092155002D9C76 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
+		D740FBEF15092155002D9C76 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
+		D740FBF115092155002D9C76 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
+		D740FBF315092155002D9C76 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		D740FBF615092155002D9C76 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
+		D740FBF815092155002D9C76 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
+		D740FBFA15092155002D9C76 /* JTPepub.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BA76D1360A90A000EB558 /* JTPepub.m */; };
+		D740FBFC15092155002D9C76 /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
+		D740FBFE15092155002D9C76 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
+		D740FC0015092155002D9C76 /* NSDate+OPF.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */; };
+		D740FC01150921A6002D9C76 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783888213548ADA00E7937B /* AppKit.framework */; };
+		D740FC02150921BC002D9C76 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D727FC8313D771B200CB5355 /* libz.dylib */; };
+		D740FC03150921D7002D9C76 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D76675C514CECDFF003850E7 /* libxml2.dylib */; };
 		D749581E14DD800D0048D619 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D78388591354890700E7937B /* InfoPlist.strings */; };
 		D749582414DD82360048D619 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D749582614DD82360048D619 /* Localizable.strings */; };
 		D76675C114CECD50003850E7 /* GDataXMLNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D76675BF14CECD50003850E7 /* GDataXMLNode.h */; };
@@ -92,6 +108,18 @@
 		D7DA65C513D77CCD006BED29 /* leopard.css in Resources */ = {isa = PBXBuildFile; fileRef = D7DA65C413D77CCD006BED29 /* leopard.css */; };
 		D7E5A5C81386A9F7007EB5E9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = D7E5A5C71386A9F7007EB5E9 /* index.html */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D740FBD915091EA7002D9C76 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		235DC64A14EFB3C800D28657 /* epub.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +161,9 @@
 		67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+OPF.m"; sourceTree = "<group>"; };
 		67F77F9114E7B25000D9D71D /* fake-bn.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-bn.epub"; sourceTree = "<group>"; };
 		D727FC8313D771B200CB5355 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D740FBDB15091EA7002D9C76 /* StressTests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StressTests; sourceTree = BUILT_PRODUCTS_DIR; };
+		D740FBE015091EA7002D9C76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D740FBE315091EA7002D9C76 /* StressTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StressTests-Prefix.pch"; sourceTree = "<group>"; };
 		D749582514DD82360048D619 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = JTPepub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
 		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = JTPepub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
@@ -190,6 +221,18 @@
 				675FAB5314D9BD6D0065603A /* libz.dylib in Frameworks */,
 				675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */,
 				675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D740FBD815091EA7002D9C76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D740FC03150921D7002D9C76 /* libxml2.dylib in Frameworks */,
+				D740FC02150921BC002D9C76 /* libz.dylib in Frameworks */,
+				D740FC01150921A6002D9C76 /* AppKit.framework in Frameworks */,
+				D740FBDD15091EA7002D9C76 /* CoreData.framework in Frameworks */,
+				D740FBDE15091EA7002D9C76 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +340,23 @@
 			name = "Test Files";
 			sourceTree = "<group>";
 		};
+		D740FBDF15091EA7002D9C76 /* StressTests */ = {
+			isa = PBXGroup;
+			children = (
+				D740FBE015091EA7002D9C76 /* main.m */,
+				D740FBE215091EA7002D9C76 /* Supporting Files */,
+			);
+			path = StressTests;
+			sourceTree = "<group>";
+		};
+		D740FBE215091EA7002D9C76 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D740FBE315091EA7002D9C76 /* StressTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D76675C414CECD57003850E7 /* Supporting Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +374,7 @@
 				235DC65114EFB3C800D28657 /* epubMDI */,
 				235DC66414EFB43500D28657 /* JTPepub */,
 				675FAB4414D9B8760065603A /* EpubTests */,
+				D740FBDF15091EA7002D9C76 /* StressTests */,
 				D783884D1354890700E7937B /* Frameworks */,
 				D783884C1354890700E7937B /* Products */,
 			);
@@ -325,6 +386,7 @@
 				D783884B1354890700E7937B /* epub.qlgenerator */,
 				675FAB3B14D9B8760065603A /* EpubTests.octest */,
 				235DC64A14EFB3C800D28657 /* epub.mdimporter */,
+				D740FBDB15091EA7002D9C76 /* StressTests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -459,6 +521,23 @@
 			productReference = 675FAB3B14D9B8760065603A /* EpubTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		D740FBDA15091EA7002D9C76 /* StressTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D740FBE915091EA7002D9C76 /* Build configuration list for PBXNativeTarget "StressTests" */;
+			buildPhases = (
+				D740FBD715091EA7002D9C76 /* Sources */,
+				D740FBD815091EA7002D9C76 /* Frameworks */,
+				D740FBD915091EA7002D9C76 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StressTests;
+			productName = StressTests;
+			productReference = D740FBDB15091EA7002D9C76 /* StressTests */;
+			productType = "com.apple.product-type.tool";
+		};
 		D783884A1354890700E7937B /* epubQL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D78388651354890700E7937B /* Build configuration list for PBXNativeTarget "epubQL" */;
@@ -502,6 +581,7 @@
 				D783884A1354890700E7937B /* epubQL */,
 				675FAB3A14D9B8760065603A /* EpubTests */,
 				235DC64914EFB3C800D28657 /* epubMDI */,
+				D740FBDA15091EA7002D9C76 /* StressTests */,
 			);
 		};
 /* End PBXProject section */
@@ -610,6 +690,24 @@
 				675FAB5714D9BF030065603A /* NSString+HTML.m in Sources */,
 				675FAB5514D9BEFB0065603A /* GDataXMLNode.m in Sources */,
 				67E3077514E9A24A0004C1D8 /* NSDate+OPF.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D740FBD715091EA7002D9C76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D740FBED15092155002D9C76 /* ioapi.c in Sources */,
+				D740FBEF15092155002D9C76 /* mztools.c in Sources */,
+				D740FBF115092155002D9C76 /* unzip.c in Sources */,
+				D740FBF315092155002D9C76 /* zip.c in Sources */,
+				D740FBF615092155002D9C76 /* ZipArchive.mm in Sources */,
+				D740FBF815092155002D9C76 /* GDataXMLNode.m in Sources */,
+				D740FBFA15092155002D9C76 /* JTPepub.m in Sources */,
+				D740FBFC15092155002D9C76 /* NSArray+HTML.m in Sources */,
+				D740FBFE15092155002D9C76 /* NSString+HTML.m in Sources */,
+				D740FC0015092155002D9C76 /* NSDate+OPF.m in Sources */,
+				D740FBE115091EA7002D9C76 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +849,42 @@
 			};
 			name = Release;
 		};
+		D740FBEA15091EA7002D9C76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StressTests/StressTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+			};
+			name = Debug;
+		};
+		D740FBEB15091EA7002D9C76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StressTests/StressTests-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+			};
+			name = Release;
+		};
 		D78388631354890700E7937B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -838,6 +972,15 @@
 			buildConfigurations = (
 				675FAB4E14D9B8760065603A /* Debug */,
 				675FAB4F14D9B8760065603A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D740FBE915091EA7002D9C76 /* Build configuration list for PBXNativeTarget "StressTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D740FBEA15091EA7002D9C76 /* Debug */,
+				D740FBEB15091EA7002D9C76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
