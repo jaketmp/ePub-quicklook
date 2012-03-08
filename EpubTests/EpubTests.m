@@ -290,6 +290,22 @@
     }
 
 }
+- (void)testMetadataLanguage
+{
+    NSArray *actual = [metadataFile language];
+    NSArray *expected = [NSArray arrayWithObjects:@"en",
+                                                  @"fr",
+                                                  @"ga",
+                                                  @"ja",
+                                                  @"km", nil];
+    
+    STAssertTrue([actual count] == [expected count], @"Metadata file has wrong number of languages");
+    
+    for (id item in expected) {
+        STAssertTrue([actual containsObject:item], @"Language is missing");
+    }
+    
+}
 
 
 @end
