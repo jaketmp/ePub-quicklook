@@ -10,6 +10,8 @@ These plugins read the various information directly from the EPUB contents - so 
 
 ## Installation
 
+After downloading and opening the **ePub Plugins.dmg** disk image in the **Downloads** tab above, drag each of the plugins to the folder indicated. This will install the plugins for the current user. Advanced users who wish to install the plugins for all users on a Mac can follow the instructions below.
+
 Place the **epub.qlgenerator** file into `/Library/QuickLook` (for all users) or `~/Library/QuickLook` (for the current user only).
 
 The Mac should notice the plugin appearing and start using it automatically. If it doesn't seem to, try logging out and in again, or run Terminal.app and enter this command:
