@@ -80,9 +80,12 @@ static NSMutableDictionary *xmlns = nil;
     } else {
         // Not a format we understand.
         bookType = jtpUnknownBook;
+        [mimetype release];
         //[epubFile release]; - We release this when we fail to init and call [self release].
         return NO;
     }
+    
+    [mimetype release];
     
     // Read the container.xml to find the root file.    
     NSData *container = [epubFile dataForNamedFile:@"META-INF/container.xml"];
@@ -517,6 +520,7 @@ resolveExternalEntityName:(NSString *)entityName
     
     //Extract and resize image
     cover = [[NSImage alloc] initWithData:coverData];
+    [coverData release];
     
     haveCheckedForCover= YES;
     
