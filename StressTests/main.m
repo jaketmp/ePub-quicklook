@@ -26,14 +26,14 @@ int main(int argc, const char * argv[])
         
         // Using 'NSASCIIStringEncoding' here is suspect...
         NSString *epubPath = [[NSString alloc] initWithCString:argv[1] encoding:NSASCIIStringEncoding];
-        int innerLoop = 1000;
-        int outerLoop = 10000;
+        int innerLoop = 100;
+        int outerLoop = 7;
         
         // Two loops so we can periodicly emplty the autorelease pool
-        for (int i; i < outerLoop; i++) {
+        for (int i = 0; i < outerLoop; i++) {
             NSAutoreleasePool *loopPool = [[NSAutoreleasePool alloc] init];
             
-            for (int j; j < innerLoop; j++) {
+            for (int j = 0; j < innerLoop; j++) {
                 JTPepub *epub = [[JTPepub alloc] initWithFile:epubPath];
                 
                 NSString *title = [epub title];
@@ -50,12 +50,20 @@ int main(int argc, const char * argv[])
                 NSString *drm = [epub drm];
                 NSMutableArray *language = [epub language];
                 
+                
+                [epub release];
+                
             }
             
             [loopPool release];
-        }
+            NSLog(@"outer iteration %i", i);
 
+        }
+        [epubPath release];
     }
+    
+    
+    NSLog(@"done");
     return 0;
 }
 
