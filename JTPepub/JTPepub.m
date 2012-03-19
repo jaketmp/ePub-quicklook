@@ -428,7 +428,7 @@ resolveExternalEntityName:(NSString *)entityName
     
     NSError *xmlError = nil;
     NSString *coverPath = nil;
-    NSString *coverMIME = nil;
+    //NSString *coverMIME = nil;
 
     /*
      * Branch based on epub version, if epub3, look for 'properties="cover-image"'
@@ -447,7 +447,7 @@ resolveExternalEntityName:(NSString *)entityName
             
             // There may only be one "cover-image" so take the last element of the array.
             coverPath = [[[metaElements lastObject] attributeForName:@"href"] stringValue];
-            coverMIME = [[[metaElements lastObject] attributeForName:@"media-type"] stringValue];
+            //coverMIME = [[[metaElements lastObject] attributeForName:@"media-type"] stringValue];
             
             
         }
@@ -494,7 +494,7 @@ resolveExternalEntityName:(NSString *)entityName
             
             if([itemID caseInsensitiveCompare:coverID] == NSOrderedSame) {
                 coverPath = [[item attributeForName:@"href"] stringValue];
-                coverMIME = [[item attributeForName:@"media-type"] stringValue];
+                //coverMIME = [[item attributeForName:@"media-type"] stringValue];
                 break;
             }
         }
