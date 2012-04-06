@@ -300,11 +300,6 @@ resolveExternalEntityName:(NSString *)entityName
                                        namespaces:xmlns
                                             error:&xmlError];
     
-    // Check the array isn't empty.
-    if ([metaElements count] == 0) {
-        // No <dc:creator>s found
-        return [NSArray array];
-    }
     NSMutableArray *results = [NSMutableArray array];
     // Fast enumerate over meta elements
     for(id item in metaElements)
@@ -340,11 +335,6 @@ resolveExternalEntityName:(NSString *)entityName
                                        namespaces:xmlns
                                             error:&xmlError];
 
-    // Check the array isn't empty.
-    if ([metaElements count] == 0) {
-        // No <dc:contributor>s found
-        return [NSArray array];
-    }
     NSMutableArray *results = [NSMutableArray array];
     // Fast enumerate over meta elements
     for (id item in metaElements)
@@ -570,11 +560,6 @@ resolveExternalEntityName:(NSString *)entityName
                                        namespaces:xmlns
                                             error:&xmlError];
     
-    // Check the array isn't empty.
-    if ([metaElements count] == 0) {
-        // No <dc:date>s found
-        return nil;
-    }
     // Find the date of publication.
     // Fast enumerate over meta elements
     for(id item in metaElements)
@@ -705,6 +690,7 @@ resolveExternalEntityName:(NSString *)entityName
     (void)[self drm];
     return expiryDate;
 }
+
 /*
  * Return an array of RFC5646 languange identifiers.
  */
@@ -714,7 +700,7 @@ resolveExternalEntityName:(NSString *)entityName
         return language;
     }
     
-    language = [[NSMutableArray alloc] initWithCapacity:1];
+    language = [[NSMutableArray alloc] init];
     
     NSError *xmlError = nil;
     
@@ -722,12 +708,6 @@ resolveExternalEntityName:(NSString *)entityName
                                        namespaces:xmlns
                                             error:&xmlError];
     
-    // Check the array isn't empty.
-    if ([metaElements count] == 0) {
-        // No <dc:language>s found - we should never get here in a valid epub!
-        return language;
-    }
-
     // Enumerate over the elements we found.
     for(id item in metaElements)
     {        
@@ -744,10 +724,6 @@ resolveExternalEntityName:(NSString *)entityName
                                            namespaces:xmlns
                                                 error:&xmlError];
         
-        // Check the array isn't empty.
-        if ([metaElements count] == 0) {
-            return language;
-        }
         // Enumerate over the elements we found.
         for(id item in metaElements)
         {        
