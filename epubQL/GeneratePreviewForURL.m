@@ -115,7 +115,6 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
 
     /*
      * Other metadata goes into a table
-     * TODO: localise labels
      * TODO: avoid such intimate knowledge of the HTML
      */
     NSMutableString *metadata = [NSMutableString string];
@@ -188,6 +187,22 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
                                        value:@"expiry date" 
                                        table:nil],
          [formatter stringFromDate:[epubFile expiryDate]]];
+    }
+    if ([[epubFile language] count] > 0) {
+        NSMutableArray *langs = [NSMutableArray array];
+        for (id l in [epubFile language]) {
+            NSLocale *loc = [[NSLocale alloc] initWithLocaleIdentifier:l];
+            [langs addObject:[loc displayNameForKey:NSLocaleIdentifier value:l]];
+            [loc release];
+        }
+        [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
+         [[epubFile language] count] > 1 ? [pluginBundle localizedStringForKey:@"languages" 
+                                                                         value:@"languages" 
+                                                                         table:nil] : 
+         [pluginBundle localizedStringForKey:@"language" 
+                                       value:@"language" 
+                                       table:nil],
+         [langs escapedComponentsJoinedByString:@", "]];
     }
     if (![metadata isEqualToString:@""]) {
         [metadata insertString:@"<table>\n" atIndex:0];
