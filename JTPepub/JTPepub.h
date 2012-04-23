@@ -61,6 +61,6 @@ typedef enum {
 - (NSString *)isbn;
 - (NSString *)drm;
 - (NSDate *)expiryDate;
-- (NSMutableArray *)language;
+- (NSArray *)language;
 
 @end
