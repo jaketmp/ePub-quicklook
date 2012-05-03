@@ -151,7 +151,8 @@ static NSMutableDictionary *xmlns = nil;
         return nil;
 
     NSString *contentRoot = [rootFilePath stringByDeletingLastPathComponent];
-    NSArray *textPathArray = [NSArray arrayWithObjects:contentRoot, [manifest objectAtIndex:n], nil];
+    NSString *relativePath = [[manifest objectAtIndex:n] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSArray *textPathArray = [NSArray arrayWithObjects:contentRoot, relativePath, nil];
     NSString *path = [NSString pathWithComponents:textPathArray];
 
     NSData *content = [epubFile dataForNamedFile:path];
@@ -417,7 +418,7 @@ resolveExternalEntityName:(NSString *)entityName
     
     
     NSError *xmlError = nil;
-    NSString *coverPath = nil;
+    NSString *coverURI = nil;
     //NSString *coverMIME = nil;
 
     /*
@@ -436,7 +437,7 @@ resolveExternalEntityName:(NSString *)entityName
         if (metaElements != nil) {
             
             // There may only be one "cover-image" so take the last element of the array.
-            coverPath = [[[metaElements lastObject] attributeForName:@"href"] stringValue];
+            coverURI = [[[metaElements lastObject] attributeForName:@"href"] stringValue];
             //coverMIME = [[[metaElements lastObject] attributeForName:@"media-type"] stringValue];
             
             
@@ -448,8 +449,8 @@ resolveExternalEntityName:(NSString *)entityName
      * not specified.
      */
     
-    // Don't look for the coverPath if we already found it above.
-    if (coverPath == nil) {
+    // Don't look for the coverURI if we already found it above.
+    if (coverURI == nil) {
         // scan for a <meta> element with name="cover"
         NSArray *metaElements = [opfXML nodesForXPath:@"//opf:meta"
                                            namespaces:xmlns
@@ -483,7 +484,7 @@ resolveExternalEntityName:(NSString *)entityName
             NSString *itemID = [[item attributeForName:@"id"] stringValue];
             
             if([itemID caseInsensitiveCompare:coverID] == NSOrderedSame) {
-                coverPath = [[item attributeForName:@"href"] stringValue];
+                coverURI = [[item attributeForName:@"href"] stringValue];
                 //coverMIME = [[item attributeForName:@"media-type"] stringValue];
                 break;
             }
@@ -494,14 +495,14 @@ resolveExternalEntityName:(NSString *)entityName
      * Image loading code is generic for epub2/3
      */
     
-    if(coverPath == nil) {
+    if(coverURI == nil) {
         haveCheckedForCover = YES;
         return nil; // No cover in this epub.
     }
-    
-    
+
     // The cover path is relative to the rootfile...
     NSString *contentRoot = [rootFilePath stringByDeletingLastPathComponent];
+    NSString *coverPath = [coverURI stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSArray *coverPathArray = [NSArray arrayWithObjects:contentRoot, coverPath, nil];
     NSString *fullCoverPath = [NSString pathWithComponents:coverPathArray];
     
