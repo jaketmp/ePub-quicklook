@@ -782,7 +782,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = epub;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = mdimporter;
 			};
 			name = Debug;
@@ -804,7 +804,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = epub;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = mdimporter;
 			};
 			name = Release;
@@ -828,7 +828,7 @@
 				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -848,7 +848,7 @@
 				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -869,7 +869,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
 			name = Debug;
 		};
@@ -885,7 +885,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
 			name = Release;
 		};
@@ -936,7 +936,7 @@
 				INFOPLIST_FILE = "epubQL/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
 				PRODUCT_NAME = epub;
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
@@ -955,7 +955,7 @@
 				INFOPLIST_FILE = "epubQL/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
 				PRODUCT_NAME = epub;
-				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = qlgenerator;
 			};
