@@ -19,10 +19,9 @@
 		674566951502B4810012224C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674566931502B4810012224C /* entities.plist */; };
 		674566961502B4810012224C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674566931502B4810012224C /* entities.plist */; };
 		6749F2C814F2F1C4007AB6C4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
-		6749F2CA14F2F1EE007AB6C4 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
-		6749F2CB14F2F1F2007AB6C4 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
-		6749F2CC14F2F1F5007AB6C4 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
-		6749F2CD14F2F206007AB6C4 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		6749F2CA14F2F1EE007AB6C4 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; settings = {COMPILER_FLAGS = "-DUSE_FILE32API"; }; };
+		6749F2CC14F2F1F5007AB6C4 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; settings = {COMPILER_FLAGS = "-DNOUNCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
+		6749F2CD14F2F206007AB6C4 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; settings = {COMPILER_FLAGS = "-DNOCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
 		6749F2CE14F2F21A007AB6C4 /* JTPepub.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BA76D1360A90A000EB558 /* JTPepub.m */; };
 		6749F2CF14F2F247007AB6C4 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
 		6749F2D014F2F261007AB6C4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D76675C514CECDFF003850E7 /* libxml2.dylib */; };
@@ -35,7 +34,6 @@
 		67543ADF14E70B1600A42752 /* badcontributor.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67543ADE14E70B1600A42752 /* badcontributor.epub */; };
 		675F07F014E7190700FEFD90 /* metadata.epub in Resources */ = {isa = PBXBuildFile; fileRef = 675F07EE14E7190700FEFD90 /* metadata.epub */; };
 		675F07F114E7190700FEFD90 /* Untitled.epub in Resources */ = {isa = PBXBuildFile; fileRef = 675F07EF14E7190700FEFD90 /* Untitled.epub */; };
-		675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3C14D9B8760065603A /* SenTestingKit.framework */; };
 		675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675FAB3E14D9B8760065603A /* Cocoa.framework */; };
 		675FAB4C14D9B8760065603A /* EpubTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 675FAB4B14D9B8760065603A /* EpubTests.m */; };
 		675FAB5214D9BD5D0065603A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D76675C514CECDFF003850E7 /* libxml2.dylib */; };
@@ -45,10 +43,9 @@
 		675FAB5614D9BEFE0065603A /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
 		675FAB5714D9BF030065603A /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		675FAB5814D9BF390065603A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
-		675FAB5914D9BF690065603A /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
-		675FAB5A14D9BF6C0065603A /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
-		675FAB5B14D9BF740065603A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
-		675FAB5C14D9BF780065603A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		675FAB5914D9BF690065603A /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; settings = {COMPILER_FLAGS = "-DUSE_FILE32API"; }; };
+		675FAB5B14D9BF740065603A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; settings = {COMPILER_FLAGS = "-DNOUNCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
+		675FAB5C14D9BF780065603A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; settings = {COMPILER_FLAGS = "-DNOCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
 		6783BD9F14FA8C1C00696991 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		67909CE914F37D9E009819B2 /* NSDate+OPF.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */; };
 		67932B221503FEA600D61278 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 67932B211503FEA600D61278 /* schema.xml */; };
@@ -65,10 +62,9 @@
 		D740FBDD15091EA7002D9C76 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235DC64D14EFB3C800D28657 /* CoreData.framework */; };
 		D740FBDE15091EA7002D9C76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235DC64F14EFB3C800D28657 /* Foundation.framework */; };
 		D740FBE115091EA7002D9C76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D740FBE015091EA7002D9C76 /* main.m */; };
-		D740FBED15092155002D9C76 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
-		D740FBEF15092155002D9C76 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
-		D740FBF115092155002D9C76 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
-		D740FBF315092155002D9C76 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		D740FBED15092155002D9C76 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; settings = {COMPILER_FLAGS = "-DUSE_FILE32API"; }; };
+		D740FBF115092155002D9C76 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; settings = {COMPILER_FLAGS = "-DNOUNCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
+		D740FBF315092155002D9C76 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; settings = {COMPILER_FLAGS = "-DNOCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
 		D740FBF615092155002D9C76 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
 		D740FBF815092155002D9C76 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
 		D740FBFA15092155002D9C76 /* JTPepub.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BA76D1360A90A000EB558 /* JTPepub.m */; };
@@ -93,14 +89,11 @@
 		D783887E1354891800E7937B /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388731354891800E7937B /* ZipArchive.h */; };
 		D783887F1354891800E7937B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
 		D783888313548ADA00E7937B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783888213548ADA00E7937B /* AppKit.framework */; };
-		D783889B1354AA7600E7937B /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388921354AA7600E7937B /* crypt.h */; };
-		D783889C1354AA7600E7937B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; };
+		D783889C1354AA7600E7937B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; settings = {COMPILER_FLAGS = "-DUSE_FILE32API"; }; };
 		D783889D1354AA7600E7937B /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388941354AA7600E7937B /* ioapi.h */; };
-		D783889E1354AA7600E7937B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388951354AA7600E7937B /* mztools.c */; };
-		D783889F1354AA7600E7937B /* mztools.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388961354AA7600E7937B /* mztools.h */; };
-		D78388A01354AA7600E7937B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; };
+		D78388A01354AA7600E7937B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; settings = {COMPILER_FLAGS = "-DNOUNCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
 		D78388A11354AA7600E7937B /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388981354AA7600E7937B /* unzip.h */; };
-		D78388A21354AA7600E7937B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; };
+		D78388A21354AA7600E7937B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; settings = {COMPILER_FLAGS = "-DNOCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
 		D78388A31354AA7600E7937B /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = D783889A1354AA7600E7937B /* zip.h */; };
 		D78BA76E1360A90A000EB558 /* JTPepub.h in Headers */ = {isa = PBXBuildFile; fileRef = D78BA76C1360A90A000EB558 /* JTPepub.h */; };
 		D78BA76F1360A90A000EB558 /* JTPepub.m in Sources */ = {isa = PBXBuildFile; fileRef = D78BA76D1360A90A000EB558 /* JTPepub.m */; };
@@ -141,8 +134,7 @@
 		67543ADE14E70B1600A42752 /* badcontributor.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = badcontributor.epub; sourceTree = "<group>"; };
 		675F07EE14E7190700FEFD90 /* metadata.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = metadata.epub; sourceTree = "<group>"; };
 		675F07EF14E7190700FEFD90 /* Untitled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Untitled.epub; sourceTree = "<group>"; };
-		675FAB3B14D9B8760065603A /* EpubTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpubTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		675FAB3C14D9B8760065603A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		675FAB3B14D9B8760065603A /* EpubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675FAB3E14D9B8760065603A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		675FAB4114D9B8760065603A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		675FAB4214D9B8760065603A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -182,11 +174,8 @@
 		D78388731354891800E7937B /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		D78388741354891800E7937B /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		D783888213548ADA00E7937B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		D78388921354AA7600E7937B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		D78388931354AA7600E7937B /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		D78388941354AA7600E7937B /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		D78388951354AA7600E7937B /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
-		D78388961354AA7600E7937B /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
 		D78388971354AA7600E7937B /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
 		D78388981354AA7600E7937B /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
 		D78388991354AA7600E7937B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
@@ -219,7 +208,6 @@
 			files = (
 				675FAB5214D9BD5D0065603A /* libxml2.dylib in Frameworks */,
 				675FAB5314D9BD6D0065603A /* libz.dylib in Frameworks */,
-				675FAB3D14D9B8760065603A /* SenTestingKit.framework in Frameworks */,
 				675FAB3F14D9B8760065603A /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,7 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				D783884B1354890700E7937B /* epub.qlgenerator */,
-				675FAB3B14D9B8760065603A /* EpubTests.octest */,
+				675FAB3B14D9B8760065603A /* EpubTests.xctest */,
 				235DC64A14EFB3C800D28657 /* epub.mdimporter */,
 				D740FBDB15091EA7002D9C76 /* StressTests */,
 			);
@@ -401,7 +389,6 @@
 				D78388501354890700E7937B /* ApplicationServices.framework */,
 				D78388521354890700E7937B /* CoreServices.framework */,
 				D78388541354890700E7937B /* CoreFoundation.framework */,
-				675FAB3C14D9B8760065603A /* SenTestingKit.framework */,
 				675FAB3E14D9B8760065603A /* Cocoa.framework */,
 				235DC64D14EFB3C800D28657 /* CoreData.framework */,
 				235DC64F14EFB3C800D28657 /* Foundation.framework */,
@@ -449,11 +436,8 @@
 		D78388691354891800E7937B /* minizip */ = {
 			isa = PBXGroup;
 			children = (
-				D78388921354AA7600E7937B /* crypt.h */,
 				D78388931354AA7600E7937B /* ioapi.c */,
 				D78388941354AA7600E7937B /* ioapi.h */,
-				D78388951354AA7600E7937B /* mztools.c */,
-				D78388961354AA7600E7937B /* mztools.h */,
 				D78388971354AA7600E7937B /* unzip.c */,
 				D78388981354AA7600E7937B /* unzip.h */,
 				D78388991354AA7600E7937B /* zip.c */,
@@ -470,9 +454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D783887E1354891800E7937B /* ZipArchive.h in Headers */,
-				D783889B1354AA7600E7937B /* crypt.h in Headers */,
 				D783889D1354AA7600E7937B /* ioapi.h in Headers */,
-				D783889F1354AA7600E7937B /* mztools.h in Headers */,
 				D78388A11354AA7600E7937B /* unzip.h in Headers */,
 				D78388A31354AA7600E7937B /* zip.h in Headers */,
 				D78BA76E1360A90A000EB558 /* JTPepub.h in Headers */,
@@ -518,8 +500,8 @@
 			);
 			name = EpubTests;
 			productName = EpubTests;
-			productReference = 675FAB3B14D9B8760065603A /* EpubTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 675FAB3B14D9B8760065603A /* EpubTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		D740FBDA15091EA7002D9C76 /* StressTests */ = {
 			isa = PBXNativeTarget;
@@ -563,8 +545,14 @@
 		D78388401354890700E7937B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastTestingUpgradeCheck = 0510;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Imperial College";
+				TargetAttributes = {
+					675FAB3A14D9B8760065603A = {
+						TestTargetID = D783884A1354890700E7937B;
+					};
+				};
 			};
 			buildConfigurationList = D78388431354890700E7937B /* Build configuration list for PBXProject "epub" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -665,7 +653,6 @@
 				235DC65D14EFB3C800D28657 /* MySpotlightImporter.m in Sources */,
 				6749F2C814F2F1C4007AB6C4 /* ZipArchive.mm in Sources */,
 				6749F2CA14F2F1EE007AB6C4 /* ioapi.c in Sources */,
-				6749F2CB14F2F1F2007AB6C4 /* mztools.c in Sources */,
 				6749F2CC14F2F1F5007AB6C4 /* unzip.c in Sources */,
 				6749F2CD14F2F206007AB6C4 /* zip.c in Sources */,
 				6749F2CE14F2F21A007AB6C4 /* JTPepub.m in Sources */,
@@ -682,7 +669,6 @@
 				675FAB4C14D9B8760065603A /* EpubTests.m in Sources */,
 				675FAB5814D9BF390065603A /* ZipArchive.mm in Sources */,
 				675FAB5914D9BF690065603A /* ioapi.c in Sources */,
-				675FAB5A14D9BF6C0065603A /* mztools.c in Sources */,
 				675FAB5B14D9BF740065603A /* unzip.c in Sources */,
 				675FAB5C14D9BF780065603A /* zip.c in Sources */,
 				675FAB5414D9BEEF0065603A /* JTPepub.m in Sources */,
@@ -698,7 +684,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D740FBED15092155002D9C76 /* ioapi.c in Sources */,
-				D740FBEF15092155002D9C76 /* mztools.c in Sources */,
 				D740FBF115092155002D9C76 /* unzip.c in Sources */,
 				D740FBF315092155002D9C76 /* zip.c in Sources */,
 				D740FBF615092155002D9C76 /* ZipArchive.mm in Sources */,
@@ -720,7 +705,6 @@
 				D78388621354890700E7937B /* main.c in Sources */,
 				D783887F1354891800E7937B /* ZipArchive.mm in Sources */,
 				D783889C1354AA7600E7937B /* ioapi.c in Sources */,
-				D783889E1354AA7600E7937B /* mztools.c in Sources */,
 				D78388A01354AA7600E7937B /* unzip.c in Sources */,
 				D78388A21354AA7600E7937B /* zip.c in Sources */,
 				D78BA76F1360A90A000EB558 /* JTPepub.m in Sources */,
@@ -815,7 +799,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -829,7 +813,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -840,7 +823,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EpubTests/EpubTests-Prefix.pch";
@@ -849,7 +832,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -893,6 +875,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -900,10 +888,13 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -912,13 +903,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.8;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
