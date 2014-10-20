@@ -46,6 +46,7 @@
 		675FAB5914D9BF690065603A /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; settings = {COMPILER_FLAGS = "-DUSE_FILE32API"; }; };
 		675FAB5B14D9BF740065603A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; settings = {COMPILER_FLAGS = "-DNOUNCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
 		675FAB5C14D9BF780065603A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; settings = {COMPILER_FLAGS = "-DNOCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
+		6766EC9B19F2EC3B007D7E06 /* yosemite.css in Resources */ = {isa = PBXBuildFile; fileRef = 6766EC9919F2EC3B007D7E06 /* yosemite.css */; };
 		6783BD9F14FA8C1C00696991 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
 		67909CE914F37D9E009819B2 /* NSDate+OPF.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */; };
 		67932B221503FEA600D61278 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 67932B211503FEA600D61278 /* schema.xml */; };
@@ -143,6 +144,7 @@
 		675FAB4A14D9B8760065603A /* EpubTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EpubTests.h; sourceTree = "<group>"; };
 		675FAB4B14D9B8760065603A /* EpubTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EpubTests.m; sourceTree = "<group>"; };
 		675FAB4D14D9B8760065603A /* EpubTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EpubTests-Prefix.pch"; sourceTree = "<group>"; };
+		6766EC9919F2EC3B007D7E06 /* yosemite.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = yosemite.css; sourceTree = "<group>"; };
 		67932B211503FEA600D61278 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema.xml; sourceTree = "<group>"; };
 		67BE43EB14DEC886003C7DFC /* fake-adept.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-adept.epub"; sourceTree = "<group>"; };
 		67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-fairplay.epub"; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				D7DA65C213D77C97006BED29 /* lion.css */,
+				6766EC9919F2EC3B007D7E06 /* yosemite.css */,
 				D7DA65C413D77CCD006BED29 /* leopard.css */,
 				D7E5A5C71386A9F7007EB5E9 /* index.html */,
 				D78388581354890700E7937B /* epub-Info.plist */,
@@ -607,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D749581E14DD800D0048D619 /* InfoPlist.strings in Resources */,
+				6766EC9B19F2EC3B007D7E06 /* yosemite.css in Resources */,
 				D7E5A5C81386A9F7007EB5E9 /* index.html in Resources */,
 				D7DA65C313D77C97006BED29 /* lion.css in Resources */,
 				D7DA65C513D77CCD006BED29 /* leopard.css in Resources */,
@@ -763,7 +767,7 @@
 				INFOPLIST_FILE = "epubMDI/epubMDI-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = epub;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
@@ -785,7 +789,7 @@
 				INFOPLIST_FILE = "epubMDI/epubMDI-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
 				LIBRARY_STYLE = BUNDLE;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = epub;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
@@ -810,7 +814,7 @@
 				);
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
@@ -829,7 +833,7 @@
 				GCC_PREFIX_HEADER = "EpubTests/EpubTests-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
@@ -849,7 +853,7 @@
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
@@ -865,7 +869,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StressTests/StressTests-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
@@ -884,7 +888,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -893,7 +897,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -908,7 +912,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -916,7 +920,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;

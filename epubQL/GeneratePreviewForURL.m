@@ -92,12 +92,14 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      * Determine OS version and add the appropriate CSS to the html.
      */
     NSString *cssPath, *css;
-    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_6) {
+    if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
+        // 10.10
+        cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/yosemite.css"];
+    } else if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_6) {
         // 10.7
         cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/lion.css"];
     } else {
         cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/leopard.css"];
-
     }
     
     css = [[NSString alloc] initWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:NULL];
