@@ -878,6 +878,7 @@
 		D78388631354890700E7937B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -898,13 +899,14 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Debug;
 		};
 		D78388641354890700E7937B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -921,7 +923,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Release;
 		};
@@ -937,9 +939,10 @@
 				GCC_PREFIX_HEADER = "epubQL/epub-Prefix.pch";
 				INFOPLIST_FILE = "epubQL/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = epub;
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Debug;
@@ -956,9 +959,10 @@
 				GCC_PREFIX_HEADER = "epubQL/epub-Prefix.pch";
 				INFOPLIST_FILE = "epubQL/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = epub;
 				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Release;
