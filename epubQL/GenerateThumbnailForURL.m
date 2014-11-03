@@ -41,11 +41,11 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
             double scale = imageSize.height / maxSize.height;
             [cover setSize:NSMakeSize(imageSize.width / scale, imageSize.height / scale)];
         }else { // Square image
-            [cover setSize:maxSize];
+            [cover setSize:NSSizeFromCGSize(maxSize)];
         }
         
         
-        CGContextRef context = QLThumbnailRequestCreateContext(thumbnail, [cover size], TRUE, nil);   
+        CGContextRef context = QLThumbnailRequestCreateContext(thumbnail, NSSizeToCGSize([cover size]), TRUE, nil);
         NSGraphicsContext *nsGraphicsContext = [NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:NO];
         
         [NSGraphicsContext saveGraphicsState];

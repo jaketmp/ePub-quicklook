@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0430"
+   LastUpgradeVersion = "0510"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,7 +17,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "675FAB3A14D9B8760065603A"
-               BuildableName = "EpubTests.octest"
+               BuildableName = "EpubTests.xctest"
                BlueprintName = "EpubTests"
                ReferencedContainer = "container:epub.xcodeproj">
             </BuildableReference>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0430"
+   LastUpgradeVersion = "0510"
    version = "1.8">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "675FAB3A14D9B8760065603A"
+               BuildableName = "EpubTests.xctest"
+               BlueprintName = "EpubTests"
+               ReferencedContainer = "container:epub.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -81,6 +91,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "&quot;$(SRCROOT)/EpubTests/Untitled.epub&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "&quot;/Users/cjr/Downloads/imb/Iain M. Banks/Consider Phlebas (138)/Consider Phlebas - Iain M. Banks.epub&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

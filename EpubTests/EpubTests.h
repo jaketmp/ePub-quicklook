@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Chris Ridd. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 @class JTPepub;
 
-@interface EpubTests : SenTestCase {
+@interface EpubTests : XCTestCase {
     JTPepub *untitledFile;
     JTPepub *metadataFile;
     JTPepub *badcontributorFile;

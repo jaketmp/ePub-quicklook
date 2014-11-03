@@ -454,7 +454,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
       if (result > -1) {
         str = [[[NSString alloc] initWithBytes:(xmlBufferContent(buff))
-                                        length:(xmlBufferLength(buff))
+                                        length:(NSUInteger)(xmlBufferLength(buff))
                                       encoding:NSUTF8StringEncoding] autorelease];
       }
       xmlBufferFree(buff);
@@ -768,7 +768,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             int result = xmlXPathRegisterNs(xpathCtx, prefix, nsPtr->href);
             if (result != 0) {
 #if DEBUG
-              NSCAssert1(result == 0, @"GDataXMLNode XPath namespace %@ issue",
+              NSCAssert1(result == 0, @"GDataXMLNode XPath namespace %s issue",
                         prefix);
 #endif
             }
@@ -1728,7 +1728,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
     if (buffer) {
       NSData *data = [NSData dataWithBytes:buffer
-                                    length:bufferSize];
+                                    length:(NSUInteger)bufferSize];
       xmlFree(buffer);
       return data;
     }
@@ -1820,8 +1820,8 @@ static CFHashCode StringCacheKeyHashCallBack(const void *str) {
 
   // dhb hash, per http://www.cse.yorku.ca/~oz/hash.html
   CFHashCode hash = 5381;
-  int c;
-  const char *chars = (const char *)str;
+  unsigned int c;
+  const unsigned char *chars = (const unsigned char *)str;
 
   while ((c = *chars++) != 0) {
     hash = ((hash << 5) + hash) + c;

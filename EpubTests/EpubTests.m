@@ -54,29 +54,29 @@
 {
     NSString *actual = [untitledFile title];
     NSString *expected = @"Test Document";
-    STAssertEqualObjects(actual, expected, @"title is wrong");
+    XCTAssertEqualObjects(actual, expected, @"title is wrong");
 }
 
 - (void)testTitleWithAmpersand
 {
     NSString *actual = [metadataFile title];
     NSString *expected = @"This & That";
-    STAssertEqualObjects(actual, expected, @"title is wrong");
+    XCTAssertEqualObjects(actual, expected, @"title is wrong");
 }
 
 - (void)testAuthors
 {
     NSArray *actual = [untitledFile authors];
     NSString *expected = @"Test Author";
-    STAssertTrue([actual count] == 1, @"1 author expected");
-    STAssertEqualObjects([actual lastObject], expected, @"author is wrong");
+    XCTAssertTrue([actual count] == 1, @"1 author expected");
+    XCTAssertEqualObjects([actual lastObject], expected, @"author is wrong");
 }
 
 - (void)testISBN
 {
     NSString *actual = [untitledFile isbn];
     NSString *expected = @"123456789";
-    STAssertEqualObjects(actual, expected, @"ISBN is wrong");
+    XCTAssertEqualObjects(actual, expected, @"ISBN is wrong");
 }
 
 - (void)testDate
@@ -85,23 +85,23 @@
                                                                             timeZone:nil 
                                                                               locale:[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]];
     NSString *expected = @"2011";
-    STAssertEqualObjects(actual, expected, @"date is wrong");
+    XCTAssertEqualObjects(actual, expected, @"date is wrong");
 }
 
 - (void)testTranslator
 {
     NSArray *actual = [untitledFile translators];
     NSString *expected = @"Test Translator";
-    STAssertTrue([actual count] == 1, @"1 translator expected");
-    STAssertEqualObjects([actual lastObject], expected, @"translator is wrong");
+    XCTAssertTrue([actual count] == 1, @"1 translator expected");
+    XCTAssertEqualObjects([actual lastObject], expected, @"translator is wrong");
 }
 
 - (void)testIllustrator
 {
     NSArray *actual = [untitledFile illustrators];
     NSString *expected = @"Test Illustrator";
-    STAssertTrue([actual count] == 1, @"1 illustrator expected");
-    STAssertEqualObjects([actual lastObject], expected, @"illustrator is wrong");
+    XCTAssertTrue([actual count] == 1, @"1 illustrator expected");
+    XCTAssertEqualObjects([actual lastObject], expected, @"illustrator is wrong");
 }
 
 - (void)testThreeAuthors
@@ -110,10 +110,10 @@
     NSString *expected0 = @"Primary Author";
     NSString *expected1 = @"Second Author";
     NSString *expected2 = @"Third Author";
-    STAssertTrue([actual count] == 3, @"3 authors expected");
-    STAssertEqualObjects([actual objectAtIndex:0], expected0, @"First author is wrong");
-    STAssertEqualObjects([actual objectAtIndex:1], expected1, @"Second author is wrong");
-    STAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author is wrong");
+    XCTAssertTrue([actual count] == 3, @"3 authors expected");
+    XCTAssertEqualObjects([actual objectAtIndex:0], expected0, @"First author is wrong");
+    XCTAssertEqualObjects([actual objectAtIndex:1], expected1, @"Second author is wrong");
+    XCTAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author is wrong");
 }
 
 #pragma mark Text Extraction
@@ -125,7 +125,7 @@
         text = [untitledFile textFromManifestItem:i];
         i++;
     } while (text);
-    STAssertTrue(i == 4, @"wrong number of chapters");
+    XCTAssertTrue(i == 4, @"wrong number of chapters");
 }
 
 #pragma mark Test HTML escaping/stripping
@@ -133,28 +133,28 @@
 {
     NSString *expected = @"This is plain text.";
     NSString *actual = [expected stringByEscapingHTML];
-    STAssertEqualObjects(actual, expected, @"escaping went wrong");
+    XCTAssertEqualObjects(actual, expected, @"escaping went wrong");
 }
 
 - (void)testEscaping
 {
     NSString *expected = @"This is &lt;escaped&gt; &amp; safe.";
     NSString *actual = [@"This is <escaped> & safe." stringByEscapingHTML];
-    STAssertEqualObjects(actual, expected, @"escaping went wrong");
+    XCTAssertEqualObjects(actual, expected, @"escaping went wrong");
 }
 
 - (void)testStrippingPlain
 {
     NSString *expected = @"This is plain text.";
     NSString *actual = [expected stringByStrippingHTML];
-    STAssertEqualObjects(actual, expected, @"stripping went wrong");
+    XCTAssertEqualObjects(actual, expected, @"stripping went wrong");
 }
 
 - (void)testStripping
 {
     NSString *expected = @"This is plain text.";
     NSString *actual = [@"This is <em>plain</em> text." stringByStrippingHTML];
-    STAssertEqualObjects(actual, expected, @"stripping went wrong");
+    XCTAssertEqualObjects(actual, expected, @"stripping went wrong");
 }
 
 #pragma mark Test date parsing
@@ -168,7 +168,7 @@
                           nil];
     for (id date in goodDates) {
         d = [NSDate dateFromOPFString:date];
-        STAssertNotNil(d, @"%@ should parse", date);
+        XCTAssertNotNil(d, @"%@ should parse", date);
     }
     
 }
@@ -177,13 +177,13 @@
 - (void)testBadContributor
 {
     NSArray *actual = [badcontributorFile translators];
-    STAssertTrue([actual count] == 0, @"No translators expected");
+    XCTAssertTrue([actual count] == 0, @"No translators expected");
 }
 
 - (void)testBadAuthor
 {
     NSArray *actual = [badcontributorFile authors];
-    STAssertTrue([actual count] == 1, @"1 author expected");
+    XCTAssertTrue([actual count] == 1, @"1 author expected");
 }
 
 #pragma mark Test DRM
@@ -191,66 +191,66 @@
 {
     NSString *actual = [untitledFile drm];
     NSString *expected = @"";
-    STAssertEqualObjects(actual, expected, @"Untitled file has wrong DRM");
+    XCTAssertEqualObjects(actual, expected, @"Untitled file has wrong DRM");
 }
 
 - (void)testAdobeDRM
 {
     NSString *actual = [adeptFile drm];
     NSString *expected = @"Adobe";
-    STAssertEqualObjects(actual, expected, @"fake-adept file has wrong DRM");
+    XCTAssertEqualObjects(actual, expected, @"fake-adept file has wrong DRM");
 }
 
 - (void)testBarnesAndNobleDRM
 {
     NSString *actual = [bnFile drm];
     NSString *expected = @"Barnes & Noble";
-    STAssertEqualObjects(actual, expected, @"fake-bn file has wrong DRM");
+    XCTAssertEqualObjects(actual, expected, @"fake-bn file has wrong DRM");
 }
 
 - (void)testAppleDRM
 {
     NSString *actual = [fairplayFile drm];
     NSString *expected = @"Apple";
-    STAssertEqualObjects(actual, expected, @"fake-fairplay file has wrong DRM");
+    XCTAssertEqualObjects(actual, expected, @"fake-fairplay file has wrong DRM");
 }
 
 - (void)testKoboDRM
 {
     NSString *actual = [koboFile drm];
     NSString *expected = @"Kobo";
-    STAssertEqualObjects(actual, expected, @"fake-kobo file has wrong DRM");
+    XCTAssertEqualObjects(actual, expected, @"fake-kobo file has wrong DRM");
 }
 
 - (void)testUnexpiringAdobe
 {
     NSDate *actual = [adeptFile expiryDate];
-    STAssertNil(actual, @"fake-adept should not expire");
+    XCTAssertNil(actual, @"fake-adept should not expire");
 }
 
 - (void)testUnexpiringApple
 {
     NSDate *actual = [fairplayFile expiryDate];
-    STAssertNil(actual, @"fake-fairplay should not expire");
+    XCTAssertNil(actual, @"fake-fairplay should not expire");
 }
 
 - (void)testExpiringAdobe
 {
     NSDate *actual = [libraryFile expiryDate];
-    STAssertNotNil(actual, @"fake-library does not expire");
+    XCTAssertNotNil(actual, @"fake-library does not expire");
 }
 
 #pragma mark Test covers
 - (void)testUntitledCover
 {
     NSImage *actual = [untitledFile cover];
-    STAssertNotNil(actual, @"Cover not found");
+    XCTAssertNotNil(actual, @"Cover not found");
 }
 
 - (void)testMissingCover
 {
     NSImage *actual = [metadataFile cover];
-    STAssertNil(actual, @"Cover not missing");
+    XCTAssertNil(actual, @"Cover not missing");
 }
 
 #pragma mark Test creators (for Spotlight)
@@ -259,9 +259,9 @@
     NSArray *actual = [untitledFile creators];
     NSArray *expected = [NSArray arrayWithObjects:@"Test Author", @"Test Illustrator",
                          @"Test Editor", @"Test Translator", nil];
-    STAssertTrue([actual count] == [expected count], @"Untitled file has wrong number of creators");
+    XCTAssertTrue([actual count] == [expected count], @"Untitled file has wrong number of creators");
     for (id item in expected) {
-        STAssertTrue([actual containsObject:item], @"Creator is missing");
+        XCTAssertTrue([actual containsObject:item], @"Creator is missing");
     }
 }
 
@@ -271,9 +271,9 @@
     NSArray *expected = [NSArray arrayWithObjects:@"Primary Author", @"Second Author", @"Third Author", nil];
     // metadata has one contributor for each known MARC role and then 3 authors
     // Just check the authors are present, and the total is right.
-    STAssertTrue([actual count] == 228, @"metadata file has wrong number of creators");
+    XCTAssertTrue([actual count] == 228, @"metadata file has wrong number of creators");
     for (id item in expected) {
-        STAssertTrue([actual containsObject:item], @"Creator is missing");
+        XCTAssertTrue([actual containsObject:item], @"Creator is missing");
     }
 }
 
@@ -283,10 +283,10 @@
     NSArray *actual = [untitledFile language];
     NSArray *expected = [NSArray arrayWithObject:@"en"];
     
-    STAssertTrue([actual count] == [expected count], @"Untitled file has wrong number of languages");
+    XCTAssertTrue([actual count] == [expected count], @"Untitled file has wrong number of languages");
 
     for (id item in expected) {
-        STAssertTrue([actual containsObject:item], @"Language is missing");
+        XCTAssertTrue([actual containsObject:item], @"Language is missing");
     }
 
 }
@@ -299,10 +299,10 @@
                                                   @"ja",
                                                   @"km", nil];
     
-    STAssertTrue([actual count] == [expected count], @"Metadata file has wrong number of languages");
+    XCTAssertTrue([actual count] == [expected count], @"Metadata file has wrong number of languages");
     
     for (id item in expected) {
-        STAssertTrue([actual containsObject:item], @"Language is missing");
+        XCTAssertTrue([actual containsObject:item], @"Language is missing");
     }
     
 }
