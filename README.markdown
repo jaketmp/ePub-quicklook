@@ -10,7 +10,7 @@ These plugins read the various information directly from the EPUB contents - so 
 
 ## Installation
 
-After downloading and opening the **ePub Plugins.dmg** disk image in the **Downloads** tab above, drag each of the plugins to the folder indicated. This will install the plugins for all users (you may need to enter the password for an administrator). If you lack administrator privileges or only wish to install for one user, follow the instructions below. 
+After downloading and opening the **ePub Plugins.dmg** disk image in the **Releases** tab above, drag each of the plugins to the folder indicated. This will install the plugins for all users (you may need to enter the password for an administrator). If you lack administrator privileges or only wish to install for one user, follow the instructions below. 
 
 Place the **epub.qlgenerator** file into `/Library/QuickLook` (for all users) or `~/Library/QuickLook` (for the current user only).
 
