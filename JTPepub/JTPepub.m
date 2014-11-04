@@ -35,7 +35,7 @@ static NSMutableDictionary *xmlns = nil;
     }
 }
 
-- (id)initWithFile:(NSString *)fileName
+- (instancetype)initWithFile:(NSString *)fileName
 {
     self = [super init];
     if (self) {
@@ -95,12 +95,12 @@ static NSMutableDictionary *xmlns = nil;
     NSArray *rootFile = [containerXML nodesForXPath:@"//ocf:rootfile"
                                          namespaces:xmlns
                                               error:&xmlError];
-    NSString *rootFileType = [[[rootFile objectAtIndex:0] attributeForName:@"media-type"] stringValue];
+    NSString *rootFileType = [[rootFile[0] attributeForName:@"media-type"] stringValue];
     
     
     // This code is all designed arround oebps+xml epubs, DTBook is unsupported.
     if([rootFileType caseInsensitiveCompare:@"application/oebps-package+xml"] == NSOrderedSame) {
-        rootFilePath = [[[[rootFile objectAtIndex:0] attributeForName:@"full-path"] stringValue] retain];
+        rootFilePath = [[[rootFile[0] attributeForName:@"full-path"] stringValue] retain];
     }else{
         [containerXML release];
         return NO;
@@ -151,8 +151,8 @@ static NSMutableDictionary *xmlns = nil;
         return nil;
 
     NSString *contentRoot = [rootFilePath stringByDeletingLastPathComponent];
-    NSString *relativePath = [[manifest objectAtIndex:n] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSArray *textPathArray = [NSArray arrayWithObjects:contentRoot, relativePath, nil];
+    NSString *relativePath = [manifest[n] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSArray *textPathArray = @[contentRoot, relativePath];
     NSString *path = [NSString pathWithComponents:textPathArray];
 
     NSData *content = [epubFile dataForNamedFile:path];
@@ -503,7 +503,7 @@ resolveExternalEntityName:(NSString *)entityName
     // The cover path is relative to the rootfile...
     NSString *contentRoot = [rootFilePath stringByDeletingLastPathComponent];
     NSString *coverPath = [coverURI stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSArray *coverPathArray = [NSArray arrayWithObjects:contentRoot, coverPath, nil];
+    NSArray *coverPathArray = @[contentRoot, coverPath];
     NSString *fullCoverPath = [NSString pathWithComponents:coverPathArray];
     
     NSData *coverData  = [epubFile dataForNamedFile:fullCoverPath];

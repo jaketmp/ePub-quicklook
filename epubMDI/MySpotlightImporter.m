@@ -17,58 +17,58 @@
     JTPepub *epub = [[JTPepub alloc] initWithFile:filePath];
 
     NSString *title = [epub title];
-    [spotlightData setObject:title forKey:(NSString *)kMDItemDisplayName];
+    spotlightData[(NSString *)kMDItemDisplayName] = title;
 
     // authors          kMDItemAuthors (array of strings)
     NSArray *authors = [epub authors];
-    [spotlightData setObject:authors forKey:(NSString *)kMDItemAuthors];
+    spotlightData[(NSString *)kMDItemAuthors] = authors;
 
     // publisher        kMDItemPublishers (array of strings)
     NSString *publisher = [epub publisher];
     if ([publisher length] > 0)
-        [spotlightData setObject:[NSArray arrayWithObject:publisher] forKey:(NSString *)kMDItemPublishers];
+        spotlightData[(NSString *)kMDItemPublishers] = @[publisher];
 
     // creators         kMDItemContributors ? (array of strings)
     NSArray *creators = [epub creators];
     if ([creators count] > 0)
-        [spotlightData setObject:creators forKey:(NSString *)kMDItemContributors];
+        spotlightData[(NSString *)kMDItemContributors] = creators;
 
     // editors          kMDItemEditors (array of strings)
     NSArray *editors = [epub editors];
     if ([editors count] > 0)
-        [spotlightData setObject:editors forKey:(NSString *)kMDItemEditors];
+        spotlightData[(NSString *)kMDItemEditors] = editors;
 
     // illustrators
     NSArray *illustrators = [epub illustrators];
     if ([illustrators count] > 0)
-        [spotlightData setObject:illustrators forKey:@"org_idpf_epub_container_metadata_illustrators"];
+        spotlightData[@"org_idpf_epub_container_metadata_illustrators"] = illustrators;
 
     // translators
     NSArray *translators = [epub translators];
     if ([translators count] > 0)
-        [spotlightData setObject:translators forKey:@"org_idpf_epub_container_metadata_translators"];
+        spotlightData[@"org_idpf_epub_container_metadata_translators"] = translators;
 
     // synopsis         kMDItemHeadline ?
     NSString *synopsis = [[epub synopsis] stringByStrippingHTML];
     if ([synopsis length] > 0)
-        [spotlightData setObject:synopsis forKey:(NSString *)kMDItemHeadline];
+        spotlightData[(NSString *)kMDItemHeadline] = synopsis;
 
     // ISBN             kMDItemIdentifier (string)
     NSString *isbn = [epub isbn];
     if ([isbn length] > 0)
-        [spotlightData setObject:isbn forKey:(NSString *)kMDItemIdentifier];
+        spotlightData[(NSString *)kMDItemIdentifier] = isbn;
 
     // publicationDate  not kMDItemContentCreationDate
     
     // expiryDate       kMDItemDueDate (date)
     NSDate *expiryDate = [epub expiryDate];
     if (expiryDate)
-        [spotlightData setObject:expiryDate forKey:(NSString *)kMDItemDueDate];
+        spotlightData[(NSString *)kMDItemDueDate] = expiryDate;
 
     // drm              kMDItemSecurityMethod (string)
     NSString *drm = [epub drm];
     if ([drm isEqualToString:@""]) drm = @"None"; // PDF uses "None" explicitly
-    [spotlightData setObject:drm forKey:(NSString *)kMDItemSecurityMethod];
+    spotlightData[(NSString *)kMDItemSecurityMethod] = drm;
 
     // Don't try to extract text if there's any DRM
     if ([drm isEqualToString:@"None"]) {
@@ -83,7 +83,7 @@
         } while (text);
         //NSString *tmp = [NSString stringWithFormat:@"Indexed %lu", [content length]];
         //[spotlightData setObject:tmp forKey:(NSString *)kMDItemComment];
-        [spotlightData setObject:content forKey:(NSString *)kMDItemTextContent];
+        spotlightData[(NSString *)kMDItemTextContent] = content;
         [content release];
     } else {
         //[spotlightData setObject:@"No indexed content" forKey:(NSString *)kMDItemComment];
@@ -92,7 +92,7 @@
     // language     kMDItemLanguages (string)
     NSArray *language = [epub language];
     if ([language count] > 0)
-        [spotlightData setObject:language forKey:(NSString *)kMDItemLanguages];
+        spotlightData[(NSString *)kMDItemLanguages] = language;
     
     
     [epub release];

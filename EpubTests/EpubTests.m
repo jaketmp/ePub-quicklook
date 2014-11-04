@@ -111,9 +111,9 @@
     NSString *expected1 = @"Second Author";
     NSString *expected2 = @"Third Author";
     XCTAssertTrue([actual count] == 3, @"3 authors expected");
-    XCTAssertEqualObjects([actual objectAtIndex:0], expected0, @"First author is wrong");
-    XCTAssertEqualObjects([actual objectAtIndex:1], expected1, @"Second author is wrong");
-    XCTAssertEqualObjects([actual objectAtIndex:2], expected2, @"Third author is wrong");
+    XCTAssertEqualObjects(actual[0], expected0, @"First author is wrong");
+    XCTAssertEqualObjects(actual[1], expected1, @"Second author is wrong");
+    XCTAssertEqualObjects(actual[2], expected2, @"Third author is wrong");
 }
 
 #pragma mark Text Extraction
@@ -161,11 +161,11 @@
 - (void)testDateParsing
 {
     NSDate *d;
-    NSArray *goodDates = [NSArray arrayWithObjects:
-                          @"2012", @"2012-02", @"2012-02-13",
-                          @"2012-02-13T19:49Z",
-                          @"2012-02-13T19:49+0100",
-                          nil];
+    NSArray *goodDates = @[@"2012",
+                           @"2012-02",
+                           @"2012-02-13",
+                           @"2012-02-13T19:49Z",
+                           @"2012-02-13T19:49+0100"];
     for (id date in goodDates) {
         d = [NSDate dateFromOPFString:date];
         XCTAssertNotNil(d, @"%@ should parse", date);
@@ -257,8 +257,10 @@
 - (void)testUntitledCreators
 {
     NSArray *actual = [untitledFile creators];
-    NSArray *expected = [NSArray arrayWithObjects:@"Test Author", @"Test Illustrator",
-                         @"Test Editor", @"Test Translator", nil];
+    NSArray *expected = @[@"Test Author",
+                          @"Test Illustrator",
+                          @"Test Editor",
+                          @"Test Translator"];
     XCTAssertTrue([actual count] == [expected count], @"Untitled file has wrong number of creators");
     for (id item in expected) {
         XCTAssertTrue([actual containsObject:item], @"Creator is missing");
@@ -268,7 +270,7 @@
 - (void)testMetadataCreators
 {
     NSArray *actual = [metadataFile creators];
-    NSArray *expected = [NSArray arrayWithObjects:@"Primary Author", @"Second Author", @"Third Author", nil];
+    NSArray *expected = @[@"Primary Author", @"Second Author", @"Third Author"];
     // metadata has one contributor for each known MARC role and then 3 authors
     // Just check the authors are present, and the total is right.
     XCTAssertTrue([actual count] == 228, @"metadata file has wrong number of creators");
@@ -281,7 +283,7 @@
 - (void)testUntitledLanguage
 {
     NSArray *actual = [untitledFile language];
-    NSArray *expected = [NSArray arrayWithObject:@"en"];
+    NSArray *expected = @[@"en"];
     
     XCTAssertTrue([actual count] == [expected count], @"Untitled file has wrong number of languages");
 
@@ -293,11 +295,11 @@
 - (void)testMetadataLanguage
 {
     NSArray *actual = [metadataFile language];
-    NSArray *expected = [NSArray arrayWithObjects:@"en",
-                                                  @"fr",
-                                                  @"ga",
-                                                  @"ja",
-                                                  @"km", nil];
+    NSArray *expected = @[@"en",
+                          @"fr",
+                          @"ga",
+                          @"ja",
+                          @"km"];
     
     XCTAssertTrue([actual count] == [expected count], @"Metadata file has wrong number of languages");
     

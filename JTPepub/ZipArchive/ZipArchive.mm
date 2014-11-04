@@ -39,7 +39,7 @@ void *mmap_zopen(void *opaque, const char *filename, int mode)
 {
     NSInteger *pos = (NSInteger *)opaque;
     NSError *error;
-    NSData *d = [[NSData alloc] initWithContentsOfFile:[NSString stringWithUTF8String:filename]
+    NSData *d = [[NSData alloc] initWithContentsOfFile:@(filename)
                                                options:NSDataReadingMapped
                                                  error:&error];
     *pos = 0;
@@ -105,7 +105,7 @@ unsigned long mmap_zread(void *opaque, void *stream, void *buf, unsigned long si
 
 @implementation ZipArchive
 
--(id) initWithZipFile:(NSString *)fileName {
+-(instancetype) initWithZipFile:(NSString *)fileName {
     self = [super init];
     if (self) {
         archiveName = [fileName retain];

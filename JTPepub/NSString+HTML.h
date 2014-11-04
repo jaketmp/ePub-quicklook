@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (HTML)
-- (NSString *)stringByEscapingHTML;
-- (NSString *)stringByStrippingHTML;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *stringByEscapingHTML;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *stringByStrippingHTML;
 @end

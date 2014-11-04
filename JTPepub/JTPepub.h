@@ -11,12 +11,12 @@
 #include <AppKit/AppKit.h>
 #include "ZipArchive/ZipArchive.h"
 
-typedef enum {
+typedef NS_ENUM(NSInteger, JTPbookType) {
     jtpUnknownBook = 0,
     jtpEPUB2,
     jtpEPUB3,
     jtpiBooks
-} JTPbookType;
+} ;
 
 @interface JTPepub : NSObject {
 @private
@@ -44,23 +44,23 @@ typedef enum {
     NSString *drm;
     NSDate *expiryDate;
 }
-- (id)initWithFile:(NSString *)fileName;
+- (instancetype)initWithFile:(NSString *)fileName NS_DESIGNATED_INITIALIZER;
 - (BOOL)openEPUBFile:(NSString*)fileName;
 
 - (NSString *)textFromManifestItem:(NSUInteger)n;
-- (NSString *)title;
-- (NSArray *)authors;
-- (NSString *)publisher;
-- (NSArray *)creators;
-- (NSArray *)editors;
-- (NSArray *)illustrators;
-- (NSArray *)translators;
-- (NSImage *)cover;
-- (NSString *)synopsis;
-- (NSDate *)publicationDate;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *title;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *authors;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *publisher;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *creators;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *editors;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *illustrators;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *translators;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSImage *cover;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *synopsis;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *publicationDate;
 - (NSString *)isbn;
-- (NSString *)drm;
-- (NSDate *)expiryDate;
-- (NSArray *)language;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *drm;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSDate *expiryDate;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *language;
 
 @end

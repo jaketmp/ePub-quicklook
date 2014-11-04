@@ -17,15 +17,13 @@
 {
     NSDate *date = nil;
     NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
-    NSArray *formats = [NSArray arrayWithObjects:
-                        @"yyyy",
+    NSArray *formats = @[@"yyyy",
                         @"yyyy-MM",
                         @"yyyy-MM-dd",
                         @"yyyy-MM-dd'T'HH:mm'Z'",
                         @"yyyy-MM-dd'T'HH:mmZ",
                         @"yyyy-MM-dd'T'HH:mm:ss'Z'",
-                        @"yyyy-MM-dd'T'HH:mm:ssZ",
-                        nil];
+                        @"yyyy-MM-dd'T'HH:mm:ssZ"];
     
     for (id format in formats) {
         [formatter setDateFormat:format];

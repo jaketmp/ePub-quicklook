@@ -33,10 +33,10 @@
 }
 
 
--(id) initWithZipFile:(NSString *)fileName;
+-(instancetype) initWithZipFile:(NSString *)fileName NS_DESIGNATED_INITIALIZER;
 
 -(BOOL) openZipFile:(NSString *)fileName;
--(BOOL) closeZipFile;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL closeZipFile;
 
 -(BOOL) testForNamedFile:(NSString *)fileName;
 
