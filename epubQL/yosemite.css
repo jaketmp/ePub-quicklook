@@ -4,7 +4,7 @@
 body {
     background-color: rgba(241,241,241,1);
     color: black;
-    font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    font-family: '.HelveticaNeueDeskInterface-Light';
 }
 p,th,td {
     text-indent: 0;
