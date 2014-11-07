@@ -53,41 +53,35 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     /*
      * Set properties for the preview data
      */
-	NSMutableDictionary *props = [[[NSMutableDictionary alloc] init] autorelease];
+    NSMutableDictionary *props = [[[NSMutableDictionary alloc] init] autorelease];
 	
     // Title string
-    [props setObject:@"UTF-8" forKey:(NSString *)kQLPreviewPropertyTextEncodingNameKey];
-    [props setObject:@"text/html" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
-	[props setObject:(NSString *)[epubFile title] forKey:(NSString *)kQLPreviewPropertyDisplayNameKey];
+    props[(NSString *)kQLPreviewPropertyTextEncodingNameKey] = @"UTF-8";
+    props[(NSString *)kQLPreviewPropertyMIMETypeKey] = @"text/html";
+    props[(NSString *)kQLPreviewPropertyDisplayNameKey] = [epubFile title];
 
     
     /*
      * Cover image
      */
-    if([epubFile cover]){
-        NSData *iconData = [[[epubFile cover] TIFFRepresentation] retain];
-        NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
-        [iconProps setObject:@"image/tiff" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
-        [iconProps setObject:iconData forKey:(NSString *)kQLPreviewPropertyAttachmentDataKey];
-        [props setObject:[NSDictionary dictionaryWithObject:iconProps forKey:@"icon.tiff"] forKey:(NSString *)kQLPreviewPropertyAttachmentsKey];
-        
-        [iconData release];
-    }else{ // Lacking a cover image, load the finder icon in case the user has pasted something custom.
-        // Get file icon
-        NSImage *theIcon = [[[NSWorkspace sharedWorkspace] iconForFile:(NSString*)filePath] retain];
+    NSData *iconData = nil;
+    NSImage *theIcon = nil;
+    if ([epubFile cover]) {
+        iconData = [[[epubFile cover] TIFFRepresentation] retain];
+    } else {
+        // No cover - get the Finder icon in case the user has pasted something custom
+        theIcon = [[[NSWorkspace sharedWorkspace] iconForFile:(NSString*)filePath] retain];
         [theIcon setSize:NSMakeSize(128.0,128.0)];
-        
-        NSData *iconData = [[theIcon TIFFRepresentation] retain];
-        NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
-        [iconProps setObject:@"image/tiff" forKey:(NSString *)kQLPreviewPropertyMIMETypeKey];
-        [iconProps setObject:iconData forKey:(NSString *)kQLPreviewPropertyAttachmentDataKey];
-        [props setObject:[NSDictionary dictionaryWithObject:iconProps forKey:@"icon.tiff"] forKey:(NSString *)kQLPreviewPropertyAttachmentsKey];
-        
-        [theIcon release];
-        [iconData release];
+        iconData = [[theIcon TIFFRepresentation] retain];
     }
-    
-    
+
+    NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
+    iconProps[(NSString *)kQLPreviewPropertyMIMETypeKey] = @"image/tiff";
+    iconProps[(NSString *)kQLPreviewPropertyAttachmentDataKey] = iconData;
+    props[(NSString *)kQLPreviewPropertyAttachmentsKey] = @{ @"icon.tiff": iconProps };
+    [theIcon release];
+    [iconData release];
+
     /*
      * Determine OS version and add the appropriate CSS to the html.
      */
