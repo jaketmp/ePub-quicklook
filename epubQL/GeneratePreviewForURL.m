@@ -230,8 +230,8 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      */
     [epubFile release];
     [pluginBundle release];
-    [pool release];
     CFRelease(filePath);
+    [pool release];
     return noErr;
 }
 
