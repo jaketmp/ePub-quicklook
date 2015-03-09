@@ -10,7 +10,7 @@ These plugins read the various information directly from the EPUB contents - so 
 
 ## Installation
 
-After downloading and extracting the zip files from the **[Releases](https://github.com/jaketmp/ePub-quicklook/releases/tag/v1.6)** tab above, drag each of the plugins to the folder indicated. This will install the plugins for all users (you may need to enter the password for an administrator). If you lack administrator privileges or only wish to install for one user, follow the instructions below. 
+After downloading and extracting the zip files from the **[Releases](https://github.com/jaketmp/ePub-quicklook/releases/latest)** tab above, drag each of the plugins to the folder indicated. This will install the plugins for all users (you may need to enter the password for an administrator). If you lack administrator privileges or only wish to install for one user, follow the instructions below. 
 
 Place the **epub.qlgenerator** file into `/Library/QuickLook` (for all users) or `~/Library/QuickLook` (for the current user only).
 
