@@ -129,8 +129,8 @@ typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
 @property (copy) NSString *stringValue;
 
 @property (readonly) NSUInteger childCount;
-- (NSArray *)children;
-- (GDataXMLNode *)childAtIndex:(unsigned)index;
+@property (nonatomic, readonly, copy) NSArray *children;
+- (GDataXMLNode *)childAtIndex:(NSUInteger)index;
 
 @property (readonly, copy) NSString *localName;
 @property (readonly, copy) NSString *name;
@@ -139,7 +139,7 @@ typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
 
 @property (readonly) GDataXMLNodeKind kind;
 
-- (NSString *)XMLString;
+@property (nonatomic, readonly, copy) NSString *XMLString;
 
 + (NSString *)localNameForName:(NSString *)name;
 + (NSString *)prefixForName:(NSString *)name;
@@ -156,7 +156,7 @@ typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
 
 // access to the underlying libxml node; be sure to release the cached values
 // if you change the underlying tree at all
-- (xmlNodePtr)XMLNode;
+@property (nonatomic, readonly) xmlNodePtr XMLNode;
 - (void)releaseCachedValues;
 
 @end
@@ -164,7 +164,7 @@ typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
 
 @interface GDataXMLElement : GDataXMLNode
 
-- (instancetype)initWithXMLString:(NSString *)str error:(NSError **)error;
+- (instancetype)initWithXMLString:(NSString *)str error:(NSError **)error NS_DESIGNATED_INITIALIZER;
 
 @property (copy) NSArray *namespaces;
 - (void)addNamespace:(GDataXMLNode *)aNamespace;
@@ -176,7 +176,7 @@ typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
 - (NSArray *)elementsForName:(NSString *)name;
 - (NSArray *)elementsForLocalName:(NSString *)localName URI:(NSString *)URI;
 
-- (NSArray *)attributes;
+@property (nonatomic, readonly, copy) NSArray *attributes;
 - (GDataXMLNode *)attributeForName:(NSString *)name;
 - (GDataXMLNode *)attributeForLocalName:(NSString *)name URI:(NSString *)attributeURI;
 - (void)addAttribute:(GDataXMLNode *)attribute;
@@ -191,14 +191,14 @@ typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
 }
 
 - (instancetype)initWithXMLString:(NSString *)str options:(unsigned int)mask error:(NSError **)error;
-- (instancetype)initWithData:(NSData *)data options:(unsigned int)mask error:(NSError **)error;
+- (instancetype)initWithData:(NSData *)data options:(unsigned int)mask error:(NSError **)error NS_DESIGNATED_INITIALIZER;
 
 // initWithRootElement uses a copy of the argument as the new document's root
-- (instancetype)initWithRootElement:(GDataXMLElement *)element;
+- (instancetype)initWithRootElement:(GDataXMLElement *)element NS_DESIGNATED_INITIALIZER;
 
-- (GDataXMLElement *)rootElement;
+@property (nonatomic, readonly, copy) GDataXMLElement *rootElement;
 
-- (NSData *)XMLData;
+@property (nonatomic, readonly, copy) NSData *XMLData;
 
 - (void)setVersion:(NSString *)version;
 - (void)setCharacterEncoding:(NSString *)encoding;
@@ -213,5 +213,5 @@ typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
 // be consistenly the same namespace in server responses.
 - (NSArray *)nodesForXPath:(NSString *)xpath error:(NSError **)error;
 
-- (NSString *)description;
+@property (nonatomic, readonly, copy) NSString *description;
 @end

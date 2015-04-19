@@ -9,7 +9,7 @@
 #import "JTPepub.h"
 #import "NSDate+OPF.h"
 
-@interface JTPepub (Private)
+@interface JTPepub ()
 @end
 
 @implementation JTPepub
@@ -190,10 +190,10 @@ resolveExternalEntityName:(NSString *)entityName
 {
     if (entities == nil) {
         NSBundle *b = [NSBundle bundleForClass:[self class]];
-        NSString *path = [b pathForResource:@"entities" ofType:@"plist"];
-        entities = [NSDictionary dictionaryWithContentsOfFile:path];
+        NSURL *path = [b URLForResource:@"entities" withExtension:@"plist"];
+        entities = [[NSDictionary alloc] initWithContentsOfURL:path];
     }
-    NSString *s = [entities valueForKey:entityName];
+    NSString *s = entities[entityName];
     return [s dataUsingEncoding:NSUTF8StringEncoding];
 }
 

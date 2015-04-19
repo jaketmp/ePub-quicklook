@@ -69,8 +69,6 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>EPUB Book</string>
-			<key>UTTypeIconFile</key>
-			<string></string>
 			<key>UTTypeIdentifier</key>
 			<string>org.idpf.epub-container</string>
 			<key>UTTypeReferenceURL</key>
@@ -84,7 +82,9 @@
 					<string>epub</string>
 				</array>
 				<key>public.mime-type</key>
-				<string>application/epub+zip </string>
+				<array>
+					<string>application/epub+zip</string>
+				</array>
 			</dict>
 		</dict>
 	</array>
