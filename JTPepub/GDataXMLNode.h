@@ -119,12 +119,12 @@ typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
 + (GDataXMLElement *)elementWithName:(NSString *)name stringValue:(NSString *)value;
 + (GDataXMLElement *)elementWithName:(NSString *)name URI:(NSString *)value;
 
-+ (id)attributeWithName:(NSString *)name stringValue:(NSString *)value;
-+ (id)attributeWithName:(NSString *)name URI:(NSString *)attributeURI stringValue:(NSString *)value;
++ (instancetype)attributeWithName:(NSString *)name stringValue:(NSString *)value;
++ (instancetype)attributeWithName:(NSString *)name URI:(NSString *)attributeURI stringValue:(NSString *)value;
 
-+ (id)namespaceWithName:(NSString *)name stringValue:(NSString *)value;
++ (instancetype)namespaceWithName:(NSString *)name stringValue:(NSString *)value;
 
-+ (id)textWithStringValue:(NSString *)value;
++ (instancetype)textWithStringValue:(NSString *)value;
 
 @property (copy) NSString *stringValue;
 
