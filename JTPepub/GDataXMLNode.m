@@ -20,7 +20,7 @@
 @class GDataXMLElement, GDataXMLDocument;
 
 
-static const int kGDataXMLParseOptions = (XML_PARSE_NOCDATA | XML_PARSE_NOBLANKS);
+static const xmlParserOption kGDataXMLParseOptions = (XML_PARSE_NOCDATA | XML_PARSE_NOBLANKS);
 
 // dictionary key callbacks for string cache
 static const void *StringCacheKeyRetainCallBack(CFAllocatorRef allocator, const void *str);
@@ -107,17 +107,17 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   return qnameCopy;
 }
 
-@interface GDataXMLNode (PrivateMethods)
+@interface GDataXMLNode ()
 
 // consuming a node implies it will later be freed when the instance is
 // dealloc'd; borrowing it implies that ownership and disposal remain the
 // job of the supplier of the node
 
-+ (id)nodeConsumingXMLNode:(xmlNodePtr)theXMLNode;
-- (id)initConsumingXMLNode:(xmlNodePtr)theXMLNode;
++ (instancetype)nodeConsumingXMLNode:(xmlNodePtr)theXMLNode;
+- (instancetype)initConsumingXMLNode:(xmlNodePtr)theXMLNode;
 
-+ (id)nodeBorrowingXMLNode:(xmlNodePtr)theXMLNode;
-- (id)initBorrowingXMLNode:(xmlNodePtr)theXMLNode;
++ (instancetype)nodeBorrowingXMLNode:(xmlNodePtr)theXMLNode;
+- (instancetype)initBorrowingXMLNode:(xmlNodePtr)theXMLNode;
 
 // getters of the underlying node
 - (xmlNodePtr)XMLNode;
@@ -136,7 +136,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
 @end
 
-@interface GDataXMLElement (PrivateMethods)
+@interface GDataXMLElement ()
 
 + (void)fixUpNamespacesForNode:(xmlNodePtr)nodeToFix
             graftingToTreeNode:(xmlNodePtr)graftPointNode;
@@ -147,6 +147,23 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 + (void)load {
   xmlInitParser();
 }
+
+- (GDataXMLNode *)attributeForXMLNode:(xmlAttrPtr)theXMLNode {
+	// search the cached attributes list for the GDataXMLNode with
+	// the underlying xmlAttrPtr
+	//TODO: better replace this.
+	//NSArray *attributes = [self attributes];
+	NSArray *attributes = [NSArray array];
+	for (GDataXMLNode *attr in attributes) {
+		
+		if (theXMLNode == (xmlAttrPtr) [attr XMLNode]) {
+			return attr;
+		}
+	}
+	
+	return nil;
+}
+
 
 // Note on convenience methods for making stand-alone element and
 // attribute nodes:
@@ -1589,7 +1606,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 @end
 
 
-@interface GDataXMLDocument (PrivateMethods)
+@interface GDataXMLDocument ()
 - (void)addStringsCacheToDoc;
 @end
 

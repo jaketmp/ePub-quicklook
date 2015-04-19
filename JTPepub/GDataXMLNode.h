@@ -76,7 +76,7 @@ _EXTERN const char* kGDataXMLXPathDefaultNamespacePrefix _INITIALIZE_AS("_def_ns
 @class NSArray, NSDictionary, NSError, NSString, NSURL;
 @class GDataXMLElement, GDataXMLDocument;
 
-enum {
+typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
   GDataXMLInvalidKind = 0,
   GDataXMLDocumentKind,
   GDataXMLElementKind,
@@ -91,8 +91,6 @@ enum {
   GDataXMLElementDeclarationKind,
   GDataXMLNotationDeclarationKind
 };
-
-typedef NSUInteger GDataXMLNodeKind;
 
 @interface GDataXMLNode : NSObject <NSCopying> {
 @protected
@@ -128,19 +126,18 @@ typedef NSUInteger GDataXMLNodeKind;
 
 + (id)textWithStringValue:(NSString *)value;
 
-- (NSString *)stringValue;
-- (void)setStringValue:(NSString *)str;
+@property (copy) NSString *stringValue;
 
-- (NSUInteger)childCount;
+@property (readonly) NSUInteger childCount;
 - (NSArray *)children;
 - (GDataXMLNode *)childAtIndex:(unsigned)index;
 
-- (NSString *)localName;
-- (NSString *)name;
-- (NSString *)prefix;
-- (NSString *)URI;
+@property (readonly, copy) NSString *localName;
+@property (readonly, copy) NSString *name;
+@property (readonly, copy) NSString *prefix;
+@property (readonly, copy) NSString *URI;
 
-- (GDataXMLNodeKind)kind;
+@property (readonly) GDataXMLNodeKind kind;
 
 - (NSString *)XMLString;
 
@@ -167,10 +164,9 @@ typedef NSUInteger GDataXMLNodeKind;
 
 @interface GDataXMLElement : GDataXMLNode
 
-- (id)initWithXMLString:(NSString *)str error:(NSError **)error;
+- (instancetype)initWithXMLString:(NSString *)str error:(NSError **)error;
 
-- (NSArray *)namespaces;
-- (void)setNamespaces:(NSArray *)namespaces;
+@property (copy) NSArray *namespaces;
 - (void)addNamespace:(GDataXMLNode *)aNamespace;
 
 // addChild adds a copy of the child node to the element
@@ -194,11 +190,11 @@ typedef NSUInteger GDataXMLNodeKind;
   xmlDoc* xmlDoc_; // strong; always free'd in dealloc
 }
 
-- (id)initWithXMLString:(NSString *)str options:(unsigned int)mask error:(NSError **)error;
-- (id)initWithData:(NSData *)data options:(unsigned int)mask error:(NSError **)error;
+- (instancetype)initWithXMLString:(NSString *)str options:(unsigned int)mask error:(NSError **)error;
+- (instancetype)initWithData:(NSData *)data options:(unsigned int)mask error:(NSError **)error;
 
 // initWithRootElement uses a copy of the argument as the new document's root
-- (id)initWithRootElement:(GDataXMLElement *)element;
+- (instancetype)initWithRootElement:(GDataXMLElement *)element;
 
 - (GDataXMLElement *)rootElement;
 
