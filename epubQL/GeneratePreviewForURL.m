@@ -26,35 +26,33 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     NSMutableString *html;
     
     
-    NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     
     // Determine desired localisations and load strings
-	NSBundle *pluginBundle = [NSBundle bundleWithIdentifier:@"org.idpf.epub.qlgenerator"];
-	[pluginBundle retain];
+		NSBundle *pluginBundle = [NSBundle bundleWithIdentifier:@"org.idpf.epub.qlgenerator"];
     
     /*
      * Load the HTML template
-	 */
-	//Get the template path
-	NSString *htmlPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/index.html"];
+		 */
+		//Get the template path
+		NSString *htmlPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/index.html"];
     
     // Load data.
-	NSError *htmlError;
-    html = [[[NSMutableString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:&htmlError] autorelease];
-    [htmlPath release];
+		NSError *htmlError;
+    html = [[NSMutableString alloc] initWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:&htmlError];
 
     /*
      * Load the epub:
      */
     CFStringRef filePath = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-    JTPepub *epubFile = [[JTPepub alloc] initWithFile:(NSString *)filePath];
+    JTPepub *epubFile = [[JTPepub alloc] initWithFile:(__bridge NSString *)filePath];
     
     
     /*
      * Set properties for the preview data
      */
-    NSMutableDictionary *props = [[[NSMutableDictionary alloc] init] autorelease];
-	
+    NSMutableDictionary *props = [[NSMutableDictionary alloc] init];
+		
     // Title string
     props[(NSString *)kQLPreviewPropertyTextEncodingNameKey] = @"UTF-8";
     props[(NSString *)kQLPreviewPropertyMIMETypeKey] = @"text/html";
@@ -67,12 +65,12 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     NSData *iconData = nil;
     NSImage *theIcon = nil;
     if ([epubFile cover]) {
-        iconData = [[[epubFile cover] TIFFRepresentation] retain];
+        iconData = [[epubFile cover] TIFFRepresentation];
     } else {
         // No cover - get the Finder icon in case the user has pasted something custom
-        theIcon = [[[NSWorkspace sharedWorkspace] iconForFile:(NSString*)filePath] retain];
+        theIcon = [[NSWorkspace sharedWorkspace] iconForFile:(__bridge NSString*)filePath];
         [theIcon setSize:NSMakeSize(128.0,128.0)];
-        iconData = [[theIcon TIFFRepresentation] retain];
+        iconData = [theIcon TIFFRepresentation];
     }
 #if ATTACHING_IMAGE
     NSMutableDictionary *iconProps=[[[NSMutableDictionary alloc] init] autorelease];
@@ -84,10 +82,8 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     NSString *base64 = [[NSString alloc] initWithData:[iconData base64EncodedDataWithOptions:0]
                                              encoding:NSUTF8StringEncoding];
     NSString *image = [NSString stringWithFormat:@"data:image/tiff;base64,%@", base64];
-    [base64 release];
     [html replaceOccurrencesOfString:@"%image%" withString:image options:NSLiteralSearch range:NSMakeRange(0, [html length])];
 #endif
-    [iconData release];
 
     /*
      * Determine OS version and add the appropriate CSS to the html.
@@ -104,10 +100,8 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     }
     
     css = [[NSString alloc] initWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:NULL];
-    [cssPath release];
     
     [html replaceOccurrencesOfString:@"%styledata%" withString:css options:NSLiteralSearch range:NSMakeRange(0, [html length])];
-    [css release];
     
     
     /*
@@ -182,7 +176,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
          [[epubFile drm] stringByEscapingHTML]];
     }
     if ([epubFile expiryDate]) {
-        NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateStyle:NSDateFormatterMediumStyle];
 
         [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
@@ -196,7 +190,6 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         for (id l in [epubFile language]) {
             NSLocale *loc = [[NSLocale alloc] initWithLocaleIdentifier:l];
             [langs addObject:[loc displayNameForKey:NSLocaleIdentifier value:l]];
-            [loc release];
         }
         [metadata appendFormat:@"<tr><th>%@:</th><td>%@</td></tr>\n",
          [[epubFile language] count] > 1 ? [pluginBundle localizedStringForKey:@"languages" 
@@ -222,24 +215,19 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      * Return the HTML to be rendered.
      */
     // Check for cancel
-	if(QLPreviewRequestIsCancelled(preview)) {
-        [epubFile release];
-        [pluginBundle release];
-        [pool release];
+		if(QLPreviewRequestIsCancelled(preview)) {
         CFRelease(filePath);
         
-		return noErr;
-	}
-	QLPreviewRequestSetDataRepresentation(preview,(CFDataRef)[html dataUsingEncoding:NSUTF8StringEncoding],kUTTypeHTML,(CFDictionaryRef)props);
+			return noErr;
+		}
+		QLPreviewRequestSetDataRepresentation(preview,(__bridge CFDataRef)[html dataUsingEncoding:NSUTF8StringEncoding],kUTTypeHTML,(__bridge CFDictionaryRef)props);
     
     /*
      * And done! Tidy up and return.
      */
-    [epubFile release];
-    [pluginBundle release];
     CFRelease(filePath);
-    [pool release];
     return noErr;
+    }
 }
 
 void CancelPreviewGeneration(void* thisInterface, QLPreviewRequestRef preview)

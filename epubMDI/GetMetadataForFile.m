@@ -38,7 +38,7 @@ Boolean GetMetadataForFile(void *thisInterface, CFMutableDictionaryRef attribute
         if ([(__bridge NSString *)contentTypeUTI isEqualToString:@"org.idpf.epub-container"]) {
             // import from an external record file
             
-            MySpotlightImporter *importer = [[[MySpotlightImporter alloc] init] autorelease];
+            MySpotlightImporter *importer = [[MySpotlightImporter alloc] init];
             
             ok = [importer importFileAtPath:(__bridge NSString *)pathToFile attributes:(__bridge NSMutableDictionary *)attributes error:&error];
         }

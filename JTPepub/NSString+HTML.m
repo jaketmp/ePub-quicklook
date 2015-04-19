@@ -17,7 +17,7 @@
     [e replaceOccurrencesOfString:@"&" withString:@"&amp;" options:0 range:NSMakeRange(0, [e length])];
     [e replaceOccurrencesOfString:@"<" withString:@"&lt;" options:0 range:NSMakeRange(0, [e length])];
     [e replaceOccurrencesOfString:@">" withString:@"&gt;" options:0 range:NSMakeRange(0, [e length])];
-    return [e autorelease];
+    return e;
 }
 
 /* Return an autoreleased version with HTML/XML tags removed. */

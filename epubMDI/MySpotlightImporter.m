@@ -84,7 +84,6 @@
         //NSString *tmp = [NSString stringWithFormat:@"Indexed %lu", [content length]];
         //[spotlightData setObject:tmp forKey:(NSString *)kMDItemComment];
         spotlightData[(NSString *)kMDItemTextContent] = content;
-        [content release];
     } else {
         //[spotlightData setObject:@"No indexed content" forKey:(NSString *)kMDItemComment];
     }
@@ -95,7 +94,6 @@
         spotlightData[(NSString *)kMDItemLanguages] = language;
     
     
-    [epub release];
     return YES;
 }
 
