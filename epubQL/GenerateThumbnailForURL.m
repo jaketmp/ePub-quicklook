@@ -21,8 +21,8 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
     /*
      * Load the epub:
      */
-        CFStringRef filePath = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-        JTPepub *epubFile = [[JTPepub alloc] initWithFile:(__bridge NSString *)filePath];
+        NSString *filePath = CFBridgingRelease(CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle));
+        JTPepub *epubFile = [[JTPepub alloc] initWithFile:filePath];
         
         // and cover image
         NSImage *cover = [epubFile cover];
@@ -62,8 +62,6 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
         /*
          * Tidy
          */
-        CFRelease(filePath);
-        
         return noErr;
     }
 }

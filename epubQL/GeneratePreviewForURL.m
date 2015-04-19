@@ -23,11 +23,10 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         - The publisher. <dc:publisher>
         - Any synopsis information. <dc:description>
     */
-    NSMutableString *html;
-    
     
     @autoreleasepool {
-    
+		NSMutableString *html;
+
     // Determine desired localisations and load strings
 		NSBundle *pluginBundle = [NSBundle bundleWithIdentifier:@"org.idpf.epub.qlgenerator"];
     
@@ -35,7 +34,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      * Load the HTML template
 		 */
 		//Get the template path
-		NSString *htmlPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/index.html"];
+		NSString *htmlPath = [pluginBundle pathForResource:@"index" ofType:@"html"];
     
     // Load data.
 		NSError *htmlError;
@@ -44,8 +43,8 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     /*
      * Load the epub:
      */
-    CFStringRef filePath = CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle);
-    JTPepub *epubFile = [[JTPepub alloc] initWithFile:(__bridge NSString *)filePath];
+    NSString *filePath = CFBridgingRelease(CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle));
+    JTPepub *epubFile = [[JTPepub alloc] initWithFile:filePath];
     
     
     /*
@@ -68,7 +67,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
         iconData = [[epubFile cover] TIFFRepresentation];
     } else {
         // No cover - get the Finder icon in case the user has pasted something custom
-        theIcon = [[NSWorkspace sharedWorkspace] iconForFile:(__bridge NSString*)filePath];
+        theIcon = [[NSWorkspace sharedWorkspace] iconForFile:filePath];
         [theIcon setSize:NSMakeSize(128.0,128.0)];
         iconData = [theIcon TIFFRepresentation];
     }
@@ -216,8 +215,7 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
      */
     // Check for cancel
 		if(QLPreviewRequestIsCancelled(preview)) {
-        CFRelease(filePath);
-        
+			
 			return noErr;
 		}
 		QLPreviewRequestSetDataRepresentation(preview,(__bridge CFDataRef)[html dataUsingEncoding:NSUTF8StringEncoding],kUTTypeHTML,(__bridge CFDictionaryRef)props);
@@ -225,7 +223,6 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     /*
      * And done! Tidy up and return.
      */
-    CFRelease(filePath);
     return noErr;
     }
 }
