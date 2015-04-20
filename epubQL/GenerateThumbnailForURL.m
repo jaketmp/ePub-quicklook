@@ -21,6 +21,8 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
     /*
      * Load the epub:
      */
+        // This could be used, but the current way is fine:
+        //NSString *filePath = [(__bridge NSURL*)url path];
         NSString *filePath = CFBridgingRelease(CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle));
         JTPepub *epubFile = [[JTPepub alloc] initWithFile:filePath];
         
@@ -35,10 +37,10 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
             NSSize imageSize = [cover size];
 
             if(imageSize.width > imageSize.height) { // Landscape
-                double scale = imageSize.width / maxSize.width;
+                CGFloat scale = imageSize.width / maxSize.width;
                 [cover setSize:NSMakeSize(imageSize.width / scale, imageSize.height / scale)];
             }else if(imageSize.width < imageSize.height) { // Portrait
-                double scale = imageSize.height / maxSize.height;
+                CGFloat scale = imageSize.height / maxSize.height;
                 [cover setSize:NSMakeSize(imageSize.width / scale, imageSize.height / scale)];
             }else { // Square image
                 [cover setSize:NSSizeFromCGSize(maxSize)];

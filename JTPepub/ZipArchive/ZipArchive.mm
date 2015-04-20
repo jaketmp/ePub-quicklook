@@ -8,8 +8,8 @@
 //
 
 #import "ZipArchive.h"
-#import "zlib.h"
-#import "zconf.h"
+#include <zlib.h>
+#include <zconf.h>
 #include <stdint.h>
 
 
@@ -103,7 +103,13 @@ unsigned long mmap_zread(void *opaque, void *stream, void *buf, unsigned long si
     return size;
 }
 
-@implementation ZipArchive
+@implementation ZipArchive {
+@private
+    zipFile             _zipFile;
+    NSString            *archiveName;
+    zlib_filefunc_def   mmap_defs;
+    NSInteger           pos;
+}
 
 -(instancetype) initWithZipFile:(NSString *)fileName {
     self = [super init];

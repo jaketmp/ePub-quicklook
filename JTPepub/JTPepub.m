@@ -12,7 +12,32 @@
 @interface JTPepub ()
 @end
 
-@implementation JTPepub
+@implementation JTPepub {
+@private
+    ZipArchive *epubFile;
+    JTPbookType bookType;
+    NSInteger epubVersion;
+    NSMutableArray *manifest;
+    NSMutableString *capturing;
+    NSDictionary *entities;
+    NSString *title;
+    NSArray *authors;
+    NSString *publisher;
+    NSMutableArray *creators;
+    NSArray *editors;
+    NSArray *illustrators;
+    NSArray *translators;
+    NSString *synopsis;
+    NSString *rootFilePath;
+    NSString *ISBN;
+    GDataXMLDocument *opfXML;
+    NSImage *cover;
+    BOOL haveCheckedForCover;
+    NSDate *publicationDate;
+    NSMutableArray *language;
+    NSString *drm;
+    NSDate *expiryDate;
+}
 
 /*
  * A dictionary of XML namespaces

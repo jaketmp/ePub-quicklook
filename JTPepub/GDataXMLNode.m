@@ -140,26 +140,48 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
             graftingToTreeNode:(xmlNodePtr)graftPointNode;
 @end
 
-@implementation GDataXMLNode
+@implementation GDataXMLNode {
+@protected
+  // NSXMLNodes can have a namespace URI or prefix even if not part
+  // of a tree; xmlNodes cannot.  When we create nodes apart from
+  // a tree, we'll store the dangling prefix or URI in the xmlNode's name,
+  // like
+  //   "prefix:name"
+  // or
+  //   "{http://uri}:name"
+  //
+  // We will fix up the node's namespace and name (and those of any children)
+  // later when adding the node to a tree with addChild: or addAttribute:.
+  // See fixUpNamespacesForNode:.
+  
+  xmlNodePtr xmlNode_; // may also be an xmlAttrPtr or xmlNsPtr
+  BOOL shouldFreeXMLNode_; // if yes, xmlNode_ will be free'd in dealloc
+  
+  // cached values
+  NSString *cachedName_;
+  NSArray *cachedChildren_;
+  NSArray *cachedAttributes_;
+}
+
 @synthesize shouldFreeXMLNode = shouldFreeXMLNode_;
 + (void)load {
   xmlInitParser();
 }
 
 - (GDataXMLNode *)attributeForXMLNode:(xmlAttrPtr)theXMLNode {
-	// search the cached attributes list for the GDataXMLNode with
-	// the underlying xmlAttrPtr
-	//TODO: better replace this.
-	//NSArray *attributes = [self attributes];
-	NSArray *attributes = [NSArray array];
-	for (GDataXMLNode *attr in attributes) {
-		
-		if (theXMLNode == (xmlAttrPtr) [attr XMLNode]) {
-			return attr;
-		}
-	}
-	
-	return nil;
+  // search the cached attributes list for the GDataXMLNode with
+  // the underlying xmlAttrPtr
+  // TODO: better replace this.
+  //NSArray *attributes = [self attributes];
+  NSArray *attributes = [NSArray array];
+  for (GDataXMLNode *attr in attributes) {
+    
+    if (theXMLNode == (xmlAttrPtr) [attr XMLNode]) {
+      return attr;
+    }
+  }
+  
+  return nil;
 }
 
 
@@ -326,9 +348,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 - (void)releaseCachedValues {
 
   cachedName_ = nil;
-
   cachedChildren_ = nil;
-
   cachedAttributes_ = nil;
 }
 

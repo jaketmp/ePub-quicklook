@@ -160,7 +160,7 @@
 		D740FBE315091EA7002D9C76 /* StressTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StressTests-Prefix.pch"; sourceTree = "<group>"; };
 		D749582514DD82360048D619 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = JTPepub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
-		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = JTPepub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
+		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = JTPepub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
 		D76675C514CECDFF003850E7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D783884B1354890700E7937B /* epub.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		D783884E1354890700E7937B /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
@@ -369,6 +369,7 @@
 				D783884C1354890700E7937B /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		D783884C1354890700E7937B /* Products */ = {
 			isa = PBXGroup;

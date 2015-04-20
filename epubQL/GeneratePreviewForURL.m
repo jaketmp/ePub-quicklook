@@ -43,6 +43,8 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     /*
      * Load the epub:
      */
+        // This could be used, but the current way is fine:
+        //NSString *filePath = [(__bridge NSURL*)url path];
     NSString *filePath = CFBridgingRelease(CFURLCopyFileSystemPath(url, kCFURLPOSIXPathStyle));
     JTPepub *epubFile = [[JTPepub alloc] initWithFile:filePath];
     
@@ -90,12 +92,12 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
     NSString *cssPath, *css;
     if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_9) {
         // 10.10
-        cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/yosemite.css"];
+        cssPath = [pluginBundle pathForResource:@"yosemite" ofType:@"css"];
     } else if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_6) {
         // 10.7
-        cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/lion.css"];
+        cssPath = [pluginBundle pathForResource:@"lion" ofType:@"css"];
     } else {
-        cssPath = [[NSString alloc] initWithFormat:@"%@%@", [pluginBundle bundlePath], @"/Contents/Resources/leopard.css"];
+        cssPath = [pluginBundle pathForResource:@"leopard" ofType:@"css"];
     }
     
     css = [[NSString alloc] initWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:NULL];
