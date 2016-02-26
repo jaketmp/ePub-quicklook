@@ -38,14 +38,14 @@
 
 - (void)tearDown
 {
-    [libraryFile release];
-    [koboFile release];
-    [fairplayFile release];
-    [bnFile release];
-    [adeptFile release];
-    [badcontributorFile release];
-    [metadataFile release];
-    [untitledFile release];
+    libraryFile = nil;
+    koboFile = nil;
+    fairplayFile = nil;
+    bnFile = nil;
+    adeptFile = nil;
+    badcontributorFile = nil;
+    metadataFile = nil;
+    untitledFile = nil;
 
     [super tearDown];
 }

@@ -107,21 +107,20 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   return qnameCopy;
 }
 
-@interface GDataXMLNode (PrivateMethods)
+@interface GDataXMLNode ()
 
 // consuming a node implies it will later be freed when the instance is
 // dealloc'd; borrowing it implies that ownership and disposal remain the
 // job of the supplier of the node
 
-+ (id)nodeConsumingXMLNode:(xmlNodePtr)theXMLNode;
-- (id)initConsumingXMLNode:(xmlNodePtr)theXMLNode;
++ (instancetype)nodeConsumingXMLNode:(xmlNodePtr)theXMLNode;
+- (instancetype)initConsumingXMLNode:(xmlNodePtr)theXMLNode;
 
-+ (id)nodeBorrowingXMLNode:(xmlNodePtr)theXMLNode;
-- (id)initBorrowingXMLNode:(xmlNodePtr)theXMLNode;
++ (instancetype)nodeBorrowingXMLNode:(xmlNodePtr)theXMLNode;
+- (instancetype)initBorrowingXMLNode:(xmlNodePtr)theXMLNode;
 
 // getters of the underlying node
-- (xmlNodePtr)XMLNode;
-- (xmlNodePtr)XMLNodeCopy;
+@property (nonatomic, readonly) xmlNodePtr XMLNodeCopy;
 
 // search for an underlying attribute
 - (GDataXMLNode *)attributeForXMLNode:(xmlAttrPtr)theXMLNode;
@@ -131,22 +130,60 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 - (NSString *)stringFromXMLString:(const xmlChar *)chars;
 
 // setter/getter of the dealloc flag for the underlying node
-- (BOOL)shouldFreeXMLNode;
-- (void)setShouldFreeXMLNode:(BOOL)flag;
+@property (nonatomic) BOOL shouldFreeXMLNode;
 
 @end
 
-@interface GDataXMLElement (PrivateMethods)
+@interface GDataXMLElement ()
 
 + (void)fixUpNamespacesForNode:(xmlNodePtr)nodeToFix
             graftingToTreeNode:(xmlNodePtr)graftPointNode;
 @end
 
-@implementation GDataXMLNode
+@implementation GDataXMLNode {
+@protected
+  // NSXMLNodes can have a namespace URI or prefix even if not part
+  // of a tree; xmlNodes cannot.  When we create nodes apart from
+  // a tree, we'll store the dangling prefix or URI in the xmlNode's name,
+  // like
+  //   "prefix:name"
+  // or
+  //   "{http://uri}:name"
+  //
+  // We will fix up the node's namespace and name (and those of any children)
+  // later when adding the node to a tree with addChild: or addAttribute:.
+  // See fixUpNamespacesForNode:.
+  
+  xmlNodePtr xmlNode_; // may also be an xmlAttrPtr or xmlNsPtr
+  BOOL shouldFreeXMLNode_; // if yes, xmlNode_ will be free'd in dealloc
+  
+  // cached values
+  NSString *cachedName_;
+  NSArray *cachedChildren_;
+  NSArray *cachedAttributes_;
+}
 
+@synthesize shouldFreeXMLNode = shouldFreeXMLNode_;
 + (void)load {
   xmlInitParser();
 }
+
+- (GDataXMLNode *)attributeForXMLNode:(xmlAttrPtr)theXMLNode {
+  // search the cached attributes list for the GDataXMLNode with
+  // the underlying xmlAttrPtr
+  // TODO: better replace this.
+  //NSArray *attributes = [self attributes];
+  NSArray *attributes = [NSArray array];
+  for (GDataXMLNode *attr in attributes) {
+    
+    if (theXMLNode == (xmlAttrPtr) [attr XMLNode]) {
+      return attr;
+    }
+  }
+  
+  return nil;
+}
+
 
 // Note on convenience methods for making stand-alone element and
 // attribute nodes:
@@ -268,7 +305,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   return nil;
 }
 
-+ (id)nodeConsumingXMLNode:(xmlNodePtr)theXMLNode {
++ (instancetype)nodeConsumingXMLNode:(xmlNodePtr)theXMLNode {
   Class theClass;
 
   if (theXMLNode->type == XML_ELEMENT_NODE) {
@@ -276,10 +313,10 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   } else {
     theClass = [GDataXMLNode class];
   }
-  return [[[theClass alloc] initConsumingXMLNode:theXMLNode] autorelease];
+  return [[theClass alloc] initConsumingXMLNode:theXMLNode];
 }
 
-- (id)initConsumingXMLNode:(xmlNodePtr)theXMLNode {
+- (instancetype)initConsumingXMLNode:(xmlNodePtr)theXMLNode {
   self = [super init];
   if (self) {
     xmlNode_ = theXMLNode;
@@ -288,7 +325,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   return self;
 }
 
-+ (id)nodeBorrowingXMLNode:(xmlNodePtr)theXMLNode {
++ (instancetype)nodeBorrowingXMLNode:(xmlNodePtr)theXMLNode {
   Class theClass;
   if (theXMLNode->type == XML_ELEMENT_NODE) {
     theClass = [GDataXMLElement class];
@@ -296,10 +333,10 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     theClass = [GDataXMLNode class];
   }
 
-  return [[[theClass alloc] initBorrowingXMLNode:theXMLNode] autorelease];
+  return [[theClass alloc] initBorrowingXMLNode:theXMLNode];
 }
 
-- (id)initBorrowingXMLNode:(xmlNodePtr)theXMLNode {
+- (instancetype)initBorrowingXMLNode:(xmlNodePtr)theXMLNode {
   self = [super init];
   if (self) {
     xmlNode_ = theXMLNode;
@@ -310,13 +347,8 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
 - (void)releaseCachedValues {
 
-  [cachedName_ release];
   cachedName_ = nil;
-
-  [cachedChildren_ release];
   cachedChildren_ = nil;
-
-  [cachedAttributes_ release];
   cachedAttributes_ = nil;
 }
 
@@ -365,10 +397,10 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   }
 
   // allocate a new NSString for this xmlChar*
-  result = [NSString stringWithUTF8String:(const char *) chars];
+  result = @((const char *) chars);
   if (cacheDict) {
     // save the string in the document's string cache
-    CFDictionarySetValue(cacheDict, chars, result);
+    CFDictionarySetValue(cacheDict, chars, (__bridge const void *)(result));
   }
 
   return result;
@@ -380,9 +412,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     xmlFreeNode(xmlNode_);
     xmlNode_ = NULL;
   }
-
-  [self releaseCachedValues];
-  [super dealloc];
 }
 
 #pragma mark -
@@ -453,9 +482,9 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
       int result = xmlNodeDump(buff, doc, xmlNode_, level, format);
 
       if (result > -1) {
-        str = [[[NSString alloc] initWithBytes:(xmlBufferContent(buff))
+        str = [[NSString alloc] initWithBytes:(xmlBufferContent(buff))
                                         length:(NSUInteger)(xmlBufferLength(buff))
-                                      encoding:NSUTF8StringEncoding] autorelease];
+                                      encoding:NSUTF8StringEncoding];
       }
       xmlBufferFree(buff);
     }
@@ -557,7 +586,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
   NSString *str = [self qualifiedName];
 
-  cachedName_ = [str retain];
+  cachedName_ = str;
 
   return str;
 }
@@ -636,18 +665,18 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
       currChild = currChild->next;
     }
 
-    cachedChildren_ = [array retain];
+    cachedChildren_ = array;
   }
   return array;
 }
 
-- (GDataXMLNode *)childAtIndex:(unsigned)index {
+- (GDataXMLNode *)childAtIndex:(NSUInteger)index {
 
   NSArray *children = [self children];
 
   if ([children count] > index) {
 
-    return [children objectAtIndex:index];
+    return children[index];
   }
   return nil;
 }
@@ -730,7 +759,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
       if (namespaces) {
         // the dictionary keys are prefixes; the values are URIs
         for (NSString *prefix in namespaces) {
-          NSString *uri = [namespaces objectForKey:prefix];
+          NSString *uri = namespaces[prefix];
 
           xmlChar *prefixChars = (xmlChar *) [prefix UTF8String];
           xmlChar *uriChars = (xmlChar *) [uri UTF8String];
@@ -804,9 +833,8 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
         const char *msg = xpathCtx->lastError.str1;
         errorCode = xpathCtx->lastError.code;
         if (msg) {
-          NSString *errStr = [NSString stringWithUTF8String:msg];
-          errorInfo = [NSDictionary dictionaryWithObject:errStr
-                                                  forKey:@"error"];
+          NSString *errStr = @(msg);
+          errorInfo = @{@"error": errStr};
         }
       }
 
@@ -814,8 +842,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
     }
   } else {
     // not a valid node for using XPath
-    errorInfo = [NSDictionary dictionaryWithObject:@"invalid node"
-                                            forKey:@"error"];
+    errorInfo = @{@"error": @"invalid node"};
   }
 
   if (array == nil && error != nil) {
@@ -861,7 +888,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 }
 
 - (NSUInteger)hash {
-  return (NSUInteger) (void *) [GDataXMLNode class];
+  return (NSUInteger) (__bridge void *) [GDataXMLNode class];
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
@@ -887,21 +914,13 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   return xmlNode_;
 }
 
-- (BOOL)shouldFreeXMLNode {
-  return shouldFreeXMLNode_;
-}
-
-- (void)setShouldFreeXMLNode:(BOOL)flag {
-  shouldFreeXMLNode_ = flag;
-}
-
 @end
 
 
 
 @implementation GDataXMLElement
 
-- (id)initWithXMLString:(NSString *)str error:(NSError **)error {
+- (instancetype)initWithXMLString:(NSString *)str error:(NSError **)error {
   self = [super init];
   if (self) {
 
@@ -932,7 +951,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
                                      code:-1
                                  userInfo:nil];
       }
-      [self release];
       return nil;
     }
   }
@@ -1214,7 +1232,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
       prop = prop->next;
     }
 
-    cachedAttributes_ = [array retain];
+    cachedAttributes_ = array;
   }
   return array;
 }
@@ -1489,8 +1507,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
         // store a mapping from this defined nsPtr to the one found higher
         // in the tree
-        [nsMap setObject:[NSValue valueWithPointer:foundNS]
-                  forKey:[NSValue valueWithPointer:definedNS]];
+        nsMap[[NSValue valueWithPointer:definedNS]] = [NSValue valueWithPointer:foundNS];
 
         // remove this namespace from the ns definition list of this node;
         // all child elements and attributes referencing this namespace
@@ -1516,7 +1533,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   if (nodeToFix->ns != NULL) {
 
     NSValue *currNS = [NSValue valueWithPointer:nodeToFix->ns];
-    NSValue *replacementNS = [nsMap objectForKey:currNS];
+    NSValue *replacementNS = nsMap[currNS];
 
     if (replacementNS != nil) {
       xmlNsPtr replaceNSPtr = (xmlNsPtr)[replacementNS pointerValue];
@@ -1596,20 +1613,20 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 @end
 
 
-@interface GDataXMLDocument (PrivateMethods)
+@interface GDataXMLDocument ()
 - (void)addStringsCacheToDoc;
 @end
 
 @implementation GDataXMLDocument
 
-- (id)initWithXMLString:(NSString *)str options:(unsigned int)mask error:(NSError **)error {
+- (instancetype)initWithXMLString:(NSString *)str options:(unsigned int)mask error:(NSError **)error {
 
   NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
   GDataXMLDocument *doc = [self initWithData:data options:mask error:error];
   return doc;
 }
 
-- (id)initWithData:(NSData *)data options:(unsigned int)mask error:(NSError **)error {
+- (instancetype)initWithData:(NSData *)data options:(unsigned int)mask error:(NSError **)error {
 
   self = [super init];
   if (self) {
@@ -1627,7 +1644,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
                                 userInfo:nil];
         // TODO(grobbins) use xmlSetGenericErrorFunc to capture error
       }
-      [self release];
       return nil;
     } else {
       if (error) *error = NULL;
@@ -1639,7 +1655,7 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
   return self;
 }
 
-- (id)initWithRootElement:(GDataXMLElement *)element {
+- (instancetype)initWithRootElement:(GDataXMLElement *)element {
 
   self = [super init];
   if (self) {
@@ -1701,7 +1717,6 @@ static xmlChar *SplitQNameReverse(const xmlChar *qname, xmlChar **prefix) {
 
     xmlFreeDoc(xmlDoc_);
   }
-  [super dealloc];
 }
 
 #pragma mark -

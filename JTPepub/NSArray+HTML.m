@@ -14,7 +14,7 @@
 /* Like componentsJoinedByString:, except the components have HTML specials escaped. */
 - (NSString *)escapedComponentsJoinedByString:(NSString *)separator
 {
-    NSMutableArray *escaped = [NSMutableArray array];
+    NSMutableArray *escaped = [[NSMutableArray alloc] init];
     for (NSString *s in self) {
         [escaped addObject:[s stringByEscapingHTML]];
     }

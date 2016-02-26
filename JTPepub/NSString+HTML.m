@@ -17,7 +17,7 @@
     [e replaceOccurrencesOfString:@"&" withString:@"&amp;" options:0 range:NSMakeRange(0, [e length])];
     [e replaceOccurrencesOfString:@"<" withString:@"&lt;" options:0 range:NSMakeRange(0, [e length])];
     [e replaceOccurrencesOfString:@">" withString:@"&gt;" options:0 range:NSMakeRange(0, [e length])];
-    return [e autorelease];
+    return [NSString stringWithString:e];
 }
 
 /* Return an autoreleased version with HTML/XML tags removed. */
@@ -29,7 +29,7 @@
     NSCharacterSet *end = [NSCharacterSet characterSetWithCharactersInString:@">"];
     NSCharacterSet *tag = [end invertedSet];
     
-    NSMutableString *result = [NSMutableString string];
+    NSMutableString *result = [[NSMutableString alloc] initWithCapacity:self.length];
     while ([s isAtEnd] == NO) {
         NSString *p = nil;
         if ([s scanCharactersFromSet:pre intoString:&p] == YES)
@@ -37,6 +37,6 @@
         [s scanCharactersFromSet:tag intoString:NULL];
         [s scanCharactersFromSet:end intoString:NULL];
     }
-    return result;
+	return [NSString stringWithString:result];
 }
 @end

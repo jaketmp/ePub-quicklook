@@ -16,7 +16,7 @@
 + (NSDate *)dateFromOPFString:(NSString *)s
 {
     NSDate *date = nil;
-    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     NSArray *formats = @[@"yyyy",
                         @"yyyy-MM",
                         @"yyyy-MM-dd",

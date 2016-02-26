@@ -9,10 +9,35 @@
 #import "JTPepub.h"
 #import "NSDate+OPF.h"
 
-@interface JTPepub (Private)
+@interface JTPepub ()
 @end
 
-@implementation JTPepub
+@implementation JTPepub {
+@private
+    ZipArchive *epubFile;
+    JTPbookType bookType;
+    NSInteger epubVersion;
+    NSMutableArray *manifest;
+    NSMutableString *capturing;
+    NSDictionary *entities;
+    NSString *title;
+    NSArray *authors;
+    NSString *publisher;
+    NSMutableArray *creators;
+    NSArray *editors;
+    NSArray *illustrators;
+    NSArray *translators;
+    NSString *synopsis;
+    NSString *rootFilePath;
+    NSString *ISBN;
+    GDataXMLDocument *opfXML;
+    NSImage *cover;
+    BOOL haveCheckedForCover;
+    NSDate *publicationDate;
+    NSMutableArray *language;
+    NSString *drm;
+    NSDate *expiryDate;
+}
 
 /*
  * A dictionary of XML namespaces
@@ -44,7 +69,6 @@ static NSMutableDictionary *xmlns = nil;
         
         // Properly handle failing to load fileName;
         if ([self openEPUBFile:fileName] == NO){
-            [self release];
             return nil;
         }
     }
@@ -80,12 +104,9 @@ static NSMutableDictionary *xmlns = nil;
     } else {
         // Not a format we understand.
         bookType = jtpUnknownBook;
-        [mimetype release];
         //[epubFile release]; - We release this when we fail to init and call [self release].
         return NO;
     }
-    
-    [mimetype release];
     
     // Read the container.xml to find the root file.    
     NSData *container = [epubFile dataForNamedFile:@"META-INF/container.xml"];
@@ -100,13 +121,11 @@ static NSMutableDictionary *xmlns = nil;
     
     // This code is all designed arround oebps+xml epubs, DTBook is unsupported.
     if([rootFileType caseInsensitiveCompare:@"application/oebps-package+xml"] == NSOrderedSame) {
-        rootFilePath = [[[rootFile[0] attributeForName:@"full-path"] stringValue] retain];
+        rootFilePath = [[rootFile[0] attributeForName:@"full-path"] stringValue];
     }else{
-        [containerXML release];
         return NO;
     }
     // Tidy
-    [containerXML release];
     
     
     /* 
@@ -161,7 +180,6 @@ static NSMutableDictionary *xmlns = nil;
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
     [parser setDelegate:(id<NSXMLParserDelegate>)self];
     [parser parse];
-    [parser release];
     NSMutableString *plain = capturing;
     capturing = nil;
     return plain;
@@ -197,11 +215,10 @@ resolveExternalEntityName:(NSString *)entityName
 {
     if (entities == nil) {
         NSBundle *b = [NSBundle bundleForClass:[self class]];
-        NSString *path = [b pathForResource:@"entities" ofType:@"plist"];
-        entities = [NSDictionary dictionaryWithContentsOfFile:path];
-        [entities retain];
+        NSURL *path = [b URLForResource:@"entities" withExtension:@"plist"];
+        entities = [[NSDictionary alloc] initWithContentsOfURL:path];
     }
-    NSString *s = [entities valueForKey:entityName];
+    NSString *s = entities[entityName];
     return [s dataUsingEncoding:NSUTF8StringEncoding];
 }
 
@@ -240,8 +257,6 @@ resolveExternalEntityName:(NSString *)entityName
     }
     // There should only be one <dc:title>, so take the last.
     title = [[metaElements lastObject] stringValue];
-        
-    [title retain];
     
     return title;
 }
@@ -270,8 +285,6 @@ resolveExternalEntityName:(NSString *)entityName
     }
     // There should only be one <dc:publisher>, so take the last.
     publisher = [[metaElements lastObject] stringValue];
-    
-    [publisher retain];
     
     return publisher;
 }
@@ -322,7 +335,7 @@ resolveExternalEntityName:(NSString *)entityName
     if (authors) {
         return authors;
     }
-    authors = [[self creatorsWithOPFRole:@"aut"] retain];
+    authors = [self creatorsWithOPFRole:@"aut"];
     return authors;
 }
 
@@ -353,7 +366,7 @@ resolveExternalEntityName:(NSString *)entityName
     if (editors) {
         return editors;
     }
-    editors = [[self contributorsWithOPFRole:@"edt"] retain];
+    editors = [self contributorsWithOPFRole:@"edt"];
     return editors;
 }
 
@@ -363,7 +376,7 @@ resolveExternalEntityName:(NSString *)entityName
     if (illustrators) {
         return illustrators;
     }
-    illustrators = [[self contributorsWithOPFRole:@"ill"] retain];
+    illustrators = [self contributorsWithOPFRole:@"ill"];
     return illustrators;
 }
 
@@ -373,7 +386,7 @@ resolveExternalEntityName:(NSString *)entityName
     if (translators) {
         return translators;
     }
-    translators = [[self contributorsWithOPFRole:@"trl"] retain];
+    translators = [self contributorsWithOPFRole:@"trl"];
     return translators;
 }
 
@@ -507,11 +520,9 @@ resolveExternalEntityName:(NSString *)entityName
     NSString *fullCoverPath = [NSString pathWithComponents:coverPathArray];
     
     NSData *coverData  = [epubFile dataForNamedFile:fullCoverPath];
-    [coverData retain];
     
     //Extract and resize image
     cover = [[NSImage alloc] initWithData:coverData];
-    [coverData release];
     
     haveCheckedForCover= YES;
     
@@ -542,8 +553,6 @@ resolveExternalEntityName:(NSString *)entityName
     // There should only be one <dc:description>, so take the last.
     synopsis = [[metaElements lastObject] stringValue];
     
-    [synopsis retain];
-    
     return synopsis;    
 }
 
@@ -569,7 +578,6 @@ resolveExternalEntityName:(NSString *)entityName
             publicationDate = [NSDate dateFromOPFString:[item stringValue]];
         }        
     }
-    [publicationDate retain];
         
     return publicationDate;
 }
@@ -602,7 +610,7 @@ resolveExternalEntityName:(NSString *)entityName
                                       range:NSMakeRange(0, [val length])];
             [val replaceOccurrencesOfString:@" " withString:@"" options:0 range:NSMakeRange(0, [val length])];
             if (![val isEqualToString:@""]) {
-                ISBN = [val retain];
+                ISBN = val;
                 return ISBN;
             }
         }
@@ -642,15 +650,10 @@ resolveExternalEntityName:(NSString *)entityName
                                                error:&xmlError];
             // looks like 2012-02-21T07:23:19Z
             // but try parsing the full range of formats anyway
-            [expiryDate release];
             expiryDate = [NSDate dateFromOPFString:[[dates lastObject] stringValue]];
-            [expiryDate retain];
-
-            [adeptXML release];
 
             return drm;
         }
-        [adeptXML release];
     }
     // Apple Fairplay DRM has "META-INF/sinf.xml" containing <fairplay:sinf>.
     if ([epubFile testForNamedFile:@"META-INF/sinf.xml"]) {
@@ -660,7 +663,6 @@ resolveExternalEntityName:(NSString *)entityName
         NSArray *sinf = [fairplayXML nodesForXPath:@"//fairplay:sinf"
                                         namespaces:xmlns
                                              error:&xmlError];
-        [fairplayXML release];
         if ([sinf count] > 0) {
             drm = @"Apple";
             return drm;
@@ -672,7 +674,6 @@ resolveExternalEntityName:(NSString *)entityName
         NSError *xmlError;
         GDataXMLDocument *koboXML = [[GDataXMLDocument alloc] initWithData:kobo options:0 error:&xmlError];
         NSArray *kdrm = [koboXML nodesForXPath:@"/kdrm" error:&xmlError];
-        [koboXML release];
         if ([kdrm count] > 0) {
             drm = @"Kobo";
             return drm;
@@ -735,32 +736,6 @@ resolveExternalEntityName:(NSString *)entityName
     
     
     return language;
-}
-
-- (void)dealloc
-{
-    [epubFile release];
-    [manifest release];
-    [capturing release];
-    [entities release];
-    [title release];
-    [publisher release];
-    [authors release];
-    [creators release];
-    [editors release];
-    [illustrators release];
-    [translators release];
-    [opfXML release];
-    [cover release];
-    [synopsis release];
-    [ISBN release];
-    [drm release];
-    [expiryDate release];
-    [rootFilePath release];
-    [publicationDate release];
-    [language release];
-
-    [super dealloc];
 }
 
 @end

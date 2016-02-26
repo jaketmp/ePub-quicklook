@@ -76,7 +76,7 @@ _EXTERN const char* kGDataXMLXPathDefaultNamespacePrefix _INITIALIZE_AS("_def_ns
 @class NSArray, NSDictionary, NSError, NSString, NSURL;
 @class GDataXMLElement, GDataXMLDocument;
 
-enum {
+typedef NS_ENUM(NSUInteger, GDataXMLNodeKind) {
   GDataXMLInvalidKind = 0,
   GDataXMLDocumentKind,
   GDataXMLElementKind,
@@ -92,57 +92,32 @@ enum {
   GDataXMLNotationDeclarationKind
 };
 
-typedef NSUInteger GDataXMLNodeKind;
-
-@interface GDataXMLNode : NSObject <NSCopying> {
-@protected
-  // NSXMLNodes can have a namespace URI or prefix even if not part
-  // of a tree; xmlNodes cannot.  When we create nodes apart from
-  // a tree, we'll store the dangling prefix or URI in the xmlNode's name,
-  // like
-  //   "prefix:name"
-  // or
-  //   "{http://uri}:name"
-  //
-  // We will fix up the node's namespace and name (and those of any children)
-  // later when adding the node to a tree with addChild: or addAttribute:.
-  // See fixUpNamespacesForNode:.
-
-  xmlNodePtr xmlNode_; // may also be an xmlAttrPtr or xmlNsPtr
-  BOOL shouldFreeXMLNode_; // if yes, xmlNode_ will be free'd in dealloc
-
-  // cached values
-  NSString *cachedName_;
-  NSArray *cachedChildren_;
-  NSArray *cachedAttributes_;
-}
-
+@interface GDataXMLNode : NSObject <NSCopying>
 + (GDataXMLElement *)elementWithName:(NSString *)name;
 + (GDataXMLElement *)elementWithName:(NSString *)name stringValue:(NSString *)value;
 + (GDataXMLElement *)elementWithName:(NSString *)name URI:(NSString *)value;
 
-+ (id)attributeWithName:(NSString *)name stringValue:(NSString *)value;
-+ (id)attributeWithName:(NSString *)name URI:(NSString *)attributeURI stringValue:(NSString *)value;
++ (instancetype)attributeWithName:(NSString *)name stringValue:(NSString *)value;
++ (instancetype)attributeWithName:(NSString *)name URI:(NSString *)attributeURI stringValue:(NSString *)value;
 
-+ (id)namespaceWithName:(NSString *)name stringValue:(NSString *)value;
++ (instancetype)namespaceWithName:(NSString *)name stringValue:(NSString *)value;
 
-+ (id)textWithStringValue:(NSString *)value;
++ (instancetype)textWithStringValue:(NSString *)value;
 
-- (NSString *)stringValue;
-- (void)setStringValue:(NSString *)str;
+@property (copy) NSString *stringValue;
 
-- (NSUInteger)childCount;
-- (NSArray *)children;
-- (GDataXMLNode *)childAtIndex:(unsigned)index;
+@property (readonly) NSUInteger childCount;
+@property (nonatomic, readonly, copy) NSArray *children;
+- (GDataXMLNode *)childAtIndex:(NSUInteger)index;
 
-- (NSString *)localName;
-- (NSString *)name;
-- (NSString *)prefix;
-- (NSString *)URI;
+@property (readonly, copy) NSString *localName;
+@property (readonly, copy) NSString *name;
+@property (readonly, copy) NSString *prefix;
+@property (readonly, copy) NSString *URI;
 
-- (GDataXMLNodeKind)kind;
+@property (readonly) GDataXMLNodeKind kind;
 
-- (NSString *)XMLString;
+@property (nonatomic, readonly, copy) NSString *XMLString;
 
 + (NSString *)localNameForName:(NSString *)name;
 + (NSString *)prefixForName:(NSString *)name;
@@ -159,7 +134,7 @@ typedef NSUInteger GDataXMLNodeKind;
 
 // access to the underlying libxml node; be sure to release the cached values
 // if you change the underlying tree at all
-- (xmlNodePtr)XMLNode;
+@property (nonatomic, readonly) xmlNodePtr XMLNode;
 - (void)releaseCachedValues;
 
 @end
@@ -167,10 +142,9 @@ typedef NSUInteger GDataXMLNodeKind;
 
 @interface GDataXMLElement : GDataXMLNode
 
-- (id)initWithXMLString:(NSString *)str error:(NSError **)error;
+- (instancetype)initWithXMLString:(NSString *)str error:(NSError **)error NS_DESIGNATED_INITIALIZER;
 
-- (NSArray *)namespaces;
-- (void)setNamespaces:(NSArray *)namespaces;
+@property (copy) NSArray *namespaces;
 - (void)addNamespace:(GDataXMLNode *)aNamespace;
 
 // addChild adds a copy of the child node to the element
@@ -180,7 +154,7 @@ typedef NSUInteger GDataXMLNodeKind;
 - (NSArray *)elementsForName:(NSString *)name;
 - (NSArray *)elementsForLocalName:(NSString *)localName URI:(NSString *)URI;
 
-- (NSArray *)attributes;
+@property (nonatomic, readonly, copy) NSArray *attributes;
 - (GDataXMLNode *)attributeForName:(NSString *)name;
 - (GDataXMLNode *)attributeForLocalName:(NSString *)name URI:(NSString *)attributeURI;
 - (void)addAttribute:(GDataXMLNode *)attribute;
@@ -194,15 +168,15 @@ typedef NSUInteger GDataXMLNodeKind;
   xmlDoc* xmlDoc_; // strong; always free'd in dealloc
 }
 
-- (id)initWithXMLString:(NSString *)str options:(unsigned int)mask error:(NSError **)error;
-- (id)initWithData:(NSData *)data options:(unsigned int)mask error:(NSError **)error;
+- (instancetype)initWithXMLString:(NSString *)str options:(unsigned int)mask error:(NSError **)error;
+- (instancetype)initWithData:(NSData *)data options:(unsigned int)mask error:(NSError **)error NS_DESIGNATED_INITIALIZER;
 
 // initWithRootElement uses a copy of the argument as the new document's root
-- (id)initWithRootElement:(GDataXMLElement *)element;
+- (instancetype)initWithRootElement:(GDataXMLElement *)element NS_DESIGNATED_INITIALIZER;
 
-- (GDataXMLElement *)rootElement;
+@property (nonatomic, readonly, copy) GDataXMLElement *rootElement;
 
-- (NSData *)XMLData;
+@property (nonatomic, readonly, copy) NSData *XMLData;
 
 - (void)setVersion:(NSString *)version;
 - (void)setCharacterEncoding:(NSString *)encoding;
@@ -217,5 +191,5 @@ typedef NSUInteger GDataXMLNodeKind;
 // be consistenly the same namespace in server responses.
 - (NSArray *)nodesForXPath:(NSString *)xpath error:(NSError **)error;
 
-- (NSString *)description;
+@property (nonatomic, readonly, copy) NSString *description;
 @end

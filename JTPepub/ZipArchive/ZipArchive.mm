@@ -8,13 +8,13 @@
 //
 
 #import "ZipArchive.h"
-#import "zlib.h"
-#import "zconf.h"
+#include <zlib.h>
+#include <zconf.h>
 #include <stdint.h>
 
 
 
-@interface ZipArchive (Private)
+@interface ZipArchive ()
 
 
 @end
@@ -27,12 +27,12 @@
  * The "stream" is the NSData object.
  * The "opaque" value is a pointer to the current file offset.
  */
-void *mmap_zopen(void *, const char *, int);
-int mmap_zclose(void *, void *);
-long mmap_ztell(void *, void *);
-long mmap_zseek(void *, void *, unsigned long, int);
-int mmap_zerror(void *, void *);
-unsigned long mmap_zread(void *, void *, void *, unsigned long);
+static void *mmap_zopen(void *, const char *, int);
+static int mmap_zclose(void *, void *);
+static long mmap_ztell(void *, void *);
+static long mmap_zseek(void *, void *, unsigned long, int);
+static int mmap_zerror(void *, void *);
+static unsigned long mmap_zread(void *, void *, void *, unsigned long);
 
 // NB this ignores the mode flag and opens the file read-only.
 void *mmap_zopen(void *opaque, const char *filename, int mode)
@@ -103,7 +103,13 @@ unsigned long mmap_zread(void *opaque, void *stream, void *buf, unsigned long si
     return size;
 }
 
-@implementation ZipArchive
+@implementation ZipArchive {
+@private
+    zipFile             _zipFile;
+    NSString            *archiveName;
+    zlib_filefunc_def   mmap_defs;
+    NSInteger           pos;
+}
 
 -(instancetype) initWithZipFile:(NSString *)fileName {
     self = [super init];

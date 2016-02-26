@@ -15,10 +15,11 @@
 		235DC65814EFB3C800D28657 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65714EFB3C800D28657 /* main.c */; };
 		235DC65A14EFB3C800D28657 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65914EFB3C800D28657 /* GetMetadataForFile.m */; };
 		235DC65D14EFB3C800D28657 /* MySpotlightImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */; };
+		550E250B1AE57BC6003D34B1 /* schema.strings in Resources */ = {isa = PBXBuildFile; fileRef = 550E250D1AE57BC6003D34B1 /* schema.strings */; };
 		674566941502B4810012224C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674566931502B4810012224C /* entities.plist */; };
 		674566951502B4810012224C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674566931502B4810012224C /* entities.plist */; };
 		674566961502B4810012224C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 674566931502B4810012224C /* entities.plist */; };
-		6749F2C814F2F1C4007AB6C4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
+		6749F2C814F2F1C4007AB6C4 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6749F2CA14F2F1EE007AB6C4 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; settings = {COMPILER_FLAGS = "-DUSE_FILE32API"; }; };
 		6749F2CC14F2F1F5007AB6C4 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; settings = {COMPILER_FLAGS = "-DNOUNCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
 		6749F2CD14F2F206007AB6C4 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; settings = {COMPILER_FLAGS = "-DNOCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
@@ -42,7 +43,7 @@
 		675FAB5514D9BEFB0065603A /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D76675C014CECD50003850E7 /* GDataXMLNode.m */; };
 		675FAB5614D9BEFE0065603A /* NSArray+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CA14CF297E00127A36 /* NSArray+HTML.m */; };
 		675FAB5714D9BF030065603A /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 674D09CF14CF2C6800127A36 /* NSString+HTML.m */; };
-		675FAB5814D9BF390065603A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
+		675FAB5814D9BF390065603A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		675FAB5914D9BF690065603A /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; settings = {COMPILER_FLAGS = "-DUSE_FILE32API"; }; };
 		675FAB5B14D9BF740065603A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388971354AA7600E7937B /* unzip.c */; settings = {COMPILER_FLAGS = "-DNOUNCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
 		675FAB5C14D9BF780065603A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388991354AA7600E7937B /* zip.c */; settings = {COMPILER_FLAGS = "-DNOCRYPT -UHAVE_BZIP2 -DUSE_FILE32API"; }; };
@@ -53,7 +54,6 @@
 		67BE43EE14DEC886003C7DFC /* fake-adept.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EB14DEC886003C7DFC /* fake-adept.epub */; };
 		67BE43EF14DEC886003C7DFC /* fake-fairplay.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */; };
 		67BE43F014DEC886003C7DFC /* fake-kobo.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67BE43ED14DEC886003C7DFC /* fake-kobo.epub */; };
-		67C038661504A272008DA23B /* schema.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67C038651504A272008DA23B /* schema.strings */; };
 		67E3075214E995510004C1D8 /* fake-library.epub in Resources */ = {isa = PBXBuildFile; fileRef = 67E3075114E995510004C1D8 /* fake-library.epub */; };
 		67E3077314E9A24A0004C1D8 /* NSDate+OPF.h in Headers */ = {isa = PBXBuildFile; fileRef = 67E3077114E9A24A0004C1D8 /* NSDate+OPF.h */; };
 		67E3077414E9A24A0004C1D8 /* NSDate+OPF.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */; };
@@ -88,7 +88,7 @@
 		D78388601354890700E7937B /* GeneratePreviewForURL.m in Sources */ = {isa = PBXBuildFile; fileRef = D783885F1354890700E7937B /* GeneratePreviewForURL.m */; };
 		D78388621354890700E7937B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388611354890700E7937B /* main.c */; };
 		D783887E1354891800E7937B /* ZipArchive.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388731354891800E7937B /* ZipArchive.h */; };
-		D783887F1354891800E7937B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; };
+		D783887F1354891800E7937B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = D78388741354891800E7937B /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D783888313548ADA00E7937B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D783888213548ADA00E7937B /* AppKit.framework */; };
 		D783889C1354AA7600E7937B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D78388931354AA7600E7937B /* ioapi.c */; settings = {COMPILER_FLAGS = "-DUSE_FILE32API"; }; };
 		D783889D1354AA7600E7937B /* ioapi.h in Headers */ = {isa = PBXBuildFile; fileRef = D78388941354AA7600E7937B /* ioapi.h */; };
@@ -126,6 +126,7 @@
 		235DC65B14EFB3C800D28657 /* MySpotlightImporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySpotlightImporter.h; sourceTree = "<group>"; };
 		235DC65C14EFB3C800D28657 /* MySpotlightImporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MySpotlightImporter.m; sourceTree = "<group>"; };
 		235DC65F14EFB3C800D28657 /* epubMDI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "epubMDI-Prefix.pch"; sourceTree = "<group>"; };
+		550E250C1AE57BC6003D34B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/schema.strings; sourceTree = "<group>"; };
 		6709959514FA89B600EEEFA6 /* test.ibooks */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.ibooks; sourceTree = "<group>"; };
 		674566931502B4810012224C /* entities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entities.plist; sourceTree = "<group>"; };
 		674D09C914CF297E00127A36 /* NSArray+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HTML.h"; sourceTree = "<group>"; };
@@ -136,7 +137,7 @@
 		675F07EE14E7190700FEFD90 /* metadata.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = metadata.epub; sourceTree = "<group>"; };
 		675F07EF14E7190700FEFD90 /* Untitled.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Untitled.epub; sourceTree = "<group>"; };
 		675FAB3B14D9B8760065603A /* EpubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EpubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		675FAB3E14D9B8760065603A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		675FAB3E14D9B8760065603A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		675FAB4114D9B8760065603A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		675FAB4214D9B8760065603A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		675FAB4314D9B8760065603A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,7 +150,6 @@
 		67BE43EB14DEC886003C7DFC /* fake-adept.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-adept.epub"; sourceTree = "<group>"; };
 		67BE43EC14DEC886003C7DFC /* fake-fairplay.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-fairplay.epub"; sourceTree = "<group>"; };
 		67BE43ED14DEC886003C7DFC /* fake-kobo.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-kobo.epub"; sourceTree = "<group>"; };
-		67C038651504A272008DA23B /* schema.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = schema.strings; sourceTree = "<group>"; };
 		67E3075114E995510004C1D8 /* fake-library.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fake-library.epub"; sourceTree = "<group>"; };
 		67E3077114E9A24A0004C1D8 /* NSDate+OPF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+OPF.h"; sourceTree = "<group>"; };
 		67E3077214E9A24A0004C1D8 /* NSDate+OPF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+OPF.m"; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		D740FBE315091EA7002D9C76 /* StressTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StressTests-Prefix.pch"; sourceTree = "<group>"; };
 		D749582514DD82360048D619 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D76675BF14CECD50003850E7 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataXMLNode.h; path = JTPepub/GDataXMLNode.h; sourceTree = SOURCE_ROOT; };
-		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = JTPepub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
+		D76675C014CECD50003850E7 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; name = GDataXMLNode.m; path = JTPepub/GDataXMLNode.m; sourceTree = SOURCE_ROOT; };
 		D76675C514CECDFF003850E7 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D783884B1354890700E7937B /* epub.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = epub.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		D783884E1354890700E7937B /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
@@ -257,7 +257,7 @@
 		235DC65214EFB3C800D28657 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				67C038651504A272008DA23B /* schema.strings */,
+				550E250D1AE57BC6003D34B1 /* schema.strings */,
 				235DC65314EFB3C800D28657 /* epubMDI-Info.plist */,
 				235DC65414EFB3C800D28657 /* InfoPlist.strings */,
 				235DC65714EFB3C800D28657 /* main.c */,
@@ -369,6 +369,7 @@
 				D783884C1354890700E7937B /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		D783884C1354890700E7937B /* Products */ = {
 			isa = PBXGroup;
@@ -549,7 +550,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Imperial College";
 				TargetAttributes = {
 					675FAB3A14D9B8760065603A = {
@@ -585,7 +586,7 @@
 				235DC65614EFB3C800D28657 /* InfoPlist.strings in Resources */,
 				674566961502B4810012224C /* entities.plist in Resources */,
 				67932B221503FEA600D61278 /* schema.xml in Resources */,
-				67C038661504A272008DA23B /* schema.strings in Resources */,
+				550E250B1AE57BC6003D34B1 /* schema.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,6 +731,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		550E250D1AE57BC6003D34B1 /* schema.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				550E250C1AE57BC6003D34B1 /* en */,
+			);
+			name = schema.strings;
+			sourceTree = "<group>";
+		};
 		D749582614DD82360048D619 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -752,26 +761,16 @@
 		235DC66014EFB3C800D28657 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epubMDI/epubMDI-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "epubMDI/epubMDI-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = epub;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = mdimporter;
 			};
 			name = Debug;
@@ -779,22 +778,15 @@
 		235DC66114EFB3C800D28657 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epubMDI/epubMDI-Prefix.pch";
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "epubMDI/epubMDI-Info.plist";
 				INSTALL_PATH = "@executable_path/../Contents/Library/Spotlight";
-				LIBRARY_STYLE = BUNDLE;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = epub;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 				WRAPPER_EXTENSION = mdimporter;
 			};
 			name = Release;
@@ -802,51 +794,37 @@
 		675FAB4E14D9B8760065603A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EpubTests/EpubTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
 			name = Debug;
 		};
 		675FAB4F14D9B8760065603A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EpubTests/EpubTests-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				INFOPLIST_FILE = "EpubTests/EpubTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
 			name = Release;
 		};
 		D740FBEA15091EA7002D9C76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -857,41 +835,37 @@
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
 			name = Debug;
 		};
 		D740FBEB15091EA7002D9C76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StressTests/StressTests-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
 			};
 			name = Release;
 		};
 		D78388631354890700E7937B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -900,24 +874,29 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				HEADER_SEARCH_PATHS = (
+					"${SDK_DIR}/usr/include/libxml2",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Debug;
 		};
 		D78388641354890700E7937B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -925,28 +904,27 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				HEADER_SEARCH_PATHS = (
+					"${SDK_DIR}/usr/include/libxml2",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
-				VALID_ARCHS = "x86_64 i386";
 			};
 			name = Release;
 		};
 		D78388661354890700E7937B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epubQL/epub-Prefix.pch";
 				INFOPLIST_FILE = "epubQL/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = epub;
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
-				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Debug;
@@ -954,19 +932,14 @@
 		D78388671354890700E7937B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "epubQL/epub-Prefix.pch";
 				INFOPLIST_FILE = "epubQL/epub-Info.plist";
 				INSTALL_PATH = /Library/QuickLook;
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = epub;
-				USER_HEADER_SEARCH_PATHS = "/usr/include/libxml2 $(SDKROOT)/usr/include/libxml2";
-				VALID_ARCHS = "x86_64 i386";
 				WRAPPER_EXTENSION = qlgenerator;
 			};
 			name = Release;
