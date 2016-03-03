@@ -1,4 +1,4 @@
-Copyright (c) 2016, Jakr TM Pearce
+Copyright (c) 2016, Jake TM Pearce
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
