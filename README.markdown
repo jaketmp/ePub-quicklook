@@ -10,11 +10,11 @@ These plugins read the various information directly from the EPUB contents - so 
 
 ## Installation
 
-After downloading and extracting the zip files from the **[Releases](https://github.com/jaketmp/ePub-quicklook/releases/latest)** tab above, drag each of the plugins to the folder indicated. This will install the plugins for all users (you may need to enter the password for an administrator). If you lack administrator privileges or only wish to install for one user, follow the instructions below. 
+After downloading and extracting the zip files from the **[Releases](https://github.com/jaketmp/ePub-quicklook/releases/latest)** tab above, drag each of the plugins to the folder indicated. This will install the plugins for all users (you may need to enter the password for an administrator account). If you lack administrator privileges or only wish to install for one user, follow the instructions below. 
 
 Place the **epub.qlgenerator** file into `/Library/QuickLook` (for all users) or `~/Library/QuickLook` (for the current user only).
 
-The Mac should notice the plugin appearing and start using it automatically. If it doesn't seem to, try logging out and in again, or run Terminal.app and enter this command:
+The Mac operating system should notice the plugin appearing and start using it automatically. If it doesn't seem to, try logging out and in again, or run Terminal.app and enter this command:
 
     qlmanage -r
 
@@ -30,7 +30,7 @@ or:
 
     mdimport -r ~/Library/Spotlight/epub.mdimporter
 
-if you installed it for the current user only) and press return. There are other ways to run mdimport which might also help - see its man page for more details.
+if you installed it for the current user only and press return. There are other ways to run mdimport which might also help - see the main page for more details.
 
 Spotlight will begin indexing your EPUB files in the background.
 
